@@ -49,13 +49,13 @@ export default function RealMe() {
                     }
                 });
             }
-        }, containerRef); // Scope to containerRef
+        }, containerRef);
 
-        return () => ctx.revert(); // Cleanup
+        return () => ctx.revert();
     }, []);
 
     return (
-        <section id="realme" ref={containerRef} className="w-full min-h-screen bg-primary text-light-text p-6 min-[720px]:p-12 flex flex-col relative z-20">
+        <section id="realme" ref={containerRef} className="w-full h-screen bg-primary text-light-text px-6 min-[720px]:px-12 lg:px-16 py-20 min-[720px]:py-32 flex flex-col relative z-20">
             {/* Header Content */}
             <div ref={contentRef} className="flex flex-col gap-4">
                 <h2 className="text-4xl min-[720px]:text-6xl font-medium tracking-tight">REAL ME</h2>
@@ -71,7 +71,7 @@ export default function RealMe() {
             <div className="flex-1 flex items-center justify-center">
                 <blockquote ref={textRef} className="max-w-4xl text-2xl min-[720px]:text-4xl lg:text-5xl leading-tight font-light text-center">
                     <span className="word inline-block mr-2">"</span>
-                    <span className="word inline-block mr-2">I’m</span>
+                    <span className="word inline-block mr-2">I'm</span>
                     <span className="word inline-block mr-2">a</span>
                     <span className="word inline-block mr-2">perfectionist</span>
                     <span className="word inline-block mr-2">when</span>
@@ -92,10 +92,10 @@ export default function RealMe() {
                     <span className="word inline-block mr-2">the</span>
                     <span className="word inline-block mr-2">stack</span>
                     <span className="word inline-block mr-2">and</span>
-                    <span className="word inline-block mr-2">won’t</span>
+                    <span className="word inline-block mr-2">won't</span>
                     <span className="word inline-block mr-2">stop</span>
                     <span className="word inline-block mr-2">until</span>
-                    <span className="word inline-block mr-2">I’ve</span>
+                    <span className="word inline-block mr-2">I've</span>
                     <span className="word inline-block mr-2">figured</span>
                     <span className="word inline-block mr-2">out</span>
                     <span className="word inline-block mr-2">how</span>

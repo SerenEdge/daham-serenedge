@@ -30,12 +30,12 @@ export default function Navbar() {
                         onEnter: () => {
                             gsap.set(wrapperRef.current, { position: "fixed", top: 0, left: 0, yPercent: -100 });
                             gsap.set(navRef.current, {
-                                backgroundColor: "rgba(255, 255, 255, 1)",
+                                backgroundColor: "rgba(255, 255, 255, 0.95)",
                                 color: "#000",
                                 borderRadius: "50px",
-                                maxWidth: "600px",
-                                boxShadow: "0 10px 30px -10px rgba(0,0,0,0.1)",
-                                padding: "10px 30px",
+                                maxWidth: "550px",
+                                boxShadow: "0 4px 20px -8px rgba(0,0,0,0.15)",
+                                padding: "8px 24px",
                                 marginTop: "0px"
                             });
                             gsap.to(wrapperRef.current, { yPercent: 0, duration: 0.8, ease: "power2.out" });
@@ -80,12 +80,12 @@ export default function Navbar() {
                             gsap.set(wrapperRef.current, { position: "fixed", top: 0, left: 0, width: "100%" });
 
                             // 2. Hide Logo (so only icon is visible)
-                            gsap.set(logo, { autoAlpha: 0, display: "none" });
+                            gsap.set(logo, { autoAlpha: 0 });
 
-                            // 3. Prepare Icon for animation (from right)
+                            // 3. Prepare Icon for animation (slide down)
                             gsap.fromTo(menuBtn,
-                                { x: 50, autoAlpha: 0 },
-                                { x: 0, autoAlpha: 1, duration: 0.5, ease: "back.out(1.7)" }
+                                { y: -20, autoAlpha: 0 },
+                                { y: 0, autoAlpha: 1, duration: 0.5, ease: "back.out(1.7)" }
                             );
 
                             // Ensure background is transparent
@@ -96,52 +96,13 @@ export default function Navbar() {
 
                             // Reset to Absolute / Default
                             gsap.set(wrapperRef.current, { position: "absolute", top: 0, left: 0 });
-                            gsap.set(logo, { autoAlpha: 1, display: "block" });
-                            gsap.set(menuBtn, { x: 0, autoAlpha: 1 });
+                            gsap.set(logo, { autoAlpha: 1 });
+                            gsap.set(menuBtn, { y: 0, autoAlpha: 1 });
                         }
                     });
 
-                    // --- SECTION COLOR SWITCHING ---
-
-                    // 1. Hero / Home (Light Background -> Dark Icon)
-                    ScrollTrigger.create({
-                        trigger: "#home",
-                        start: "top center",
-                        end: "bottom center",
-                        onEnter: () => gsap.to(navRef.current, { color: "#1c1c2b", duration: 0.3 }), // --secondary
-                        onEnterBack: () => gsap.to(navRef.current, { color: "#1c1c2b", duration: 0.3 }),
-                    });
-
-                    // 2. Real Me (Dark Background -> Light Icon)
-                    ScrollTrigger.create({
-                        trigger: "#realme",
-                        start: "top center",
-                        end: "bottom center",
-                        onEnter: () => gsap.to(navRef.current, { color: "#e6e6f0", duration: 0.3 }), // --light-text
-                        onEnterBack: () => gsap.to(navRef.current, { color: "#e6e6f0", duration: 0.3 }),
-                    });
-
-                    // 3. Placeholder: Portfolio (Add ID and Color here)
-                    /*
-                    ScrollTrigger.create({
-                        trigger: "#portfolio",
-                        start: "top center",
-                        end: "bottom center",
-                        onEnter: () => gsap.to(navRef.current, { color: "#1c1c2b", duration: 0.3 }),
-                        onEnterBack: () => gsap.to(navRef.current, { color: "#1c1c2b", duration: 0.3 }),
-                    });
-                    */
-
-                    // 4. Placeholder: Resume (Add ID and Color here)
-                    /*
-                    ScrollTrigger.create({
-                        trigger: "#resume",
-                        start: "top center",
-                        end: "bottom center",
-                        onEnter: () => gsap.to(navRef.current, { color: "#1c1c2b", duration: 0.3 }),
-                        onEnterBack: () => gsap.to(navRef.current, { color: "#1c1c2b", duration: 0.3 }),
-                    });
-                    */
+                    // Keep navbar icon color fixed at --secondary (#1c1c2b)
+                    gsap.set(navRef.current, { color: "#1c1c2b" });
                 }
             });
         }, wrapperRef);
@@ -155,9 +116,7 @@ export default function Navbar() {
             // Force transparent and visible styling
             gsap.to(navRef.current, {
                 backgroundColor: "transparent",
-                color: "var(--secondary)", // Make sure close icon is visible against light menu bg
-                // Note: If menu overly is dark, we might need different color. 
-                // Current overlay has bg-background (light) -> text-secondary (dark). Correct.
+                color: "#1c1c2b", // Always keep --secondary color
                 duration: 0.3
             });
         }
@@ -175,7 +134,7 @@ export default function Navbar() {
 
                         {/* Logo / Brand - Always visible initially, hidden by GSAP on mobile scroll */}
                         <Link
-                            href="#home"
+                            href="#"
                             className="z-50 nav-logo block"
                         >
                             <Image
@@ -204,7 +163,7 @@ export default function Navbar() {
 
                         {/* Mobile Menu Button */}
                         <button
-                            className="min-[720px]:hidden z-50 focus:outline-none p-2 -mr-2 text-inherit nav-menu-btn"
+                            className="min-[720px]:hidden z-50 focus:outline-none p-2 -mr-2 text-inherit nav-menu-btn bg-background rounded-lg"
                             onClick={toggleMenu}
                             aria-label="Toggle menu"
                         >
@@ -218,7 +177,7 @@ export default function Navbar() {
             {isMenuOpen && (
                 <div className="fixed inset-0 bg-background flex flex-col justify-center items-center z-[90] min-[720px]:hidden text-secondary">
                     <div className="flex flex-col gap-8 text-2xl font-light text-center">
-                        <Link href="#home" onClick={toggleMenu} className="hover:text-primary transition-colors">Hello</Link>
+                        <Link href="#" onClick={toggleMenu} className="hover:text-primary transition-colors">Hello</Link>
                         <Link href="#realme" onClick={toggleMenu} className="hover:text-primary transition-colors">Real Me</Link>
                         <Link href="#portfolio" onClick={toggleMenu} className="hover:text-primary transition-colors">Portfolio</Link>
                         <Link href="#resume" onClick={toggleMenu} className="hover:text-primary transition-colors">Resume</Link>
