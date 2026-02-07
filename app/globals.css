@@ -17,7 +17,7 @@
 :root {
   --background: #f8f8f8;
   --foreground: #1c1c2b;
-  --primary: #1C1C2B;
+  --primary: #1c1c2b;
   --secondary: #1c1c2b;
   --tertiary: #7b7b7b;
   --light-text: #e6e6f0;
@@ -38,6 +38,17 @@
   :root {
     --background: #f8f8f8;
     --foreground: #ededed;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

@@ -100,9 +100,55 @@ export default function Portfolio() {
                                     </p>
                                 </div>
 
-                                {/* Hover Card Container - Creates reveal area */}
-                                <div className="relative overflow-hidden" style={{ height: hoveredProject === index ? '300px' : '0px', transition: 'height 0.4s ease-out' }}>
+                                {/* Project Details Section - Smooth reveal and close */}
+                                <div
+                                    className="overflow-hidden transition-all duration-500 ease-out"
+                                    style={{
+                                        maxHeight: hoveredProject === index ? '600px' : '0px',
+                                        opacity: hoveredProject === index ? 1 : 0
+                                    }}
+                                >
+                                    <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                        {/* Image Placeholder - Smaller size */}
+                                        <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center">
+                                            <span className="text-gray-400 text-lg font-medium">Project Image</span>
+                                        </div>
 
+                                        {/* Description and Tech Stack */}
+                                        <div className="flex flex-col gap-6">
+                                            {/* Long Description */}
+                                            <div>
+                                                <p className="text-tertiary text-base leading-relaxed">
+                                                    {project.title === "ReImage Agent"
+                                                        ? "The ReImage Agent is a specialized tool that transforms personal photos into vibrant, cartoon-style portraits. Built with a FastAPI backend for efficient image processing and Next.js for a seamless, responsive user experience, this project showcases the integration of AI-powered image transformation with modern web technologies. Users can upload their photos and receive professionally styled cartoon versions in seconds."
+                                                        : "This is a comprehensive project that demonstrates advanced development skills and modern best practices. The application features a robust architecture, clean code organization, and seamless user experience. Built with cutting-edge technologies and optimized for performance, scalability, and maintainability."}
+                                                </p>
+                                            </div>
+
+                                            {/* Tech Stack */}
+                                            <div>
+                                                <h4 className="text-xl font-medium mb-3">Tech Stack</h4>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {project.title === "ReImage Agent" ? (
+                                                        <>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">FastAPI</span>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">Next.js</span>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">Python</span>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">AI/ML</span>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">TypeScript</span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">React</span>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">TypeScript</span>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">Node.js</span>
+                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">Tailwind CSS</span>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -123,7 +169,7 @@ export default function Portfolio() {
                             // Center the cards and spread them out
                             const totalCards = miniProjects.length;
                             const centerOffset = (totalCards - 1) / 2;
-                            const translateX = (index - centerOffset) * 100; // Increased spacing from -80 to 100
+                            const translateX = (index - centerOffset) * 150; // Reduced spacing for tighter grouping
                             const zIndex = miniProjects.length - index; // Back cards have lower z-index
 
                             return (
