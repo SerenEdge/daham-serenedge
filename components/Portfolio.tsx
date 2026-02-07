@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 
@@ -8,6 +8,23 @@ export default function Portfolio() {
     const sectionRef = useRef<HTMLElement>(null);
     const [hoveredProject, setHoveredProject] = useState<number | null>(null);
     const [hoveredMiniCard, setHoveredMiniCard] = useState<number | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
+    const [isTablet, setIsTablet] = useState(false);
+    const [activeCardIndex, setActiveCardIndex] = useState(0);
+    const carouselRef = useRef<HTMLDivElement>(null);
+
+    // Responsive breakpoint detection
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            setIsMobile(width < 720);
+            setIsTablet(width >= 720 && width < 1024);
+        };
+
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const mainProjects = [
         {
@@ -84,9 +101,10 @@ export default function Portfolio() {
                         {mainProjects.map((project, index) => (
                             <div
                                 key={index}
-                                className="relative border-b border-gray-300 pb-8 mb-8"
-                                onMouseEnter={() => setHoveredProject(index)}
-                                onMouseLeave={() => setHoveredProject(null)}
+                                className="relative border-b border-gray-300 pb-8 mb-8 cursor-pointer"
+                                onMouseEnter={() => !isMobile && setHoveredProject(index)}
+                                onMouseLeave={() => !isMobile && setHoveredProject(null)}
+                                onClick={() => isMobile && setHoveredProject(hoveredProject === index ? null : index)}
                             >
                                 {/* Project Info - Always visible */}
                                 <div className="flex justify-between items-center mb-4 relative z-10">
@@ -104,13 +122,16 @@ export default function Portfolio() {
                                 <div
                                     className="overflow-hidden transition-all duration-500 ease-out"
                                     style={{
-                                        maxHeight: hoveredProject === index ? '600px' : '0px',
+                                        maxHeight: hoveredProject === index
+                                            ? (isMobile ? '800px' : isTablet ? '700px' : '600px')
+                                            : '0px',
                                         opacity: hoveredProject === index ? 1 : 0
                                     }}
                                 >
                                     <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                        {/* Image Placeholder - Smaller size */}
-                                        <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center">
+                                        {/* Image Placeholder - Responsive size */}
+                                        <div className={`bg-gray-200 rounded-2xl flex items-center justify-center ${isMobile ? 'h-48' : isTablet ? 'h-56' : 'h-64'
+                                            }`}>
                                             <span className="text-gray-400 text-lg font-medium">Project Image</span>
                                         </div>
 
@@ -162,55 +183,119 @@ export default function Portfolio() {
                         <p className="text-tertiary text-lg">Small tools built to simplify tasks</p>
                     </div>
 
-                    {/* Stacked Cards - Each card tilted 12deg individually */}
-                    <div className="relative h-[500px] flex items-center justify-center">
-                        {miniProjects.map((project, index) => {
-                            const isHovered = hoveredMiniCard === index;
-                            // Center the cards and spread them out
-                            const totalCards = miniProjects.length;
-                            const centerOffset = (totalCards - 1) / 2;
-                            const translateX = (index - centerOffset) * 150; // Reduced spacing for tighter grouping
-                            const zIndex = miniProjects.length - index; // Back cards have lower z-index
-
-                            return (
+                    {/* Stacked Cards - Responsive layout */}
+                    <div className={`relative flex items-center ${isMobile
+                        ? 'w-full flex-col py-8'
+                        : 'justify-center'
+                        } ${isTablet ? 'h-[400px]' : isMobile ? 'h-auto' : 'h-[500px]'}`}>
+                        {isMobile ? (
+                            // Mobile: Horizontal scrollable carousel
+                            <>
                                 <div
-                                    key={index}
-                                    className="absolute w-96 h-[450px] bg-[#1c1c2b] text-white rounded-3xl p-8 transition-all duration-500 cursor-pointer"
-                                    style={{
-                                        transform: isHovered
-                                            ? `translateX(${translateX}px) translateY(-80px) rotate(0deg) scale(1.05)`
-                                            : `translateX(${translateX}px) translateY(0px) rotate(12deg) scale(1)`,
-                                        zIndex: isHovered ? 100 : zIndex,
-                                        boxShadow: isHovered
-                                            ? '0 30px 60px rgba(0, 0, 0, 0.5)'
-                                            : '0 20px 40px rgba(0, 0, 0, 0.3)',
+                                    ref={carouselRef}
+                                    className="w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+                                    onScroll={(e) => {
+                                        const container = e.currentTarget;
+                                        // Approximate card width (85vw) + gap (16px)
+                                        const cardWidth = window.innerWidth * 0.85 + 16;
+                                        const scrollLeft = container.scrollLeft;
+                                        const index = Math.round(scrollLeft / cardWidth);
+                                        setActiveCardIndex(index);
                                     }}
-                                    onMouseEnter={() => setHoveredMiniCard(index)}
-                                    onMouseLeave={() => setHoveredMiniCard(null)}
                                 >
-                                    {isHovered ? (
-                                        <div className="flex flex-col h-full justify-between">
-                                            <div>
-                                                <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
-                                                <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
-                                            </div>
-                                            <Link
-                                                href="#"
-                                                className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
+                                    <div className="flex gap-4 px-6 w-max">
+                                        {miniProjects.map((project, index) => (
+                                            <div
+                                                key={index}
+                                                className="flex-shrink-0 w-[85vw] max-w-md h-[420px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
                                             >
-                                                View More →
-                                            </Link>
-                                        </div>
-                                    ) : (
-                                        <div className="flex items-center justify-end h-full pr-4">
-                                            <h3 className="text-xl font-medium" style={{ writingMode: 'vertical-lr', textOrientation: 'mixed' }}>
-                                                {project.title}
-                                            </h3>
-                                        </div>
-                                    )}
+                                                <div className="flex flex-col h-full justify-between">
+                                                    <div>
+                                                        <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
+                                                        <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
+                                                    </div>
+                                                    <Link
+                                                        href="#"
+                                                        className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
+                                                    >
+                                                        View More →
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
-                            );
-                        })}
+
+                                {/* Scroll Indicators */}
+                                <div className="flex justify-center gap-2 mt-6">
+                                    {miniProjects.map((_, index) => (
+                                        <div
+                                            key={index}
+                                            className={`h-1.5 rounded-full transition-all duration-300 ${index === activeCardIndex
+                                                ? 'w-8 bg-[#1c1c2b]'
+                                                : 'w-1.5 bg-[#1c1c2b]/40'
+                                                }`}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        ) : (
+                            // Tablet & Desktop: Tilted stack
+                            <>
+                                {miniProjects.map((project, index) => {
+                                    const isHovered = hoveredMiniCard === index;
+                                    const totalCards = miniProjects.length;
+                                    const centerOffset = (totalCards - 1) / 2;
+                                    const spacing = isTablet ? 80 : 150;
+                                    const translateX = (index - centerOffset) * spacing;
+                                    const rotation = isTablet ? 8 : 12;
+                                    const zIndex = miniProjects.length - index;
+
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={`absolute bg-[#1c1c2b] text-white rounded-3xl p-8 transition-all duration-200 cursor-pointer ${isTablet ? 'w-80 h-[380px]' : 'w-96 h-[450px]'
+                                                }`}
+                                            style={{
+                                                transform: isHovered
+                                                    ? `translateX(${translateX}px) translateY(-80px) rotate(0deg) scale(1.05)`
+                                                    : `translateX(${translateX}px) translateY(0px) rotate(${rotation}deg) scale(1)`,
+                                                zIndex: isHovered ? 100 : zIndex,
+                                                boxShadow: isHovered
+                                                    ? '0 30px 60px rgba(0, 0, 0, 0.5)'
+                                                    : '0 20px 40px rgba(0, 0, 0, 0.3)',
+                                            }}
+                                            onMouseEnter={() => setHoveredMiniCard(index)}
+                                            onMouseLeave={() => setHoveredMiniCard(null)}
+                                        >
+                                            {isHovered ? (
+                                                <div className="flex flex-col h-full justify-between">
+                                                    <div>
+                                                        <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
+                                                        <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
+                                                    </div>
+                                                    <Link
+                                                        href="#"
+                                                        className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
+                                                    >
+                                                        View More →
+                                                    </Link>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center justify-end h-full pr-4">
+                                                    <h3
+                                                        className="text-xl font-medium"
+                                                        style={{ writingMode: 'vertical-lr', textOrientation: 'mixed', transform: 'rotate(180deg)' }}
+                                                    >
+                                                        {project.title}
+                                                    </h3>
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
