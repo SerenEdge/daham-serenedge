@@ -1,20 +1,42 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/fonnts.com-Aeonik-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/fonnts.com-Aeonik-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f8f8;
+  --foreground: #1c1c2b;
+  --primary: #1C1C2B;
+  --secondary: #1c1c2b;
+  --tertiary: #7b7b7b;
+  --light-text: #e6e6f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-light-text: var(--light-text);
+  --font-sans: "Aeonik", sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #f8f8f8;
     --foreground: #ededed;
   }
 }
@@ -22,5 +44,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Aeonik", sans-serif;
 }
