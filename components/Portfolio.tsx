@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
+// Removing GSAP imports as we are strictly using CSS for the restored hover effect
 
 export default function Portfolio() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -9,8 +10,10 @@ export default function Portfolio() {
     const [hoveredMiniCard, setHoveredMiniCard] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
     const [isTablet, setIsTablet] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
+    const miniProjectsRef = useRef<HTMLDivElement>(null);
 
     // Responsive breakpoint detection
     useEffect(() => {
@@ -18,6 +21,7 @@ export default function Portfolio() {
             const width = window.innerWidth;
             setIsMobile(width < 720);
             setIsTablet(width >= 720 && width < 1024);
+            setIsDesktop(width >= 1024);
         };
 
         handleResize(); // Initial check
@@ -176,7 +180,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Mini Projects */}
-                <div>
+                <div ref={miniProjectsRef} className="py-12">
                     <div className="mb-12">
                         <h2 className="text-3xl min-[720px]:text-4xl font-medium mb-2">Mini Projects</h2>
                         <p className="text-tertiary text-lg">Small tools built to simplify tasks</p>
@@ -186,7 +190,7 @@ export default function Portfolio() {
                     <div className={`relative flex items-center ${isMobile
                         ? 'w-full flex-col py-8'
                         : 'justify-center'
-                        } ${isTablet ? 'h-[400px]' : isMobile ? 'h-auto' : 'h-[500px]'}`}>
+                        } ${isTablet ? 'h-[400px]' : isMobile ? 'h-auto' : 'h-[600px]'}`}>
                         {isMobile ? (
                             // Mobile: Horizontal scrollable carousel
                             <>
@@ -239,7 +243,7 @@ export default function Portfolio() {
                                 </div>
                             </>
                         ) : (
-                            // Tablet & Desktop: Tilted stack
+                            // Tablet & Desktop: Tilted stack (Restored)
                             <>
                                 {miniProjects.map((project, index) => {
                                     const isHovered = hoveredMiniCard === index;
@@ -251,45 +255,53 @@ export default function Portfolio() {
                                     const zIndex = miniProjects.length - index;
 
                                     return (
+                                        // Stable Container for Hover Detection
                                         <div
                                             key={index}
-                                            className={`absolute bg-[#1c1c2b] text-white rounded-3xl p-8 transition-all duration-200 cursor-pointer ${isTablet ? 'w-80 h-[380px]' : 'w-96 h-[450px]'
-                                                }`}
+                                            className={`absolute cursor-pointer ${isTablet ? 'w-80 h-[380px]' : 'w-96 h-[450px]'}`}
                                             style={{
-                                                transform: isHovered
-                                                    ? `translateX(${translateX}px) translateY(-80px) rotate(0deg) scale(1.05)`
-                                                    : `translateX(${translateX}px) translateY(0px) rotate(${rotation}deg) scale(1)`,
-                                                zIndex: isHovered ? 100 : zIndex,
-                                                boxShadow: isHovered
-                                                    ? '0 30px 60px rgba(0, 0, 0, 0.5)'
-                                                    : '0 20px 40px rgba(0, 0, 0, 0.3)',
+                                                transform: `translateX(${translateX}px) rotate(${rotation}deg)`,
+                                                zIndex: isHovered ? 50 : zIndex, // Z-Index stays on the wrapper
                                             }}
                                             onMouseEnter={() => setHoveredMiniCard(index)}
                                             onMouseLeave={() => setHoveredMiniCard(null)}
                                         >
-                                            {isHovered ? (
-                                                <div className="flex flex-col h-full justify-between">
-                                                    <div>
-                                                        <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
-                                                        <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
+                                            {/* Animated Visual Card */}
+                                            <div
+                                                className={`w-full h-full bg-[#1c1c2b] text-white rounded-3xl p-8 transition-all duration-300 ease-out`}
+                                                style={{
+                                                    transform: isHovered
+                                                        ? `translateY(-80px) rotate(${-rotation}deg) scale(1.1)` // Counter-rotate to 0, move up
+                                                        : `translateY(0px) rotate(0deg) scale(1)`,
+                                                    boxShadow: isHovered
+                                                        ? '0 30px 60px rgba(0, 0, 0, 0.5)'
+                                                        : '0 20px 40px rgba(0, 0, 0, 0.3)',
+                                                }}
+                                            >
+                                                {isHovered ? (
+                                                    <div className="flex flex-col h-full justify-between animate-in fade-in duration-300">
+                                                        <div>
+                                                            <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
+                                                            <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
+                                                        </div>
+                                                        <Link
+                                                            href="#"
+                                                            className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
+                                                        >
+                                                            View More →
+                                                        </Link>
                                                     </div>
-                                                    <Link
-                                                        href="#"
-                                                        className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
-                                                    >
-                                                        View More →
-                                                    </Link>
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center justify-end h-full pr-4">
-                                                    <h3
-                                                        className="text-xl font-medium"
-                                                        style={{ writingMode: 'vertical-lr', textOrientation: 'mixed', transform: 'rotate(180deg)' }}
-                                                    >
-                                                        {project.title}
-                                                    </h3>
-                                                </div>
-                                            )}
+                                                ) : (
+                                                    <div className="flex items-center justify-end h-full pr-4">
+                                                        <h3
+                                                            className="text-xl font-medium"
+                                                            style={{ writingMode: 'vertical-lr', textOrientation: 'mixed', transform: 'rotate(180deg)' }}
+                                                        >
+                                                            {project.title}
+                                                        </h3>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     );
                                 })}
