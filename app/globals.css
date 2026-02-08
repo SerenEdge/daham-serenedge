@@ -32,6 +32,7 @@
   --color-light-text: var(--light-text);
   --font-sans: "Aeonik", sans-serif;
   --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -66,4 +67,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: "Aeonik", sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
 }

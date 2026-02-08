@@ -1,15 +1,25 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { FiGithub, FiLinkedin, FiInstagram } from "react-icons/fi";
 import gsap from "gsap";
+import useScale from "@/hooks/useScale";
 
 export default function Hero() {
     const scrollRef = useRef(null);
     const mobileScrollRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
+    const scale = useScale(720); // Base width for scaling
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 720);
+        const handleResize = () => setIsMobile(window.innerWidth < 720);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -75,7 +85,12 @@ export default function Hero() {
 
                 {/* 3. Hero Image (Right) */}
                 <div className="col-span-12 min-[720px]:col-span-6 lg:col-span-6 relative h-full pointer-events-none min-[720px]:block">
-                    <div className="absolute bottom-0 -right-8 min-[720px]:-right-32 w-[120%] h-[180%] min-[720px]:w-[150%] min-[720px]:h-[130%] flex items-end justify-end translate-y-6 min-[720px]:translate-y-12">
+                    <div
+                        className="absolute bottom-0 left-1/2 min-[720px]:left-auto min-[720px]:-right-32 w-full h-[60%] min-[720px]:w-[150%] min-[720px]:h-[130%] flex items-end justify-center min-[720px]:justify-end translate-y-6 min-[720px]:translate-y-12 transition-transform duration-100 ease-out origin-bottom min-[720px]:origin-bottom-right"
+                        style={{
+                            transform: `${isMobile ? 'translateX(-50%) ' : ''}translateY(${isMobile ? 24 : 48}px) scale(${isMobile ? scale * 5 : 1})`
+                        }}
+                    >
                         <Image
                             src="/images/Dahamimagefornow-dark.png"
                             alt="Hero Image"

@@ -207,7 +207,7 @@ export default function Portfolio() {
                                         {miniProjects.map((project, index) => (
                                             <div
                                                 key={index}
-                                                className="flex-shrink-0 w-[85vw] max-w-md h-[420px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
+                                                className="flex-shrink-0 w-[85vw] max-w-[100%] max-w-md h-[420px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
                                             >
                                                 <div className="flex flex-col h-full justify-between">
                                                     <div>
