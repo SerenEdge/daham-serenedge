@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import RealMe from "@/components/RealMe";
 import Portfolio from "@/components/Portfolio";
 import ResumeSection from "@/components/ResumeSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <RealMe />
       <Portfolio />
       <ResumeSection />
+      <Footer />
     </main>
   );
 }
