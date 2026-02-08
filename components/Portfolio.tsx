@@ -2,7 +2,10 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-// Removing GSAP imports as we are strictly using CSS for the restored hover effect
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Portfolio() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -14,6 +17,14 @@ export default function Portfolio() {
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
     const miniProjectsRef = useRef<HTMLDivElement>(null);
+
+    // Refresh ScrollTrigger when height changes (due to accordion)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 550); // Wait for the 500ms transition to finish
+        return () => clearTimeout(timer);
+    }, [hoveredProject]);
 
     // Responsive breakpoint detection
     useEffect(() => {

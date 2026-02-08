@@ -107,7 +107,7 @@ export default function ResumeSection() {
         <section id="resume" ref={containerRef} className="bg-background w-full relative font-sans">
             <div
                 ref={triggerRef}
-                className="w-full h-screen flex justify-center items-center p-4 md:p-8 relative z-10"
+                className="w-full h-screen flex justify-center items-center p-4 md:p-8 relative z-20"
             >
                 {/* Main Card Container */}
                 <div className="w-full h-full max-w-[1920px] bg-[#1c1c2b] rounded-3xl flex flex-col md:flex-row relative overflow-hidden shadow-2xl">
