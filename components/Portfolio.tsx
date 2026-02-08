@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
+import { FiChevronDown } from "react-icons/fi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -45,24 +46,36 @@ export default function Portfolio() {
             title: "SoterCare",
             subtitle: "(2nd Year Project)",
             description: "IoT & ML Based Elderly Care Monitoring System.",
+            longDescription: "SoterCare is an innovative IoT and Machine Learning-driven elderly care monitoring system designed to provide proactive, dignified safety. Unlike traditional reactive SOS buttons, it predicts falls and detects urinary incontinence in real-time. By integrating wearable sensor nodes with a dedicated edge gateway, the system ensures continuous vitals monitoring and automated emergency alerts, offering a comprehensive safety net for seniors while maintaining their independence.",
+            tech: ["IoT", "Raspberry Pi", "React Native", "C++", "NestJS", "Python", "PostgreSQL", "Edge Impulse"],
+            link: "https://sotercare.com",
             image: "/images/projects/sotercare.png"
         },
         {
             title: "ReImage Agent",
             subtitle: "(Under Dev)",
             description: "Transform portraits into AI-powered image generation.",
+            longDescription: "ReImage Agent is a streamlined web service designed to transform personal photos into vibrant, cartoon-style portraits. By leveraging generative AI models, the agent processes user-uploaded images to generate high-quality stylized avatars against a clean, professional background. It aims to provide an accessible, chat-driven interface for instant creative transformation, making personalized digital art generation seamless and intuitive for everyday users.",
+            tech: ["Next.js", "FastAPI", "LangChain", "Gemini (Nano Banana)"],
+            link: "https://github.com/DahamDissanayake/ReImage-Agent",
             image: "/images/projects/reimage.png"
         },
         {
             title: "Apple Home ESP32 Automation",
             subtitle: "",
             description: "Home Automation System.",
+            longDescription: "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP32, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
+            tech: ["ESP32", "C++", "IoT"],
+            link: "https://github.com/DahamDissanayake/apple-home-auto32",
             image: "/images/projects/home-automation.png"
         },
         {
             title: "Expressions Detection System",
             subtitle: "",
             description: "YOLO Based human expression detection.",
+            longDescription: "This is a real-time facial expression recognition system that utilizes a customized YOLO architecture to identify and categorize human emotions with high precision. By training on diverse datasets of facial landmarks, the model detects subtle micro-expressions—such as happiness, anger, and surprise—directly within a video stream. This project bridges the gap between raw visual data and emotional intelligence, providing an efficient, low-latency solution for human-computer interaction, sentiment analysis, and user experience monitoring.",
+            tech: ["YOLOv8", "PyTorch", "OpenCV"],
+            link: "https://github.com/DahamDissanayake/expression-yolo",
             image: "/images/projects/expressions.png"
         }
     ];
@@ -121,13 +134,23 @@ export default function Portfolio() {
                                 onClick={() => isMobile && setHoveredProject(hoveredProject === index ? null : index)}
                             >
                                 {/* Project Info - Always visible */}
-                                <div className="flex justify-between items-center mb-4 relative z-10">
-                                    <div>
-                                        <h3 className="text-2xl min-[720px]:text-3xl font-medium">
-                                            {project.title} {project.subtitle && <span className="text-tertiary text-xl">{project.subtitle}</span>}
-                                        </h3>
+                                <div className="flex flex-col min-[720px]:flex-row min-[720px]:items-center justify-between mb-4 relative z-10 gap-2 min-[720px]:gap-4">
+                                    <div className="flex-1 w-full">
+                                        <div className="flex items-center justify-between w-full">
+                                            <h3 className="text-2xl min-[720px]:text-3xl font-medium flex items-center gap-3">
+                                                {project.title}
+                                                {project.subtitle && <span className="text-tertiary text-xl hidden sm:inline">{project.subtitle}</span>}
+                                                {isMobile && (
+                                                    <FiChevronDown
+                                                        className={`text-2xl text-tertiary transition-transform duration-300 ${hoveredProject === index ? 'rotate-180' : 'rotate-0'
+                                                            }`}
+                                                    />
+                                                )}
+                                            </h3>
+                                        </div>
+                                        {project.subtitle && <span className="text-tertiary text-lg sm:hidden block mt-1">{project.subtitle}</span>}
                                     </div>
-                                    <p className="text-tertiary text-base min-[720px]:text-lg hidden min-[720px]:block">
+                                    <p className="text-tertiary text-base min-[720px]:text-lg block min-[720px]:text-right mt-2 min-[720px]:mt-0">
                                         {project.description}
                                     </p>
                                 </div>
@@ -154,9 +177,7 @@ export default function Portfolio() {
                                             {/* Long Description */}
                                             <div>
                                                 <p className="text-tertiary text-base leading-relaxed">
-                                                    {project.title === "ReImage Agent"
-                                                        ? "The ReImage Agent is a specialized tool that transforms personal photos into vibrant, cartoon-style portraits. Built with a FastAPI backend for efficient image processing and Next.js for a seamless, responsive user experience, this project showcases the integration of AI-powered image transformation with modern web technologies. Users can upload their photos and receive professionally styled cartoon versions in seconds."
-                                                        : "This is a comprehensive project that demonstrates advanced development skills and modern best practices. The application features a robust architecture, clean code organization, and seamless user experience. Built with cutting-edge technologies and optimized for performance, scalability, and maintainability."}
+                                                    {project.longDescription}
                                                 </p>
                                             </div>
 
@@ -164,23 +185,23 @@ export default function Portfolio() {
                                             <div>
                                                 <h4 className="text-xl font-medium mb-3">Tech Stack</h4>
                                                 <div className="flex flex-wrap gap-2">
-                                                    {project.title === "ReImage Agent" ? (
-                                                        <>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">FastAPI</span>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">Next.js</span>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">Python</span>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">AI/ML</span>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">TypeScript</span>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">React</span>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">TypeScript</span>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">Node.js</span>
-                                                            <span className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">Tailwind CSS</span>
-                                                        </>
-                                                    )}
+                                                    {project.tech.map((tech, i) => (
+                                                        <span key={i} className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">
+                                                            {tech}
+                                                        </span>
+                                                    ))}
                                                 </div>
+                                            </div>
+
+                                            {/* View Project Link */}
+                                            <div>
+                                                <Link
+                                                    href={project.link}
+                                                    target="_blank"
+                                                    className="inline-flex items-center gap-2 text-white hover:text-gray-300 transition-colors underline underline-offset-4"
+                                                >
+                                                    View Project →
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
