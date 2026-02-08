@@ -120,7 +120,7 @@ export default function ResumeSection() {
                         </div>
 
                         {/* Visual 0: Full Stack (Abstract UI & Code Construction) */}
-                        <div className="bg-visual absolute left-1/2 -translate-x-1/2 top-[20%] -translate-y-1/2 md:left-auto md:right-0 md:top-1/2 md:-translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-0 text-[#e6e6f0]/10 pointer-events-none">
+                        <div className="bg-visual absolute left-1/2 -translate-x-1/2 top-[30%] -translate-y-1/2 md:left-auto md:right-0 md:top-1/2 md:-translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-0 text-[#e6e6f0]/10 pointer-events-none">
                             <svg viewBox="0 0 400 400" className="w-full h-full stroke-[#e6e6f0]/40 fill-none stroke-1">
                                 {/* Browser Frame */}
                                 <rect x="40" y="60" width="320" height="240" rx="8" className="stroke-2" />
@@ -144,7 +144,7 @@ export default function ResumeSection() {
                         </div>
 
                         {/* Visual 1: IoT (Processor & Connected Device Schematic) */}
-                        <div className="bg-visual absolute left-1/2 -translate-x-1/2 top-[20%] -translate-y-1/2 md:left-auto md:right-0 md:top-1/2 md:-translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-0 pointer-events-none">
+                        <div className="bg-visual absolute left-1/2 -translate-x-1/2 top-[30%] -translate-y-1/2 md:left-auto md:right-0 md:top-1/2 md:-translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-0 pointer-events-none">
                             <svg viewBox="0 0 400 400" className="w-full h-full stroke-[#e6e6f0]/40 fill-none stroke-1">
                                 {/* Central Processor */}
                                 <rect x="150" y="150" width="100" height="100" rx="4" className="stroke-2 fill-[#e6e6f0]/5" />
@@ -171,7 +171,7 @@ export default function ResumeSection() {
                         </div>
 
                         {/* Visual 2: ML (Deep Neural Network Lattice) */}
-                        <div className="bg-visual absolute left-1/2 -translate-x-1/2 top-[20%] -translate-y-1/2 md:left-auto md:right-0 md:top-1/2 md:-translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-0 pointer-events-none">
+                        <div className="bg-visual absolute left-1/2 -translate-x-1/2 top-[30%] -translate-y-1/2 md:left-auto md:right-0 md:top-1/2 md:-translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-0 pointer-events-none">
                             <svg viewBox="0 0 500 500" className="w-full h-full fill-[#e6e6f0]/30">
                                 {/* Layer 1 (Input) */}
                                 {Array(5).fill(0).map((_, i) => (
@@ -269,7 +269,7 @@ export default function ResumeSection() {
                     {/* Right Side - Hero Text Animation */}
                     <div
                         ref={textRef}
-                        className="w-full md:w-1/2 h-[40%] md:h-full flex flex-col justify-center items-center gap-2 md:gap-4 relative order-1 md:order-2"
+                        className="w-full md:w-1/2 h-[40%] md:h-full flex flex-col justify-center items-center gap-2 md:gap-4 relative order-1 md:order-2 translate-y-25 md:translate-y-0"
                     >
                         {/* Map through skills to create the massive text elements */}
                         {skills.map((skill, index) => (

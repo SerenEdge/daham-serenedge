@@ -83,27 +83,33 @@ export default function Portfolio() {
     const miniProjects = [
         {
             title: "Imposter Game",
-            description: "The trending multiplayer game with customized and all features are free to play."
+            description: "Built using React and Vite, this custom Imposter Game is my answer to the trend of paywalled gaming apps. I created this project to provide a completely free, feature-rich alternative where users can enjoy all modes without payment. Hosted on GitHub Pages, it ensures a seamless and accessible experience for everyone to play together.",
+            link: "https://github.com/DahamDissanayake/Imposter-Game-But-Customized"
         },
         {
-            title: "Weather App",
-            description: "Real-time weather tracking with beautiful UI and forecasts."
+            title: "Flood-Watch [NullProduct]",
+            description: "Flood-Watch is a real-time, offline-capable flood warning system designed to protect vulnerable communities in Sri Lanka. Winning runners-up at the Vertex'25 IoT competition, we built it using Edge Computing on ESP32 Magicbit and Ultrasonic Sensors to detect flash floods instantly. It ensures life-saving alerts even when internet connectivity fails.",
+            link: "https://github.com/DahamDissanayake/NullProduct-VERTEX25"
         },
         {
-            title: "Task Manager",
-            description: "Organize your daily tasks with ease and efficiency."
+            title: "Keyboard Macro Writer",
+            description: "I developed this Python-based Keystroke Simulator to automate data entry with a human touch. Utilizing pynput for precise keyboard control and tkinter for an intuitive GUI, the tool lets me pre-record text and replay it with randomized delays. My goal was to create a seamless way to mimic natural typing patterns, making automated inputs indistinguishable from manual keystrokes.",
+            link: "https://github.com/DahamDissanayake/keyboard-macro-writer"
         },
         {
-            title: "Chat Bot",
-            description: "AI-powered conversational assistant for quick answers."
+            title: "Apple Photo Soter",
+            description: "I developed this Python and Tkinter application because copying photos from an iPhone often results in a messy, disorganized file structure. This tool solves that by automating the backup process: it scans the chaotic source folders and neatly sorts every image into clean, year-based directories at your chosen destination, ensuring a structured archive.",
+            link: "https://github.com/DahamDissanayake/Apple-Photo-Sorter"
         },
         {
-            title: "Portfolio Builder",
-            description: "Create stunning portfolios in minutes with templates."
+            title: "FormCraft Debugger",
+            description: "I developed the FormCraft Debugger Chrome extension to eliminate the repetitive hustle of manual form testing. Built with Manifest V3, React, and Faker.js, it allows developers to create custom schema templates for complex workflows. The tool intelligently populates fields—including dropdowns and radio buttons—via DOM manipulation, ensuring rapid, thorough validation without manual entry burnout.",
+            link: "https://github.com/DahamDissanayake/formcraft-debug"
         },
         {
-            title: "Code Snippet Manager",
-            description: "Save and organize your favorite code snippets."
+            title: "Visionslide",
+            description: "Currently under development, VisionSlide Remote eliminates the hustle of physical clickers during presentations. Using a custom YOLOv11 model and OpenCV, it detects real-time hand gestures to navigate slides touchlessly. By integrating PyAutoGUI, it converts visual cues into system commands, offering a professional, hands-free experience for dynamic speakers.",
+            link: "https://github.com/DahamDissanayake/visionslide-yolo"
         }
     ];
 
@@ -160,7 +166,7 @@ export default function Portfolio() {
                                     className="overflow-hidden transition-all duration-500 ease-out"
                                     style={{
                                         maxHeight: hoveredProject === index
-                                            ? (isMobile ? '800px' : isTablet ? '700px' : '600px')
+                                            ? (isMobile ? '1200px' : isTablet ? '1000px' : '800px')
                                             : '0px',
                                         opacity: hoveredProject === index ? 1 : 0
                                     }}
@@ -194,13 +200,13 @@ export default function Portfolio() {
                                             </div>
 
                                             {/* View Project Link */}
-                                            <div>
+                                            <div className="mt-2">
                                                 <Link
                                                     href={project.link}
                                                     target="_blank"
-                                                    className="inline-flex items-center gap-2 text-white hover:text-gray-300 transition-colors underline underline-offset-4"
+                                                    className="inline-flex items-center gap-2 text-[#1c1c2b] underline underline-offset-4 hover:text-gray-600 transition-colors font-medium"
                                                 >
-                                                    View Project →
+                                                    View More →
                                                 </Link>
                                             </div>
                                         </div>
@@ -242,7 +248,7 @@ export default function Portfolio() {
                                         {miniProjects.map((project, index) => (
                                             <div
                                                 key={index}
-                                                className="flex-shrink-0 w-[85vw] max-w-[100%] max-w-md h-[420px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
+                                                className="flex-shrink-0 w-[85vw] max-w-[100%] max-w-md h-[520px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
                                             >
                                                 <div className="flex flex-col h-full justify-between">
                                                     <div>
@@ -250,7 +256,8 @@ export default function Portfolio() {
                                                         <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
                                                     </div>
                                                     <Link
-                                                        href="#"
+                                                        href={project.link}
+                                                        target="_blank"
                                                         className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
                                                     >
                                                         View More →
@@ -298,9 +305,9 @@ export default function Portfolio() {
                                             onMouseEnter={() => setHoveredMiniCard(index)}
                                             onMouseLeave={() => setHoveredMiniCard(null)}
                                         >
-                                            {/* Animated Visual Card */}
+                                            {/* Animated Visual Card - File Style */}
                                             <div
-                                                className={`w-full h-full bg-[#1c1c2b] text-white rounded-3xl p-8 transition-all duration-300 ease-out`}
+                                                className={`relative w-full h-full bg-[#1c1c2b] text-white rounded-b-3xl rounded-tr-3xl rounded-tl-none p-8 transition-all duration-300 ease-out`}
                                                 style={{
                                                     transform: isHovered
                                                         ? `translateY(-80px) rotate(${-rotation}deg) scale(1.1)` // Counter-rotate to 0, move up
@@ -310,21 +317,28 @@ export default function Portfolio() {
                                                         : '0 20px 40px rgba(0, 0, 0, 0.3)',
                                                 }}
                                             >
+                                                {/* File Tab */}
+                                                <div
+                                                    className="absolute -top-8 left-0 w-32 h-8 bg-[#1c1c2b] rounded-t-2xl"
+                                                    style={{ content: '""' }}
+                                                />
+
                                                 {isHovered ? (
-                                                    <div className="flex flex-col h-full justify-between animate-in fade-in duration-300">
+                                                    <div className="flex flex-col h-full justify-between animate-in fade-in duration-300 relative z-10">
                                                         <div>
                                                             <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
                                                             <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
                                                         </div>
                                                         <Link
-                                                            href="#"
+                                                            href={project.link}
+                                                            target="_blank"
                                                             className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
                                                         >
                                                             View More →
                                                         </Link>
                                                     </div>
                                                 ) : (
-                                                    <div className="flex items-center justify-end h-full pr-4">
+                                                    <div className="flex items-center justify-end h-full pr-4 relative z-10">
                                                         <h3
                                                             className="text-xl font-medium"
                                                             style={{ writingMode: 'vertical-lr', textOrientation: 'mixed', transform: 'rotate(180deg)' }}

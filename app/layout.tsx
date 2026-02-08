@@ -35,9 +35,10 @@ export default function RootLayout({
         className={`${geistMono.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        <SmoothScroll />
-        {children}
-        <Analytics />
+        <SmoothScroll>
+          {children}
+          <Analytics />
+        </SmoothScroll>
       </body>
     </html>
   );

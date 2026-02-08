@@ -9,15 +9,25 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { useLenis } from "./SmoothScroll";
+
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navRef = useRef<HTMLElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const lenis = useLenis();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        if (lenis) {
+            lenis.scrollTo(href);
+        }
+        if (isMenuOpen) setIsMenuOpen(false);
+    };
     useEffect(() => {
         let ctx = gsap.context(() => {
             ScrollTrigger.matchMedia({
@@ -124,7 +134,6 @@ export default function Navbar() {
 
     return (
         <>
-
             <div ref={wrapperRef} className="absolute top-0 left-0 w-full z-[100] flex justify-center pointer-events-none p-6 min-[720px]:p-12 pt-4 min-[720px]:pt-8 w-full">
                 <nav
                     ref={navRef}
@@ -136,6 +145,7 @@ export default function Navbar() {
                         <Link
                             href="#"
                             className="z-50 nav-logo block"
+                            onClick={(e) => handleScroll(e, "#")}
                         >
                             <Image
                                 src="/images/daham-sign-dark.png"
@@ -149,14 +159,14 @@ export default function Navbar() {
 
                         {/* Centered Desktop Links */}
                         <div className="hidden min-[720px]:flex gap-8 text-base font-medium absolute left-1/2 -translate-x-1/2">
-                            <Link href="#realme" className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Real Me</Link>
-                            <Link href="#portfolio" className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Portfolio</Link>
-                            <Link href="#resume" className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Resume</Link>
+                            <Link href="#realme" onClick={(e) => handleScroll(e, "#realme")} className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Real Me</Link>
+                            <Link href="#portfolio" onClick={(e) => handleScroll(e, "#portfolio")} className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Portfolio</Link>
+                            <Link href="#resume" onClick={(e) => handleScroll(e, "#resume")} className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Resume</Link>
                         </div>
 
                         {/* Desktop Contact */}
                         <div className="hidden min-[720px]:block">
-                            <Link href="#contact" className="flex items-center gap-1 hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors text-base whitespace-nowrap font-medium">
+                            <Link href="#contact" onClick={(e) => handleScroll(e, "#contact")} className="flex items-center gap-1 hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors text-base whitespace-nowrap font-medium">
                                 Contact Me <span>↗</span>
                             </Link>
                         </div>
@@ -177,17 +187,16 @@ export default function Navbar() {
             {isMenuOpen && (
                 <div className="fixed inset-0 bg-background flex flex-col justify-center items-center z-[90] min-[720px]:hidden text-secondary">
                     <div className="flex flex-col gap-8 text-2xl font-light text-center">
-                        <Link href="#" onClick={toggleMenu} className="hover:text-primary transition-colors">Hello</Link>
-                        <Link href="#realme" onClick={toggleMenu} className="hover:text-primary transition-colors">Real Me</Link>
-                        <Link href="#portfolio" onClick={toggleMenu} className="hover:text-primary transition-colors">Portfolio</Link>
-                        <Link href="#resume" onClick={toggleMenu} className="hover:text-primary transition-colors">Resume</Link>
-                        <Link href="#contact" onClick={toggleMenu} className="hover:text-primary transition-colors flex items-center justify-center gap-2">
+                        <Link href="#" onClick={(e) => handleScroll(e, "#")} className="hover:text-primary transition-colors">Hello</Link>
+                        <Link href="#realme" onClick={(e) => handleScroll(e, "#realme")} className="hover:text-primary transition-colors">Real Me</Link>
+                        <Link href="#portfolio" onClick={(e) => handleScroll(e, "#portfolio")} className="hover:text-primary transition-colors">Portfolio</Link>
+                        <Link href="#resume" onClick={(e) => handleScroll(e, "#resume")} className="hover:text-primary transition-colors">Resume</Link>
+                        <Link href="#contact" onClick={(e) => handleScroll(e, "#contact")} className="hover:text-primary transition-colors flex items-center justify-center gap-2">
                             Contact Me <span>↗</span>
                         </Link>
                     </div>
                 </div>
             )}
-
         </>
     );
 }

@@ -16,17 +16,45 @@ export async function sendContactEmail(prevState: any, formData: FormData) {
   }
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>", // Default Resend testing email
-      to: "daham.dissanayake@gmail.com", // Replace with user's actual email if known, or use env var
-      subject: `New Message from ${name} (Portfolio)`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    // 1. Send Notification Email to Admin
+    const adminEmail = await resend.emails.send({
+      from: "Portfolio Contact <portfolio@serenedge.com>",
+      to: "dahamdissanayake05@gmail.com",
+      subject: `New Portfolio Message from ${name}`,
+      text: `You got a new messege from Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
       replyTo: email,
     });
 
-    if (error) {
-      console.error("Resend Error:", error);
-      return { error: "Failed to send message. Please try again." };
+    if (adminEmail.error) {
+      console.error("Admin Email Error:", adminEmail.error);
+      const isDomainError = adminEmail.error.message.includes("domain");
+      if (isDomainError) {
+        return {
+          error: `Domain not verified. You must verify 'serenedge.com' in Resend or use 'onboarding@resend.dev'.`,
+        };
+      }
+      return { error: adminEmail.error.message };
+    }
+
+    // 2. Send Auto-Reply Email to User
+    const userEmail = await resend.emails.send({
+      from: "Daham Dissanayake <daham@serenedge.com>",
+      to: email,
+      subject: "I've received your message!",
+      html: `
+            <div style="font-family: sans-serif; color: #333;">
+                <h2>Hi ${name},</h2>
+                <p>Thanks for reaching out! I've received your message and will get back to you as soon as possible.</p>
+                <br/>
+                <p>Best regards,</p>
+                <p><strong>Daham Dissanayake</strong></p>
+            </div>
+        `,
+    });
+
+    if (userEmail.error) {
+      console.error("Auto-Reply Error:", userEmail.error);
+      // We don't fail the whole request if auto-reply fails, just log it.
     }
 
     return { success: "Message sent! I'll get back to you soon." };
