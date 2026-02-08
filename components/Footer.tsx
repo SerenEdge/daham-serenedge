@@ -23,7 +23,7 @@ export default function Footer() {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: footerRef.current,
-                    start: "top center", // Start earlier for full screen effect
+                    start: "top 75%", // Start earlier when scrolling down
                     toggleActions: "play none none reverse",
                 }
             });
