@@ -21,7 +21,23 @@ export async function sendContactEmail(prevState: any, formData: FormData) {
       from: "Portfolio Contact <portfolio@serenedge.com>",
       to: "dahamdissanayake05@gmail.com",
       subject: `New Portfolio Message from ${name}`,
-      text: `You got a new messege from Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      html: `
+        <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <div style="background: #f4f4f5; padding: 24px; border-radius: 8px;">
+            <h2 style="margin: 0 0 16px; color: #18181b;">New Contact Form Submission</h2>
+            <div style="background: white; padding: 20px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+              <p style="margin: 0 0 8px;"><strong>Name:</strong> ${name}</p>
+              <p style="margin: 0 0 16px;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #2563eb;">${email}</a></p>
+              <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 16px 0;" />
+              <p style="margin: 0 0 8px; color: #71717a; font-size: 14px;">Message:</p>
+              <p style="margin: 0; white-space: pre-wrap; line-height: 1.6;">${message}</p>
+            </div>
+            <p style="margin: 24px 0 0; font-size: 12px; color: #71717a; text-align: center;">
+              Sent from Portfolio Contact Form
+            </p>
+          </div>
+        </div>
+      `,
       replyTo: email,
     });
 
@@ -42,14 +58,19 @@ export async function sendContactEmail(prevState: any, formData: FormData) {
       to: email,
       subject: "I've received your message!",
       html: `
-            <div style="font-family: sans-serif; color: #333;">
-                <h2>Hi ${name},</h2>
-                <p>Thanks for reaching out! I've received your message and will get back to you as soon as possible.</p>
-                <br/>
-                <p>Best regards,</p>
-                <p><strong>Daham Dissanayake</strong></p>
+        <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <div style="background: #ffffff; padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px;">
+            <h2 style="margin: 0 0 16px; color: #18181b;">Hi ${name},</h2>
+            <p style="line-height: 1.6; margin: 0 0 24px; color: #3f3f46;">
+              Thanks for reaching out! I've received your message and will get back to you as soon as possible.
+            </p>
+            <div style="border-top: 1px solid #e5e7eb; padding-top: 24px; margin-top: 24px;">
+              <p style="margin: 0 0 4px; font-weight: 600;">Best regards,</p>
+              <p style="margin: 0; color: #71717a;">Daham Dissanayake</p>
             </div>
-        `,
+          </div>
+        </div>
+      `,
     });
 
     if (userEmail.error) {
