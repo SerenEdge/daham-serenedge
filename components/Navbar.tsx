@@ -167,7 +167,7 @@ export default function Navbar() {
                         {/* Desktop Contact */}
                         <div className="hidden min-[720px]:block">
                             <Link href="#contact" onClick={(e) => handleScroll(e, "#contact")} className="flex items-center gap-1 hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors text-base whitespace-nowrap font-medium">
-                                Contact Me <span>↗</span>
+                                Contact Me 
                             </Link>
                         </div>
 

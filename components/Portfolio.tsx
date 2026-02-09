@@ -2,7 +2,8 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { FiChevronDown } from "react-icons/fi";
+import Image from "next/image";
+import { FiChevronDown, FiArrowUpRight } from "react-icons/fi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -120,102 +121,119 @@ export default function Portfolio() {
             className="relative w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16 py-20"
         >
             <div className="max-w-[1920px] mx-auto">
-                {/* Title */}
-                <h1 className="text-5xl min-[720px]:text-7xl font-regular mb-16">PORTFOLIO</h1>
-
-                {/* Main Projects */}
-                <div className="mb-32">
-                    <div className="mb-12">
-                        <h2 className="text-3xl min-[720px]:text-4xl font-medium mb-2">Main Projects</h2>
-                        <p className="text-tertiary text-lg">Projects that took my sleep.</p>
+                <div className="flex flex-col lg:flex-row lg:gap-20">
+                    {/* Sticky Sidebar (Header) */}
+                    <div className="lg:w-1/3 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-start lg:justify-center pt-10 pb-4 lg:py-0 z-20">
+                        <div className="flex flex-col items-start border-b border-gray-200 lg:border-none pb-4 lg:pb-0 w-full">
+                            <h1 className="text-5xl lg:text-9xl xl:text-[10vw] font-medium tracking-tight text-secondary leading-[0.8] mb-4 lg:mb-8">
+                                Portfolio
+                            </h1>
+                            <div className="flex items-center gap-4 text-tertiary">
+                                <span className="h-[1px] w-12 bg-tertiary/50 hidden lg:block"></span>
+                                <span className="text-sm lg:text-base font-mono uppercase tracking-wider">
+                                    Selected Works
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="space-y-8">
-                        {mainProjects.map((project, index) => (
-                            <div
-                                key={index}
-                                className="relative border-b border-gray-300 pb-8 mb-8 cursor-pointer"
-                                onMouseEnter={() => !isMobile && setHoveredProject(index)}
-                                onMouseLeave={() => !isMobile && setHoveredProject(null)}
-                                onClick={() => isMobile && setHoveredProject(hoveredProject === index ? null : index)}
-                            >
-                                {/* Project Info - Always visible */}
-                                <div className="flex flex-col min-[720px]:flex-row min-[720px]:items-center justify-between mb-4 relative z-10 gap-2 min-[720px]:gap-4">
-                                    <div className="flex-1 w-full">
-                                        <div className="flex items-center justify-between w-full">
-                                            <h3 className="text-2xl min-[720px]:text-3xl font-medium flex items-center gap-3">
-                                                {project.title}
-                                                {project.subtitle && <span className="text-tertiary text-xl hidden sm:inline">{project.subtitle}</span>}
-                                                {isMobile && (
-                                                    <FiChevronDown
-                                                        className={`text-2xl text-tertiary transition-transform duration-300 ${hoveredProject === index ? 'rotate-180' : 'rotate-0'
-                                                            }`}
-                                                    />
-                                                )}
-                                            </h3>
-                                        </div>
-                                        {project.subtitle && <span className="text-tertiary text-lg sm:hidden block mt-1">{project.subtitle}</span>}
-                                    </div>
-                                    <p className="text-tertiary text-base min-[720px]:text-lg block min-[720px]:text-right mt-2 min-[720px]:mt-0">
-                                        {project.description}
-                                    </p>
-                                </div>
-
-                                {/* Project Details Section - Smooth reveal and close */}
+                    {/* Scrolling Content (Main Projects) */}
+                    <div className="lg:w-2/3 pb-24 lg:py-32">
+                        <div className="flex flex-col">
+                            {mainProjects.map((project, index) => (
                                 <div
-                                    className="overflow-hidden transition-all duration-500 ease-out"
-                                    style={{
-                                        maxHeight: hoveredProject === index
-                                            ? (isMobile ? '1200px' : isTablet ? '1000px' : '800px')
-                                            : '0px',
-                                        opacity: hoveredProject === index ? 1 : 0
-                                    }}
+                                    key={index}
+                                    className={`group relative border-b border-gray-200 cursor-pointer transition-all duration-500 ${hoveredProject !== null && hoveredProject !== index ? 'opacity-30 blur-[2px]' : 'opacity-100'
+                                        }`}
+                                    onMouseEnter={() => !isMobile && setHoveredProject(index)}
+                                    onMouseLeave={() => !isMobile && setHoveredProject(null)}
+                                    onClick={() => isMobile && setHoveredProject(hoveredProject === index ? null : index)}
                                 >
-                                    <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                        {/* Image Placeholder - Responsive size */}
-                                        <div className={`bg-gray-200 rounded-2xl flex items-center justify-center ${isMobile ? 'h-48' : isTablet ? 'h-56' : 'h-64'
-                                            }`}>
-                                            <span className="text-gray-400 text-lg font-medium">Project Image</span>
+                                    {/* Project Header - Always visible */}
+                                    <div className="py-8 lg:py-16 flex flex-col gap-6 relative z-10">
+                                        <div className="flex items-baseline justify-between w-full">
+                                            <div className="flex items-baseline gap-4 lg:gap-8">
+                                                <span className="text-lg lg:text-xl font-medium text-tertiary font-mono">0{index + 1}</span>
+                                                <h3 className="text-4xl lg:text-7xl font-medium tracking-tight group-hover:translate-x-4 transition-transform duration-500 ease-out">
+                                                    {project.title}
+                                                    {isMobile && (
+                                                        <FiChevronDown
+                                                            className={`inline-block ml-2 text-2xl text-tertiary transition-transform duration-300 ${hoveredProject === index ? 'rotate-180' : 'rotate-0'}`}
+                                                        />
+                                                    )}
+                                                </h3>
+                                            </div>
                                         </div>
 
-                                        {/* Description and Tech Stack */}
-                                        <div className="flex flex-col gap-6">
-                                            {/* Long Description */}
-                                            <div>
-                                                <p className="text-tertiary text-base leading-relaxed">
-                                                    {project.longDescription}
-                                                </p>
-                                            </div>
+                                        <div className="pl-0 lg:pl-[calc(2rem+20px)]">
+                                            <p className="text-lg lg:text-xl text-tertiary font-medium max-w-xl">{project.description}</p>
+                                        </div>
+                                    </div>
 
-                                            {/* Tech Stack */}
-                                            <div>
-                                                <h4 className="text-xl font-medium mb-3">Tech Stack</h4>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {project.tech.map((tech, i) => (
-                                                        <span key={i} className="px-4 py-2 bg-[#1c1c2b] text-white rounded-lg text-sm font-medium">
-                                                            {tech}
-                                                        </span>
-                                                    ))}
+                                    {/* Project Details Section - Smooth reveal and close */}
+                                    <div
+                                        className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                                        style={{
+                                            maxHeight: hoveredProject === index
+                                                ? (isMobile ? '1200px' : '900px')
+                                                : '0px',
+                                            opacity: hoveredProject === index ? 1 : 0
+                                        }}
+                                    >
+                                        <div className="pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pl-0 lg:pl-[calc(2rem+20px)]">
+                                            {/* Image - now takes up more space */}
+                                            <div className="lg:col-span-12 xl:col-span-7">
+                                                <div className={`relative overflow-hidden rounded-2xl bg-gray-100 shadow-2xl ${isMobile ? 'h-64' : 'h-[400px]'}`}>
+                                                    <Image
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        fill
+                                                        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                                                        sizes="(max-width: 768px) 100vw, 60vw"
+                                                    />
                                                 </div>
                                             </div>
 
-                                            {/* View Project Link */}
-                                            <div className="mt-2">
-                                                <Link
-                                                    href={project.link}
-                                                    target="_blank"
-                                                    className="inline-flex items-center gap-2 text-[#1c1c2b] underline underline-offset-4 hover:text-gray-600 transition-colors font-medium"
-                                                >
-                                                    View More →
-                                                </Link>
+                                            {/* Description and Details */}
+                                            <div className="lg:col-span-12 xl:col-span-5 flex flex-col justify-between">
+                                                <div>
+                                                    <h4 className="text-xl font-medium mb-4">About the project</h4>
+                                                    {project.subtitle && <p className="text-tertiary mb-4 font-mono text-sm uppercase tracking-wider">{project.subtitle}</p>}
+                                                    <p className="text-secondary text-lg leading-relaxed mb-8">
+                                                        {project.longDescription}
+                                                    </p>
+                                                    <Link
+                                                        href={project.link}
+                                                        target="_blank"
+                                                        className="group/link inline-flex items-center gap-2 text-xl font-medium text-primary hover:opacity-70 transition-opacity mb-8"
+                                                    >
+                                                        View More
+                                                        <FiArrowUpRight className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                                                    </Link>
+                                                    <div className="mb-8">
+                                                        <h5 className="text-sm font-medium uppercase tracking-widest text-tertiary mb-4">Technologies</h5>
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {project.tech.map((tech, i) => (
+                                                                <span key={i} className="px-3 py-1.5 border border-gray-200 text-secondary rounded-full text-sm hover:border-gray-400 transition-colors cursor-default">
+                                                                    {tech}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
+
+                {/* Divider between Main and Mini Projects on Desktop */}
+                <div className="hidden lg:block w-full h-px bg-gray-200 my-12 opacity-50"></div>
 
                 {/* Mini Projects */}
                 <div ref={miniProjectsRef} className="py-12">
