@@ -105,7 +105,7 @@ export default function ResumeSection() {
     }, []);
 
     return (
-        <section id="resume" ref={containerRef} className="bg-background w-full relative font-sans">
+        <section id="resume" ref={containerRef} className="bg-background w-full relative font-sans py-8 min-[720px]:py-12 lg:py-16">
             <div
                 ref={triggerRef}
                 className="w-full h-screen flex justify-center items-center p-4 md:p-8 relative z-20"

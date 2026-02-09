@@ -157,7 +157,7 @@ export default function Portfolio() {
         <section
             id="portfolio"
             ref={sectionRef}
-            className="relative w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16 py-20"
+            className="relative w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16 py-8 min-[720px]:py-12 lg:py-16"
         >
             <div className="max-w-[1920px] mx-auto">
                 <div className="flex flex-col lg:flex-row lg:gap-20">
@@ -271,11 +271,9 @@ export default function Portfolio() {
                     </div>
                 </div>
 
-                {/* Divider between Main and Mini Projects on Desktop */}
-                <div className="hidden lg:block w-full h-px bg-gray-200 my-12 opacity-50"></div>
 
                 {/* Mini Projects */}
-                <div ref={miniProjectsRef} className="py-12">
+                <div ref={miniProjectsRef} className="py-6">
                     <div className="mb-12">
                         <h2 className="text-3xl min-[720px]:text-4xl font-medium mb-2">Mini Projects</h2>
                         <p className="text-tertiary text-lg">Small tools built to simplify tasks</p>

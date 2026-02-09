@@ -149,7 +149,7 @@ export default function RealMe() {
         <section
             id="realme"
             ref={containerRef}
-            className="w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16 pt-10 min-[720px]:py-20 lg:py-32 flex flex-col justify-center relative z-20"
+            className="w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16 py-8 min-[720px]:py-12 lg:py-16 flex flex-col justify-center relative z-20"
         >
             <div className="max-w-[1920px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 mb-24 lg:mb-0">
                 {/* Header & Controls */}
@@ -168,7 +168,7 @@ export default function RealMe() {
                         </div>
 
                         <div ref={tabsRef} className="flex flex-col gap-4 items-start">
-                            <div className="flex flex-wrap gap-6">
+                            <div className="flex gap-3">
                                 {(Object.keys(content) as AudienceType[]).map((key) => {
                                     const isActive = audience === key;
                                     const ItemIcon = content[key].icon;
@@ -177,7 +177,7 @@ export default function RealMe() {
                                             key={key}
                                             onClick={() => setAudience(key)}
                                             className={`
-                                                audience-tab relative text-xl cursor-pointer transition-all duration-300 flex items-center gap-2 pb-1
+                                                audience-tab relative text-base cursor-pointer transition-all duration-300 flex items-center gap-2 pb-1
                                                 ${isActive
                                                     ? 'text-secondary border-b border-secondary'
                                                     : 'text-tertiary hover:text-secondary border-b border-transparent'

@@ -72,7 +72,7 @@ export default function Footer() {
     };
 
     return (
-        <footer id="contact" ref={footerRef} className="bg-[#1c1c2b] text-gray-400 min-h-[auto] lg:min-h-dvh py-12 lg:py-0 relative z-30 overflow-hidden font-sans flex flex-col justify-center">
+        <footer id="contact" ref={footerRef} className="bg-[#1c1c2b] text-gray-400 min-h-[auto] lg:min-h-dvh py-8 min-[720px]:py-12 lg:py-16 relative z-30 overflow-hidden font-sans flex flex-col justify-center">
             {/* Decorative Separator */}
             <div className="absolute top-0 left-0 w-full flex justify-center pt-6 md:pt-16">
                 <div ref={lineRef} className="w-[90%] h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent origin-center" />

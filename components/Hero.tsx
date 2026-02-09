@@ -16,7 +16,11 @@ export default function Hero() {
     const parallaxRef = useRef<HTMLDivElement>(null);
     const scrollRef = useRef(null);
     const mobileScrollRef = useRef(null);
+    const roleRef = useRef<HTMLDivElement>(null);
+    const periodRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
+    const [currentRole] = useState("CS Undergrad");
+    const [currentPeriod] = useState("Present");
     const scale = useScale(720); // Base width for scaling
 
     useLayoutEffect(() => {
@@ -65,11 +69,11 @@ export default function Hero() {
                 {/* 1. Sidebar Timeline (Leftmost Column) */}
                 <div className="col-span-2 min-[720px]:col-span-1 flex flex-col justify-center items-center gap-14 min-[720px]:gap-14 lg:gap-18 pl-2 min-[720px]:pl-0">
                     <span className="-rotate-90 text-tertiary text-sm min-[720px]:text-base lg:text-lg tracking-wider whitespace-nowrap">
-                        CS Undergrad
+                        {currentRole}
                     </span>
                     <div className="w-[1px] h-[20vh] min-[720px]:h-[30vh] lg:h-[40vh] bg-gray-300"></div>
                     <span className="-rotate-90 text-tertiary text-sm min-[720px]:text-base lg:text-lg tracking-wider whitespace-nowrap">
-                        Present
+                        {currentPeriod}
                     </span>
                 </div>
 
