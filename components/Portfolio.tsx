@@ -162,7 +162,7 @@ export default function Portfolio() {
             <div className="max-w-[1920px] mx-auto">
                 <div className="flex flex-col lg:flex-row lg:gap-20">
                     {/* Sticky Sidebar (Header) */}
-                    <div className="lg:w-1/3 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-start lg:justify-center pt-24 pb-8 lg:py-0 z-20">
+                    <div className="lg:w-1/3 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-start lg:justify-center pt-24 landscape:pt-12 pb-8 landscape:pb-4 lg:py-0 z-20">
                         <div className="flex flex-col items-start border-b border-gray-200 lg:border-none pb-4 lg:pb-0 w-full">
                             <h1 className="text-5xl lg:text-9xl xl:text-[10vw] font-medium tracking-tight text-secondary leading-[0.8] mb-4 lg:mb-8">
                                 Portfolio
@@ -177,7 +177,7 @@ export default function Portfolio() {
                     </div>
 
                     {/* Scrolling Content (Main Projects) */}
-                    <div className="lg:w-2/3 pb-24 md:py-32">
+                    <div className="lg:w-2/3 pb-24 md:py-32 landscape:py-12">
                         <div ref={projectsContainerRef} className="flex flex-col">
                             {mainProjects.map((project, index) => (
                                 <div
@@ -189,11 +189,11 @@ export default function Portfolio() {
                                     onClick={() => isMobile && setHoveredProject(hoveredProject === index ? null : index)}
                                 >
                                     {/* Project Header - Always visible */}
-                                    <div className="py-8 lg:py-16 flex flex-col gap-6 relative z-10">
+                                    <div className="py-8 landscape:py-4 lg:py-16 flex flex-col gap-6 landscape:gap-3 relative z-10">
                                         <div className="flex items-baseline justify-between w-full">
                                             <div className="flex items-baseline gap-4 lg:gap-8">
                                                 <span className="text-lg lg:text-xl font-medium text-tertiary font-mono">0{index + 1}</span>
-                                                <h3 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight group-hover:translate-x-4 transition-transform duration-500 ease-out">
+                                                <h3 className="text-4xl landscape:text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight group-hover:translate-x-4 transition-transform duration-500 ease-out">
                                                     {project.title}
                                                     {isMobile && (
                                                         <FiChevronDown

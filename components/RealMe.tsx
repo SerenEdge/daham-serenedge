@@ -149,7 +149,7 @@ export default function RealMe() {
         <section
             id="realme"
             ref={containerRef}
-            className="w-full min-h-screen bg-background text-secondary px-6 md:px-12 lg:px-16 py-20 md:py-32 flex flex-col justify-center relative z-20"
+            className="w-full min-h-screen landscape:h-auto bg-background text-secondary px-6 md:px-12 lg:px-16 py-20 md:py-32 landscape:py-12 flex flex-col justify-center relative z-20"
         >
             <div className="max-w-[1920px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 mb-24 lg:mb-0">
                 {/* Header & Controls */}
@@ -202,7 +202,7 @@ export default function RealMe() {
                         </span>
                         <div
                             ref={textRef}
-                            className="text-3xl min-[720px]:text-4xl lg:text-5xl leading-tight font-light text-secondary"
+                            className="text-3xl landscape:text-2xl md:text-4xl lg:text-5xl leading-tight font-light text-secondary"
                         >
                             {content[audience].text}
                         </div>
