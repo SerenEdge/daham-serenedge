@@ -118,7 +118,7 @@ export default function ResumeSection() {
             <div
                 id="resume"
                 ref={triggerRef}
-                className="w-full h-screen flex justify-center items-center px-6 md:px-12 lg:px-16 py-8 landscape:py-4 relative z-20"
+                className="w-full h-screen flex justify-center items-center px-6 md:px-12 lg:px-16 py-8 relative z-20"
             >
                 {/* Main Card Container */}
                 <div className="w-full h-full max-w-[1920px] bg-[#1c1c2b] rounded-3xl flex flex-col md:flex-row relative overflow-hidden shadow-2xl">
@@ -232,25 +232,25 @@ export default function ResumeSection() {
                     </div>
 
                     {/* Left Side - Contextual Info */}
-                    <div className="w-full md:w-1/2 h-[60%] md:h-full flex flex-col justify-center p-8 md:p-16 lg:p-24 landscape:p-6 gap-6 md:gap-8 landscape:gap-3 relative z-10 order-2 md:order-1">
+                    <div className="w-full md:w-1/2 h-[60%] md:h-full flex flex-col justify-center p-8 md:p-16 lg:p-24 gap-6 md:gap-8 relative z-10 order-2 md:order-1">
 
                         {/* Dynamic Header */}
-                        <div className="h-16 md:h-20 landscape:h-12"> {/* Fixed height to prevent layout shift */}
-                            <div className="flex items-center gap-3 mb-2 landscape:mb-1">
-                                <span className="p-2 rounded-lg bg-[#050505] text-[#e6e6f0] landscape:p-1">
+                        <div className="h-16 md:h-20"> {/* Fixed height to prevent layout shift */}
+                            <div className="flex items-center gap-3 mb-2">
+                                <span className="p-2 rounded-lg bg-[#050505] text-[#e6e6f0]">
                                     {skills[activeSection].icon}
                                 </span>
                             </div>
                             <h2
-                                className="text-2xl md:text-3xl lg:text-4xl font-bold transition-colors duration-300 text-[#e6e6f0] landscape:text-xl"
+                                className="text-2xl md:text-3xl font-bold transition-colors duration-300 text-[#e6e6f0]"
                             >
                                 {skills[activeSection].title}
                             </h2>
                         </div>
 
                         {/* Dynamic Description */}
-                        <div className="max-w-md h-24 md:h-32 landscape:h-16"> {/* Fixed height */}
-                            <p className="text-gray-400 text-sm md:text-lg landscape:text-xs leading-relaxed transition-opacity duration-300">
+                        <div className="max-w-md h-24 md:h-32"> {/* Fixed height */}
+                            <p className="text-gray-400 text-sm md:text-lg leading-relaxed transition-opacity duration-300">
                                 {skills[activeSection].description}
                             </p>
                         </div>
@@ -268,7 +268,7 @@ export default function ResumeSection() {
                         </div>
 
                         {/* Resume Button */}
-                        <div className="mt-4 md:mt-8 landscape:mt-2">
+                        <div className="mt-4 md:mt-8">
                             <Link
                                 href="/resume.pdf"
                                 target="_blank"
@@ -289,7 +289,7 @@ export default function ResumeSection() {
                         {skills.map((skill, index) => (
                             <h2
                                 key={index}
-                                className="value-text text-5xl md:text-7xl lg:text-8xl xl:text-[9vw] 2xl:text-9xl font-black tracking-tighter origin-center transition-colors will-change-transform cursor-default"
+                                className="value-text text-5xl md:text-7xl 2xl:text-9xl font-black tracking-tighter origin-center transition-colors will-change-transform cursor-default"
                                 style={{ color: "#4b5563" }} // Default inactive color
                             >
                                 {skill.title === "IoT Development" ? "IoT" : skill.title} {/* Shorten for big text */}

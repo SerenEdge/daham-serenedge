@@ -81,7 +81,7 @@ export default function Hero() {
                 <div className="col-span-10 md:col-span-6 lg:col-span-5 flex flex-col z-10 pl-6 md:pl-20 lg:pl-32 xl:pl-48 h-full relative">
                     <div className="flex-1 flex flex-col justify-center">
                         <div>
-                            <h1 className="text-[25vw] md:text-[min(14vw,200px)] lg:text-[12vw] xl:text-[10vw] 2xl:text-[9vw] leading-[0.8] tracking-tighter text-primary font-regular origin-left whitespace-nowrap">
+                            <h1 className="text-[min(25vw,300px)] md:text-[min(14vw,200px)] leading-[0.8] tracking-tighter text-primary font-regular origin-left whitespace-nowrap">
                                 Hello
                             </h1>
                         </div>

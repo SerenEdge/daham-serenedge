@@ -146,7 +146,7 @@ export default function Navbar() {
             <div ref={wrapperRef} className="absolute top-0 left-0 w-full z-[100] flex justify-center pointer-events-none p-6 min-[720px]:p-12 pt-4 min-[720px]:pt-8 w-full">
                 <nav
                     ref={navRef}
-                    className="relative w-full max-w-[1920px] px-6 py-4 landscape:py-2 pointer-events-auto text-secondary bg-transparent"
+                    className="relative w-full max-w-[1920px] px-6 py-4 pointer-events-auto text-secondary bg-transparent"
                 >
                     <div className="flex justify-between items-center w-full relative">
 
@@ -195,7 +195,7 @@ export default function Navbar() {
             {/* Mobile Menu Overlay - Moved outside wrapper to avoid transform clipping */}
             {isMenuOpen && (
                 <div className="fixed inset-0 bg-background flex flex-col justify-center items-center z-[90] min-[720px]:hidden text-secondary">
-                    <div className="flex flex-col gap-8 landscape:gap-4 text-2xl landscape:text-xl font-light text-center">
+                    <div className="flex flex-col gap-8 text-2xl font-light text-center">
                         <Link href="#" onClick={(e) => handleScroll(e, "#")} className="hover:text-primary transition-colors">Hello</Link>
                         <Link href="#realme" onClick={(e) => handleScroll(e, "#realme")} className="hover:text-primary transition-colors">Real Me</Link>
                         <Link href="#portfolio" onClick={(e) => handleScroll(e, "#portfolio")} className="hover:text-primary transition-colors">Portfolio</Link>
