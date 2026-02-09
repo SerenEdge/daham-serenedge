@@ -1,20 +1,27 @@
 "use client";
 
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiArrowRight } from "react-icons/fi";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
 import { useLenis } from "./SmoothScroll";
+
+const menuLinks = [
+    { title: "Home", href: "#" },
+    { title: "Real Me", href: "#realme" },
+    { title: "Portfolio", href: "#portfolio" },
+    { title: "Resume", href: "#resume" },
+    { title: "Contact", href: "#contact" },
+];
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navRef = useRef<HTMLElement>(null);
-    const wrapperRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
+    const bgRef = useRef<HTMLDivElement>(null);
+    const linksRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
     const lenis = useLenis();
 
     const toggleMenu = () => {
@@ -26,186 +33,144 @@ export default function Navbar() {
         if (lenis) {
             lenis.scrollTo(href);
         }
-        if (isMenuOpen) setIsMenuOpen(false);
+        setIsMenuOpen(false);
     };
+
     useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-            // Initial Entrance Animation
-            gsap.from(wrapperRef.current, {
-                y: -50,
-                opacity: 0,
-                duration: 1.5,
-                ease: "power4.out",
-                delay: 0.2 // Wait for Hero to start
-            });
+        const ctx = gsap.context(() => {
+            // Initial Timeline for Menu Open/Close
+            const tl = gsap.timeline({ paused: true });
 
-            ScrollTrigger.matchMedia({
-                // Desktop: Pill Animation
-                "(min-width: 720px)": function () {
-                    ScrollTrigger.create({
-                        trigger: document.body,
-                        start: "200 top",
-                        end: "bottom bottom",
-                        onEnter: () => {
-                            gsap.set(wrapperRef.current, { position: "fixed", top: 0, left: 0, yPercent: -100 });
-                            gsap.set(navRef.current, {
-                                backgroundColor: "rgba(255, 255, 255, 0.95)",
-                                color: "#000",
-                                borderRadius: "50px",
-                                maxWidth: "550px",
-                                boxShadow: "0 4px 20px -8px rgba(0,0,0,0.15)",
-                                padding: "8px 24px",
-                                marginTop: "0px"
-                            });
-                            gsap.to(wrapperRef.current, { yPercent: 0, duration: 1, ease: "power4.out" });
-                        },
-                        onLeaveBack: () => {
-                            gsap.to(wrapperRef.current, {
-                                yPercent: -100,
-                                duration: 0.6,
-                                ease: "power4.in",
-                                onComplete: () => {
-                                    gsap.set(wrapperRef.current, { position: "absolute", top: 0, left: 0, yPercent: 0 });
-                                    gsap.set(navRef.current, {
-                                        backgroundColor: "rgba(255, 255, 255, 0)",
-                                        color: "var(--secondary)",
-                                        borderRadius: "0px",
-                                        maxWidth: "100%",
-                                        boxShadow: "none",
-                                        padding: "16px 24px",
-                                        marginTop: "0px"
-                                    });
-                                }
-                            });
-                        }
-                    });
-                },
-                // Mobile: Sticky Icon Only (From Right) & Color Switching
-                "(max-width: 719px)": function () {
-                    if (!navRef.current) return;
+            // 1. Background Expand (Using Brand Primary Color)
+            tl.to(bgRef.current, {
+                scaleY: 1,
+                duration: 1,
+                ease: "power4.inOut",
+                transformOrigin: "top"
+            })
+                // 2. Links Stagger In
+                .fromTo(".menu-link-item",
+                    { y: 100, opacity: 0, skewY: 5 },
+                    { y: 0, opacity: 1, skewY: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" },
+                    "-=0.4"
+                )
+                // 3. Socials / Footer Stagger In
+                .fromTo(".menu-footer",
+                    { y: 20, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+                    "-=0.6"
+                );
 
-                    const logo = navRef.current.querySelector(".nav-logo");
-                    const menuBtn = navRef.current.querySelector(".nav-menu-btn");
+            if (isMenuOpen) {
+                tl.play();
+                // Animate button to X
+                gsap.to(buttonRef.current, { rotate: 90, duration: 0.3 });
+            } else {
+                tl.reverse();
+                // Animate button back to Menu
+                gsap.to(buttonRef.current, { rotate: 0, duration: 0.3 });
+            }
 
-                    // Sticky & Animation Logic
-                    ScrollTrigger.create({
-                        trigger: document.body,
-                        start: "200 top",
-                        end: "bottom bottom",
-                        onEnter: () => {
-                            if (!wrapperRef.current || !logo || !menuBtn) return;
-
-                            // 1. Fix Wrapper
-                            gsap.set(wrapperRef.current, { position: "fixed", top: 0, left: 0, width: "100%" });
-
-                            // 2. Hide Logo (so only icon is visible)
-                            gsap.set(logo, { autoAlpha: 0 });
-
-                            // 3. Prepare Icon for animation (slide down)
-                            gsap.fromTo(menuBtn,
-                                { y: -20, autoAlpha: 0 },
-                                { y: 0, autoAlpha: 1, duration: 0.8, ease: "power4.out" }
-                            );
-
-                            // Ensure background is transparent
-                            gsap.set(navRef.current, { backgroundColor: "transparent", boxShadow: "none", padding: "16px 24px" });
-                        },
-                        onLeaveBack: () => {
-                            if (!wrapperRef.current || !logo || !menuBtn) return;
-
-                            // Reset to Absolute / Default
-                            gsap.set(wrapperRef.current, { position: "absolute", top: 0, left: 0 });
-                            gsap.set(logo, { autoAlpha: 1 });
-                            gsap.set(menuBtn, { y: 0, autoAlpha: 1 });
-                        }
-                    });
-
-                    // Keep navbar icon color fixed at --secondary (#1c1c2b)
-                    gsap.set(navRef.current, { color: "#1c1c2b" });
-                }
-            });
-        }, wrapperRef);
+        }, containerRef);
 
         return () => ctx.revert();
-    }, []);
-
-    useEffect(() => {
-        // When menu opens, reset/adjust state
-        if (isMenuOpen) {
-            // Force transparent and visible styling
-            gsap.to(navRef.current, {
-                backgroundColor: "transparent",
-                color: "#1c1c2b", // Always keep --secondary color
-                duration: 0.3
-            });
-        }
     }, [isMenuOpen]);
 
+    // Hover Animation for Links
+    const handleLinkHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const target = e.currentTarget;
+        const arrow = target.querySelector(".link-arrow");
+
+        gsap.to(target, { x: 20, duration: 0.3, ease: "power2.out" });
+        gsap.to(arrow, { x: 10, opacity: 1, duration: 0.3, ease: "power2.out" });
+    };
+
+    const handleLinkLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const target = e.currentTarget;
+        const arrow = target.querySelector(".link-arrow");
+
+        gsap.to(target, { x: 0, duration: 0.3, ease: "power2.out" });
+        gsap.to(arrow, { x: 0, opacity: 0, duration: 0.3, ease: "power2.out" });
+    };
+
     return (
-        <>
-            <div ref={wrapperRef} className="absolute top-0 left-0 w-full z-[100] flex justify-center pointer-events-none p-6 min-[720px]:p-12 pt-4 min-[720px]:pt-8 w-full">
-                <nav
-                    ref={navRef}
-                    className="relative w-full max-w-[1920px] px-6 py-4 pointer-events-auto text-secondary bg-transparent"
+        <div ref={containerRef}>
+            {/* Fixed Header Elements */}
+            {/* 1. Logo Container - Absolute on Mobile/Tab (Scrolls away), Fixed on Desktop */}
+            <div className="absolute lg:fixed top-0 left-0 w-full z-[100] px-6 py-6 md:px-12 md:py-8 flex justify-between items-center pointer-events-none">
+                {/* Logo - Natural Color (No Invert) */}
+                <Link
+                    href="#"
+                    className="pointer-events-auto z-[100]"
+                    onClick={(e) => handleScroll(e, "#")}
                 >
-                    <div className="flex justify-between items-center w-full relative">
-
-                        {/* Logo / Brand - Always visible initially, hidden by GSAP on mobile scroll */}
-                        <Link
-                            href="#"
-                            className="z-50 nav-logo block"
-                            onClick={(e) => handleScroll(e, "#")}
-                        >
-                            <Image
-                                src="/images/daham-sign-dark.png"
-                                alt="Daham Signature"
-                                width={120}
-                                height={40}
-                                className="w-16 min-[720px]:w-20 h-auto object-contain"
-                                priority
-                            />
-                        </Link>
-
-                        {/* Centered Desktop Links */}
-                        <div className="hidden min-[720px]:flex gap-8 text-base font-medium absolute left-1/2 -translate-x-1/2">
-                            <Link href="#realme" onClick={(e) => handleScroll(e, "#realme")} className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Real Me</Link>
-                            <Link href="#portfolio" onClick={(e) => handleScroll(e, "#portfolio")} className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Portfolio</Link>
-                            <Link href="#resume" onClick={(e) => handleScroll(e, "#resume")} className="hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors">Resume</Link>
-                        </div>
-
-                        {/* Desktop Contact */}
-                        <div className="hidden min-[720px]:block">
-                            <Link href="#contact" onClick={(e) => handleScroll(e, "#contact")} className="flex items-center gap-1 hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors text-base whitespace-nowrap font-medium">
-                                Contact Me
-                            </Link>
-                        </div>
-
-                        {/* Mobile Menu Button */}
-                        <button
-                            className="min-[720px]:hidden z-50 focus:outline-none p-2 -mr-2 text-inherit nav-menu-btn bg-background rounded-lg"
-                            onClick={toggleMenu}
-                            aria-label="Toggle menu"
-                        >
-                            {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-                        </button>
-                    </div>
-                </nav>
+                    <Image
+                        src="/images/daham-sign-dark.png"
+                        alt="Daham Signature"
+                        width={120}
+                        height={40}
+                        className="w-20 md:w-24 h-auto object-contain"
+                        priority
+                    />
+                </Link>
             </div>
 
-            {/* Mobile Menu Overlay - Moved outside wrapper to avoid transform clipping */}
-            {isMenuOpen && (
-                <div className="fixed inset-0 bg-background flex flex-col justify-center items-center z-[90] min-[720px]:hidden text-secondary">
-                    <div className="flex flex-col gap-8 text-2xl font-light text-center">
-                        <Link href="#" onClick={(e) => handleScroll(e, "#")} className="hover:text-primary transition-colors">Hello</Link>
-                        <Link href="#realme" onClick={(e) => handleScroll(e, "#realme")} className="hover:text-primary transition-colors">Real Me</Link>
-                        <Link href="#portfolio" onClick={(e) => handleScroll(e, "#portfolio")} className="hover:text-primary transition-colors">Portfolio</Link>
-                        <Link href="#resume" onClick={(e) => handleScroll(e, "#resume")} className="hover:text-primary transition-colors">Resume</Link>
-                        <Link href="#contact" onClick={(e) => handleScroll(e, "#contact")} className="hover:text-primary transition-colors flex items-center justify-center gap-2">
-                            Contact Me <span>↗</span>
-                        </Link>
+            {/* 2. Menu Toggle Button - Always Fixed */}
+            {/* Positioned explicitly to match the padding of the logo container */}
+            <button
+                ref={buttonRef}
+                onClick={toggleMenu}
+                className={`fixed top-6 right-6 md:top-8 md:right-12 z-[100] flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl transition-colors duration-300 shadow-lg ${isMenuOpen ? 'bg-white text-[#1c1c2b]' : 'bg-[#1c1c2b] text-white'}`}
+            >
+                {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            </button>
+
+            {/* Full Screen Menu Overlay */}
+            <div
+                ref={menuRef}
+                className="fixed inset-0 z-[90] pointer-events-none"
+            >
+                {/* Background Curtain - Brand Primary Color */}
+                <div
+                    ref={bgRef}
+                    className="absolute inset-0 bg-[#1c1c2b] scale-y-0 origin-top"
+                />
+
+                {/* Menu Content */}
+                <div className={`relative h-full w-full max-w-[1920px] mx-auto flex flex-col justify-center items-center ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+                    <div ref={linksRef} className="flex flex-col gap-6 md:gap-8 items-start select-none">
+                        {menuLinks.map((link, index) => (
+                            <Link
+                                key={index}
+                                href={link.href}
+                                onClick={(e) => handleScroll(e, link.href)}
+                                onMouseEnter={handleLinkHover}
+                                onMouseLeave={handleLinkLeave}
+                                className="menu-link-item group flex items-center gap-4 text-4xl md:text-7xl lg:text-8xl font-sans font-light text-[#e6e6f0] tracking-tight overflow-hidden opacity-0"
+                            >
+                                <span className="text-sm md:text-lg font-mono text-tertiary">0{index + 1}</span>
+                                <span className="relative">
+                                    {link.title}
+                                    <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#e6e6f0] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                                </span>
+                                <FiArrowRight className="link-arrow opacity-0 text-3xl md:text-5xl text-tertiary" />
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Footer Info */}
+                    <div className="menu-footer absolute bottom-12 w-full px-6 md:px-12 flex flex-col md:flex-row gap-4 justify-between text-tertiary text-sm font-mono uppercase tracking-widest opacity-0">
+                        <span>Daham Dissanayake</span>
+                        <div className="flex gap-6">
+                            <a href="#" className="hover:text-white transition-colors">GitHub</a>
+                            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+                            <a href="#" className="hover:text-white transition-colors">Instagram</a>
+                            <a href="#" className="hover:text-white transition-colors">Email</a>
+                        </div>
                     </div>
                 </div>
-            )}
-        </>
+            </div>
+        </div>
     );
 }
+
