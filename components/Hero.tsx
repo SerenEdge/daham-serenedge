@@ -60,14 +60,14 @@ export default function Hero() {
     }, [isMobile]);
 
     return (
-        <section id="home" ref={containerRef} className="relative w-full h-screen landscape:h-auto landscape:min-h-screen flex flex-col p-6 md:p-12 landscape:p-4 bg-background">
+        <section id="home" ref={containerRef} className="relative w-full h-screen flex flex-col p-6 md:p-12 bg-background">
             {/* Navigation */}
             <Navbar />
 
             {/* Main Content Grid */}
-            <div className="flex-1 w-full grid grid-cols-12 relative min-h-0 max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 pb-20 md:pb-0 landscape:pb-8">
+            <div className="flex-1 w-full grid grid-cols-12 relative min-h-0 max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 pb-20 md:pb-0">
                 {/* 1. Sidebar Timeline (Leftmost Column) */}
-                <div className="col-span-2 md:col-span-1 flex flex-col justify-center items-center gap-14 md:gap-14 lg:gap-18 landscape:gap-8 pl-2 md:pl-0">
+                <div className="col-span-2 md:col-span-1 flex flex-col justify-center items-center gap-14 md:gap-14 lg:gap-18 pl-2 md:pl-0">
                     <span className="-rotate-90 text-tertiary text-sm md:text-base lg:text-lg tracking-wider whitespace-nowrap">
                         {currentRole}
                     </span>
@@ -78,10 +78,10 @@ export default function Hero() {
                 </div>
 
                 {/* 2. Text Content (Middle/Left) */}
-                <div className="col-span-10 md:col-span-6 lg:col-span-5 flex flex-col z-10 pl-6 md:pl-20 lg:pl-32 xl:pl-48 h-full relative landscape:justify-center">
+                <div className="col-span-10 md:col-span-6 lg:col-span-5 flex flex-col z-10 pl-6 md:pl-20 lg:pl-32 xl:pl-48 h-full relative">
                     <div className="flex-1 flex flex-col justify-center">
                         <div>
-                            <h1 className="text-[25vw] landscape:text-[15vw] md:text-[min(14vw,200px)] lg:text-[12vw] xl:text-[10vw] 2xl:text-[9vw] leading-[0.8] tracking-tighter text-primary font-regular origin-left whitespace-nowrap">
+                            <h1 className="text-[25vw] md:text-[min(14vw,200px)] lg:text-[12vw] xl:text-[10vw] 2xl:text-[9vw] leading-[0.8] tracking-tighter text-primary font-regular origin-left whitespace-nowrap">
                                 Hello
                             </h1>
                         </div>
@@ -109,11 +109,11 @@ export default function Hero() {
                     {/* Parallax Container */}
                     <div
                         ref={parallaxRef}
-                        className="absolute bottom-0 -mb-6 left-0 right-0 w-full md:mb-0 md:fixed md:left-auto md:right-0 md:w-[60vw] md:h-[130vh] flex items-end justify-end origin-bottom md:origin-bottom-right landscape:relative landscape:w-full landscape:h-auto landscape:mt-8"
+                        className="absolute bottom-0 -mb-6 left-0 right-0 w-full md:mb-0 md:fixed md:left-auto md:right-0 md:w-[60vw] md:h-[130vh] flex items-end justify-end origin-bottom md:origin-bottom-right"
                     >
                         {/* Static Transform Container - Handles Desktop Offset Only */}
                         <div
-                            className="w-full flex items-end justify-center origin-bottom scale-150 md:justify-end md:scale-100 md:h-full md:translate-y-12 landscape:scale-100 landscape:justify-center"
+                            className="w-full flex items-end justify-center origin-bottom scale-150 md:justify-end md:scale-100 md:h-full md:translate-y-12"
                         >
                             <Image
                                 src="/images/Dahamimagefornow-dark.png"
