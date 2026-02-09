@@ -13,6 +13,7 @@ export default function ResumeSection() {
     const triggerRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const bgRef = useRef<HTMLDivElement>(null);
+    const gridRef = useRef<HTMLDivElement>(null);
 
     // State to track active section for dynamic content on the left
     const [activeSection, setActiveSection] = useState(0);
@@ -98,6 +99,14 @@ export default function ResumeSection() {
                 .to(texts[2], { opacity: 1, scale: 1.1, y: 0, filter: "blur(0px)", color: "#e6e6f0", duration: 1 }, "-=0.5")
                 .to(visuals[2], { opacity: 0.6, scale: 1, y: 0, duration: 1 }, "<");
 
+            // --- GRID PARALLAX ---
+            // Animate grid background position relative to scroll progress
+            tl.to(gridRef.current, {
+                backgroundPositionY: "200px",
+                ease: "none",
+                duration: tl.duration() // Sync with the entire timeline length
+            }, 0);
+
 
         }, containerRef);
 
@@ -105,8 +114,9 @@ export default function ResumeSection() {
     }, []);
 
     return (
-        <section id="resume" ref={containerRef} className="bg-background w-full relative font-sans py-8 min-[720px]:py-12 lg:py-16">
+        <section ref={containerRef} className="bg-background w-full relative font-sans">
             <div
+                id="resume"
                 ref={triggerRef}
                 className="w-full h-screen flex justify-center items-center p-4 md:p-8 relative z-20"
             >
@@ -116,8 +126,11 @@ export default function ResumeSection() {
                     {/* Background Grid & Visuals - Now clipped inside the card */}
                     <div ref={bgRef} className="absolute inset-0 pointer-events-none z-0">
                         {/* Base Grid */}
-                        <div className="absolute inset-0 opacity-20"
-                            style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+                        <div
+                            ref={gridRef}
+                            className="absolute inset-0 opacity-30"
+                            style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+                        >
                         </div>
 
                         {/* Visual 0: Full Stack (Abstract UI & Code Construction) */}

@@ -16,11 +16,29 @@
 
 :root {
   --background: #f8f8f8;
-  --foreground: #1c1c2b;
+  --foreground: #ffffff;
   --primary: #1c1c2b;
   --secondary: #1c1c2b;
   --tertiary: #7b7b7b;
   --light-text: #e6e6f0;
+}
+
+/* Splash Screen Hiding Logic */
+.splash-active,
+.splash-active body {
+  background-color: #1c1c2b !important;
+  overflow: hidden !important;
+}
+
+.splash-active #content-wrapper {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#content-wrapper {
+  transition:
+    opacity 0.6s ease-in-out,
+    visibility 0.6s ease-in-out;
 }
 
 @theme inline {

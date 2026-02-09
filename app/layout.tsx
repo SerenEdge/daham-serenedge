@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import SplashScreen from "@/components/SplashScreen";
 import { Analytics } from "@vercel/analytics/next";
 
 
@@ -30,14 +31,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (!sessionStorage.getItem('splash-loaded')) {
+                document.documentElement.classList.add('splash-active');
+                document.documentElement.style.backgroundColor = '#1c1c2b';
+              }
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistMono.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
         <SmoothScroll>
-          {children}
-          <Analytics />
+          <SplashScreen />
+          <div id="content-wrapper">
+            {children}
+            <Analytics />
+          </div>
         </SmoothScroll>
       </body>
     </html>

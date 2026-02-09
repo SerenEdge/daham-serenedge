@@ -157,7 +157,7 @@ export default function Portfolio() {
         <section
             id="portfolio"
             ref={sectionRef}
-            className="relative w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16 py-8 min-[720px]:py-12 lg:py-16"
+            className="relative w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16"
         >
             <div className="max-w-[1920px] mx-auto">
                 <div className="flex flex-col lg:flex-row lg:gap-20">
