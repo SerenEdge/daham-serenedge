@@ -4,7 +4,7 @@ import { useRef, useLayoutEffect, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FiGithub, FiLinkedin, FiMail, FiSend } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiSend } from "react-icons/fi";
 import { sendContactEmail } from "@/app/actions";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -102,6 +102,7 @@ export default function Footer() {
                                     {[
                                         { icon: <FiGithub size={20} />, href: "https://github.com/DahamDissanayake", label: "GitHub" },
                                         { icon: <FiLinkedin size={20} />, href: "https://www.linkedin.com/in/daham-dissanayake/", label: "LinkedIn" },
+                                        { icon: <FiInstagram size={20} />, href: "https://www.instagram.com/dhmdissanayake/", label: "Instagram" },
                                         { icon: <FiMail size={20} />, href: "mailto:dahamdissanayake05@gmail.com", label: "Email" }
                                     ].map((social, index) => (
                                         <a
