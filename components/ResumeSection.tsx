@@ -49,21 +49,21 @@ export default function ResumeSection() {
             const texts = gsap.utils.toArray<HTMLElement>(".value-text", containerRef.current);
             const visuals = gsap.utils.toArray<HTMLElement>(".bg-visual", bgRef.current);
 
-            // Set initial states
-            gsap.set(texts, { opacity: 0.1, scale: 0.9, filter: "blur(4px)" });
-            gsap.set(visuals, { opacity: 0, scale: 0.8 });
+            // Set initial states - Start everything slightly lower for "float up" entry
+            gsap.set(texts, { opacity: 0, scale: 0.9, y: 50, filter: "blur(4px)" });
+            gsap.set(visuals, { opacity: 0, scale: 0.8, y: 50 });
 
-            // Initial Active State (0)
-            gsap.set(texts[0], { opacity: 1, scale: 1.1, filter: "blur(0px)", color: "#e6e6f0" });
-            gsap.set(visuals[0], { opacity: 0.6, scale: 1 });
+            // Initial Active State (0) - Float it into place
+            gsap.set(texts[0], { opacity: 1, scale: 1.1, y: 0, filter: "blur(0px)", color: "#e6e6f0" });
+            gsap.set(visuals[0], { opacity: 0.6, scale: 1, y: 0 });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: triggerRef.current,
                     pin: true,
                     start: "top top",
-                    end: "+=1000", // Increased distance for slower, clearer reading time
-                    scrub: 0.5,
+                    end: "+=1500", // Increased distance for slower, floaty feel
+                    scrub: 1, // Smooth scrubbing for weightless feel
                     onUpdate: (self) => {
                         // Update active index state based on progress for React rendering (Left side)
                         const progress = self.progress;
@@ -75,27 +75,28 @@ export default function ResumeSection() {
             });
 
             // --- ANIMATION SEQUENCE ---
-            // The logic: 
-            // 1. Start with Item 0 Active.
-            // 2. Transition 0 -> 1
-            // 3. Transition 1 -> 2
+            // "Anti-Gravity" Logic: Elements float UP into view, stay, then float UP out of view.
 
             // Transition 0 -> 1
-            tl.to(texts[0], { opacity: 0.1, scale: 0.9, filter: "blur(4px)", color: "#4b5563", duration: 1 })
-                .to(visuals[0], { opacity: 0, scale: 0.8, duration: 1 }, "<")
+            // 0 floats up and out
+            tl.to(texts[0], { opacity: 0, scale: 0.9, y: -50, filter: "blur(4px)", color: "#4b5563", duration: 1 })
+                .to(visuals[0], { opacity: 0, scale: 0.8, y: -50, duration: 1 }, "<")
 
-                .to(texts[1], { opacity: 1, scale: 1.1, filter: "blur(0px)", color: "#e6e6f0", duration: 1 })
-                .to(visuals[1], { opacity: 0.6, scale: 1, duration: 1 }, "<")
+                // 1 floats up and in
+                .to(texts[1], { opacity: 1, scale: 1.1, y: 0, filter: "blur(0px)", color: "#e6e6f0", duration: 1 }, "-=0.5")
+                .to(visuals[1], { opacity: 0.6, scale: 1, y: 0, duration: 1 }, "<")
 
                 // Hold Item 1
                 .to({}, { duration: 0.5 })
 
                 // Transition 1 -> 2
-                .to(texts[1], { opacity: 0.1, scale: 0.9, filter: "blur(4px)", color: "#4b5563", duration: 1 })
-                .to(visuals[1], { opacity: 0, scale: 0.8, duration: 1 }, "<")
+                // 1 floats up and out
+                .to(texts[1], { opacity: 0, scale: 0.9, y: -50, filter: "blur(4px)", color: "#4b5563", duration: 1 })
+                .to(visuals[1], { opacity: 0, scale: 0.8, y: -50, duration: 1 }, "<")
 
-                .to(texts[2], { opacity: 1, scale: 1.1, filter: "blur(0px)", color: "#e6e6f0", duration: 1 })
-                .to(visuals[2], { opacity: 0.6, scale: 1, duration: 1 }, "<");
+                // 2 floats up and in
+                .to(texts[2], { opacity: 1, scale: 1.1, y: 0, filter: "blur(0px)", color: "#e6e6f0", duration: 1 }, "-=0.5")
+                .to(visuals[2], { opacity: 0.6, scale: 1, y: 0, duration: 1 }, "<");
 
 
         }, containerRef);

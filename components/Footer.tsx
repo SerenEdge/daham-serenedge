@@ -30,12 +30,16 @@ export default function Footer() {
 
             tl.fromTo(lineRef.current,
                 { scaleX: 0, opacity: 0 },
-                { scaleX: 1, opacity: 1, duration: 1.2, ease: "expo.out" }
+                { scaleX: 1, opacity: 1, duration: 1.5, ease: "power4.out" }
             )
                 .fromTo(contentRef.current,
                     { y: 50, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
-                    "-=0.8"
+                    { y: 0, opacity: 1, duration: 1.5, ease: "power4.out" },
+                    "-=1.2"
+                )
+                .from(formRef.current, // Stagger the form slightly for more dimension
+                    { y: 30, opacity: 0, duration: 1.2, ease: "power4.out" },
+                    "-=1"
                 );
 
         }, footerRef);
@@ -97,8 +101,8 @@ export default function Footer() {
                                 <div className="flex gap-4">
                                     {[
                                         { icon: <FiGithub size={20} />, href: "https://github.com/DahamDissanayake", label: "GitHub" },
-                                        { icon: <FiLinkedin size={20} />, href: "https://linkedin.com", label: "LinkedIn" },
-                                        { icon: <FiMail size={20} />, href: "mailto:support@sotercare.com", label: "Email" }
+                                        { icon: <FiLinkedin size={20} />, href: "https://www.linkedin.com/in/daham-dissanayake/", label: "LinkedIn" },
+                                        { icon: <FiMail size={20} />, href: "mailto:dahamdissanayake05@gmail.com", label: "Email" }
                                     ].map((social, index) => (
                                         <a
                                             key={index}

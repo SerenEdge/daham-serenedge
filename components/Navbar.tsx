@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -28,8 +28,17 @@ export default function Navbar() {
         }
         if (isMenuOpen) setIsMenuOpen(false);
     };
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
+            // Initial Entrance Animation
+            gsap.from(wrapperRef.current, {
+                y: -50,
+                opacity: 0,
+                duration: 1.5,
+                ease: "power4.out",
+                delay: 0.2 // Wait for Hero to start
+            });
+
             ScrollTrigger.matchMedia({
                 // Desktop: Pill Animation
                 "(min-width: 720px)": function () {
@@ -48,13 +57,13 @@ export default function Navbar() {
                                 padding: "8px 24px",
                                 marginTop: "0px"
                             });
-                            gsap.to(wrapperRef.current, { yPercent: 0, duration: 0.8, ease: "power2.out" });
+                            gsap.to(wrapperRef.current, { yPercent: 0, duration: 1, ease: "power4.out" });
                         },
                         onLeaveBack: () => {
                             gsap.to(wrapperRef.current, {
                                 yPercent: -100,
-                                duration: 0.3,
-                                ease: "power3.in",
+                                duration: 0.6,
+                                ease: "power4.in",
                                 onComplete: () => {
                                     gsap.set(wrapperRef.current, { position: "absolute", top: 0, left: 0, yPercent: 0 });
                                     gsap.set(navRef.current, {
@@ -95,7 +104,7 @@ export default function Navbar() {
                             // 3. Prepare Icon for animation (slide down)
                             gsap.fromTo(menuBtn,
                                 { y: -20, autoAlpha: 0 },
-                                { y: 0, autoAlpha: 1, duration: 0.5, ease: "back.out(1.7)" }
+                                { y: 0, autoAlpha: 1, duration: 0.8, ease: "power4.out" }
                             );
 
                             // Ensure background is transparent
@@ -167,7 +176,7 @@ export default function Navbar() {
                         {/* Desktop Contact */}
                         <div className="hidden min-[720px]:block">
                             <Link href="#contact" onClick={(e) => handleScroll(e, "#contact")} className="flex items-center gap-1 hover:text-primary hover:underline underline-offset-4 decoration-primary transition-colors text-base whitespace-nowrap font-medium">
-                                Contact Me 
+                                Contact Me
                             </Link>
                         </div>
 

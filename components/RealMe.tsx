@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FiUser, FiBriefcase, FiCode } from "react-icons/fi";
@@ -73,30 +73,44 @@ const technologies = [
 export default function RealMe() {
     const [audience, setAudience] = useState<AudienceType>('anyone');
     const containerRef = useRef(null);
+    const headerRef = useRef(null);
+    const tabsRef = useRef(null);
     const textRef = useRef<HTMLDivElement>(null);
     const quoteRef = useRef<HTMLDivElement>(null);
+    const bgQuoteRef = useRef<HTMLSpanElement>(null);
     const marqueeRef = useRef<HTMLDivElement>(null);
 
-    // Initial Scroll Animation
-    useEffect(() => {
+    // Initial Scroll Animation - "Anti-Gravity" Reveal
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
-            gsap.from(containerRef.current, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
+            const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: "top 80%",
+                    start: "top 75%",
                     end: "bottom 20%",
                     toggleActions: "play none none reverse"
                 }
             });
 
-            // Marquee Animation
+            // 1. Header Reveal (Float Up)
+            tl.from(headerRef.current, {
+                y: 60,
+                opacity: 0,
+                duration: 1.5,
+                ease: "power4.out"
+            })
+                // 3. Content Reveal
+                .from(quoteRef.current, {
+                    x: 30,
+                    opacity: 0,
+                    duration: 1.5,
+                    ease: "power4.out"
+                }, "-=1");
+
+            // Marquee Animation (Continuous Loop)
             const marquee = marqueeRef.current;
             if (marquee) {
                 const totalWidth = marquee.scrollWidth / 2; // Since we duplicated the list
-
                 gsap.to(marquee, {
                     x: -totalWidth,
                     duration: 40, // Adjust speed here
@@ -104,19 +118,30 @@ export default function RealMe() {
                     repeat: -1
                 });
             }
+
+            // Parallax for Background Quote
+            gsap.to(bgQuoteRef.current, {
+                y: 50,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
         }, containerRef);
 
         return () => ctx.revert();
     }, []);
 
-    // Text Change Animation
-    useEffect(() => {
+    // Text Change Animation - Smooth Cross-fade
+    useLayoutEffect(() => {
         if (!textRef.current) return;
-
-        // Split text animation logic could go here, but simple fade is cleaner for dynamic interactions
         gsap.fromTo(textRef.current,
-            { opacity: 0, y: 20, filter: "blur(10px)" },
-            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "power2.out" }
+            { opacity: 0, y: 10, filter: "blur(4px)" },
+            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power4.out" }
         );
     }, [audience]);
 
@@ -130,7 +155,7 @@ export default function RealMe() {
                 {/* Header & Controls */}
                 <div className="lg:col-span-5 flex flex-col justify-between h-full">
                     <div>
-                        <div className="flex flex-col items-start w-full mb-8 lg:mb-12 border-b border-gray-200 lg:border-none pb-8 lg:pb-0">
+                        <div ref={headerRef} className="flex flex-col items-start w-full mb-8 lg:mb-12 border-b border-gray-200 lg:border-none pb-8 lg:pb-0">
                             <h2 className="text-5xl lg:text-9xl xl:text-[10vw] font-medium tracking-tight text-secondary leading-[0.8] mb-4 lg:mb-8">
                                 Real Me
                             </h2>
@@ -142,7 +167,7 @@ export default function RealMe() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-4 items-start">
+                        <div ref={tabsRef} className="flex flex-col gap-4 items-start">
                             <div className="flex flex-wrap gap-6">
                                 {(Object.keys(content) as AudienceType[]).map((key) => {
                                     const isActive = audience === key;
@@ -152,7 +177,7 @@ export default function RealMe() {
                                             key={key}
                                             onClick={() => setAudience(key)}
                                             className={`
-                                                relative text-xl cursor-pointer transition-all duration-300 flex items-center gap-2 pb-1
+                                                audience-tab relative text-xl cursor-pointer transition-all duration-300 flex items-center gap-2 pb-1
                                                 ${isActive
                                                     ? 'text-secondary border-b border-secondary'
                                                     : 'text-tertiary hover:text-secondary border-b border-transparent'
@@ -172,6 +197,9 @@ export default function RealMe() {
                 {/* Dynamic Content */}
                 <div className="lg:col-span-7 flex items-center">
                     <div ref={quoteRef} className="relative pt-8 lg:pt-0">
+                        <span ref={bgQuoteRef} className="absolute -top-12 -left-8 text-9xl text-gray-100 -z-10 font-serif select-none">
+                            "
+                        </span>
                         <div
                             ref={textRef}
                             className="text-3xl min-[720px]:text-4xl lg:text-5xl leading-tight font-light text-secondary"

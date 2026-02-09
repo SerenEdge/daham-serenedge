@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FiChevronDown, FiArrowUpRight } from "react-icons/fi";
@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Portfolio() {
     const sectionRef = useRef<HTMLElement>(null);
+    const projectsContainerRef = useRef<HTMLDivElement>(null);
     const [hoveredProject, setHoveredProject] = useState<number | null>(null);
     const [hoveredMiniCard, setHoveredMiniCard] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
@@ -29,7 +30,7 @@ export default function Portfolio() {
     }, [hoveredProject]);
 
     // Responsive breakpoint detection
-    useEffect(() => {
+    useLayoutEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
             setIsMobile(width < 720);
@@ -40,6 +41,44 @@ export default function Portfolio() {
         handleResize(); // Initial check
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // "Anti-Gravity" Scroll Animations - Reveal all projects when section enters view
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            // Main projects animation
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 80%", // Trigger earlier
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // Animate projects container with more dramatic movement
+            tl.from(projectsContainerRef.current, {
+                y: 100,
+                opacity: 0,
+                duration: 1.8,
+                ease: "power4.out"
+            });
+
+            // Separate animation for Mini Projects with its own trigger
+            gsap.from(miniProjectsRef.current, {
+                y: 150, // Much larger offset for visibility
+                opacity: 0,
+                duration: 2, // Longer duration
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: miniProjectsRef.current,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+        }, sectionRef);
+
+        return () => ctx.revert();
     }, []);
 
     const mainProjects = [
@@ -139,11 +178,11 @@ export default function Portfolio() {
 
                     {/* Scrolling Content (Main Projects) */}
                     <div className="lg:w-2/3 pb-24 lg:py-32">
-                        <div className="flex flex-col">
+                        <div ref={projectsContainerRef} className="flex flex-col">
                             {mainProjects.map((project, index) => (
                                 <div
                                     key={index}
-                                    className={`group relative border-b border-gray-200 cursor-pointer transition-all duration-500 ${hoveredProject !== null && hoveredProject !== index ? 'opacity-30 blur-[2px]' : 'opacity-100'
+                                    className={`project-card group relative border-b border-gray-200 cursor-pointer transition-all duration-500 ${hoveredProject !== null && hoveredProject !== index ? 'opacity-30 blur-[2px]' : 'opacity-100'
                                         }`}
                                     onMouseEnter={() => !isMobile && setHoveredProject(index)}
                                     onMouseLeave={() => !isMobile && setHoveredProject(null)}
@@ -266,7 +305,7 @@ export default function Portfolio() {
                                         {miniProjects.map((project, index) => (
                                             <div
                                                 key={index}
-                                                className="flex-shrink-0 w-[85vw] max-w-[100%] max-w-md h-[520px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
+                                                className="mini-project-card flex-shrink-0 w-[85vw] max-w-[100%] max-w-md h-[520px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
                                             >
                                                 <div className="flex flex-col h-full justify-between">
                                                     <div>
@@ -325,7 +364,7 @@ export default function Portfolio() {
                                         >
                                             {/* Animated Visual Card - File Style */}
                                             <div
-                                                className={`relative w-full h-full bg-[#1c1c2b] text-white rounded-b-3xl rounded-tr-3xl rounded-tl-none p-8 transition-all duration-300 ease-out`}
+                                                className={`mini-project-card relative w-full h-full bg-[#1c1c2b] text-white rounded-b-3xl rounded-tr-3xl rounded-tl-none p-8 transition-all duration-300 ease-out`}
                                                 style={{
                                                     transform: isHovered
                                                         ? `translateY(-80px) rotate(${-rotation}deg) scale(1.1)` // Counter-rotate to 0, move up
