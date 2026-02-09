@@ -118,7 +118,7 @@ export default function ResumeSection() {
             <div
                 id="resume"
                 ref={triggerRef}
-                className="w-full h-screen flex justify-center items-center p-4 md:p-8 relative z-20"
+                className="w-full h-screen flex justify-center items-center px-6 min-[720px]:px-12 lg:px-16 py-8 relative z-20"
             >
                 {/* Main Card Container */}
                 <div className="w-full h-full max-w-[1920px] bg-[#1c1c2b] rounded-3xl flex flex-col md:flex-row relative overflow-hidden shadow-2xl">
@@ -232,7 +232,7 @@ export default function ResumeSection() {
                     </div>
 
                     {/* Left Side - Contextual Info */}
-                    <div className="w-full md:w-1/2 h-[60%] md:h-full flex flex-col justify-center p-6 md:p-16 lg:p-24 gap-4 md:gap-8 relative z-10 order-2 md:order-1">
+                    <div className="w-full md:w-1/2 h-[60%] md:h-full flex flex-col justify-center p-8 min-[720px]:p-16 lg:p-24 gap-6 md:gap-8 relative z-10 order-2 md:order-1">
 
                         {/* Dynamic Header */}
                         <div className="h-16 md:h-20"> {/* Fixed height to prevent layout shift */}

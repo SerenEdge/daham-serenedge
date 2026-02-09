@@ -65,7 +65,7 @@ export default function Hero() {
             <Navbar />
 
             {/* Main Content Grid */}
-            <div className="flex-1 w-full grid grid-cols-12 relative min-h-0 max-w-[1920px] mx-auto px-6 min-[720px]:px-12 lg:px-16">
+            <div className="flex-1 w-full grid grid-cols-12 relative min-h-0 max-w-[1920px] mx-auto px-6 min-[720px]:px-12 lg:px-16 pb-20 min-[720px]:pb-0">
                 {/* 1. Sidebar Timeline (Leftmost Column) */}
                 <div className="col-span-2 min-[720px]:col-span-1 flex flex-col justify-center items-center gap-14 min-[720px]:gap-14 lg:gap-18 pl-2 min-[720px]:pl-0">
                     <span className="-rotate-90 text-tertiary text-sm min-[720px]:text-base lg:text-lg tracking-wider whitespace-nowrap">

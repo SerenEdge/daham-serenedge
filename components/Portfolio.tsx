@@ -162,7 +162,7 @@ export default function Portfolio() {
             <div className="max-w-[1920px] mx-auto">
                 <div className="flex flex-col lg:flex-row lg:gap-20">
                     {/* Sticky Sidebar (Header) */}
-                    <div className="lg:w-1/3 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-start lg:justify-center pt-10 pb-4 lg:py-0 z-20">
+                    <div className="lg:w-1/3 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-start lg:justify-center pt-24 pb-8 lg:py-0 z-20">
                         <div className="flex flex-col items-start border-b border-gray-200 lg:border-none pb-4 lg:pb-0 w-full">
                             <h1 className="text-5xl lg:text-9xl xl:text-[10vw] font-medium tracking-tight text-secondary leading-[0.8] mb-4 lg:mb-8">
                                 Portfolio
@@ -177,7 +177,7 @@ export default function Portfolio() {
                     </div>
 
                     {/* Scrolling Content (Main Projects) */}
-                    <div className="lg:w-2/3 pb-24 lg:py-32">
+                    <div className="lg:w-2/3 pb-24 min-[720px]:py-32">
                         <div ref={projectsContainerRef} className="flex flex-col">
                             {mainProjects.map((project, index) => (
                                 <div
