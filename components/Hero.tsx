@@ -68,11 +68,11 @@ export default function Hero() {
             <div className="flex-1 w-full grid grid-cols-12 relative min-h-0 max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 pb-20 md:pb-0">
                 {/* 1. Sidebar Timeline (Leftmost Column) */}
                 <div className="col-span-2 md:col-span-1 flex flex-col justify-center items-center gap-14 md:gap-14 lg:gap-18 pl-2 md:pl-0">
-                    <span className="-rotate-90 text-tertiary text-sm md:text-base lg:text-lg tracking-wider whitespace-nowrap">
+                    <span className="-rotate-90 text-tertiary text-xs md:text-base lg:text-base tracking-wider whitespace-nowrap">
                         {currentRole}
                     </span>
-                    <div className="w-[1px] h-[20vh] md:h-[30vh] lg:h-[40vh] bg-gray-300"></div>
-                    <span className="-rotate-90 text-tertiary text-sm md:text-base lg:text-lg tracking-wider whitespace-nowrap">
+                    <div className="w-[1px] h-[12vh] md:h-[28vh] lg:h-[38vh] bg-gray-300"></div>
+                    <span className="-rotate-90 text-tertiary text-xs md:text-base lg:text-base tracking-wider whitespace-nowrap">
                         {currentPeriod}
                     </span>
                 </div>
