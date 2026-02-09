@@ -149,14 +149,14 @@ export default function RealMe() {
         <section
             id="realme"
             ref={containerRef}
-            className="w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16 py-20 min-[720px]:py-32 flex flex-col justify-center relative z-20"
+            className="w-full min-h-screen bg-background text-secondary px-6 md:px-12 lg:px-16 py-20 md:py-32 flex flex-col justify-center relative z-20"
         >
             <div className="max-w-[1920px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 mb-24 lg:mb-0">
                 {/* Header & Controls */}
                 <div className="lg:col-span-5 flex flex-col justify-between h-full">
                     <div>
-                        <div ref={headerRef} className="flex flex-col items-start w-full mb-8 lg:mb-12 border-b border-gray-200 lg:border-none pb-8 lg:pb-0">
-                            <h2 className="text-5xl lg:text-9xl xl:text-[10vw] font-medium tracking-tight text-secondary leading-[0.8] mb-4 lg:mb-8">
+                        <div ref={headerRef} className="flex flex-col items-start w-full mb-12 border-b border-gray-200 md:border-none pb-8 md:pb-0">
+                            <h2 className="text-6xl md:text-8xl lg:text-9xl xl:text-[10vw] font-medium tracking-tight text-secondary leading-[0.8] mb-8">
                                 Real Me
                             </h2>
                             <div className="flex items-center gap-4 text-tertiary">

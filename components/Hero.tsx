@@ -60,28 +60,28 @@ export default function Hero() {
     }, [isMobile]);
 
     return (
-        <section id="home" ref={containerRef} className="relative w-full h-screen flex flex-col p-6 min-[720px]:p-12 bg-background">
+        <section id="home" ref={containerRef} className="relative w-full h-screen flex flex-col p-6 md:p-12 bg-background">
             {/* Navigation */}
             <Navbar />
 
             {/* Main Content Grid */}
-            <div className="flex-1 w-full grid grid-cols-12 relative min-h-0 max-w-[1920px] mx-auto px-6 min-[720px]:px-12 lg:px-16 pb-20 min-[720px]:pb-0">
+            <div className="flex-1 w-full grid grid-cols-12 relative min-h-0 max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 pb-20 md:pb-0">
                 {/* 1. Sidebar Timeline (Leftmost Column) */}
-                <div className="col-span-2 min-[720px]:col-span-1 flex flex-col justify-center items-center gap-14 min-[720px]:gap-14 lg:gap-18 pl-2 min-[720px]:pl-0">
-                    <span className="-rotate-90 text-tertiary text-sm min-[720px]:text-base lg:text-lg tracking-wider whitespace-nowrap">
+                <div className="col-span-2 md:col-span-1 flex flex-col justify-center items-center gap-14 md:gap-14 lg:gap-18 pl-2 md:pl-0">
+                    <span className="-rotate-90 text-tertiary text-sm md:text-base lg:text-lg tracking-wider whitespace-nowrap">
                         {currentRole}
                     </span>
-                    <div className="w-[1px] h-[20vh] min-[720px]:h-[30vh] lg:h-[40vh] bg-gray-300"></div>
-                    <span className="-rotate-90 text-tertiary text-sm min-[720px]:text-base lg:text-lg tracking-wider whitespace-nowrap">
+                    <div className="w-[1px] h-[20vh] md:h-[30vh] lg:h-[40vh] bg-gray-300"></div>
+                    <span className="-rotate-90 text-tertiary text-sm md:text-base lg:text-lg tracking-wider whitespace-nowrap">
                         {currentPeriod}
                     </span>
                 </div>
 
                 {/* 2. Text Content (Middle/Left) */}
-                <div className="col-span-10 min-[720px]:col-span-5 lg:col-span-5 flex flex-col z-10 pl-4 min-[720px]:pl-20 lg:pl-50 h-full relative">
+                <div className="col-span-10 md:col-span-6 lg:col-span-5 flex flex-col z-10 pl-6 md:pl-20 lg:pl-32 xl:pl-48 h-full relative">
                     <div className="flex-1 flex flex-col justify-center">
                         <div>
-                            <h1 className="text-[25vw] min-[720px]:text-[14vw] lg:text-[12vw] xl:text-[10vw] leading-[0.8] tracking-tighter text-primary font-regular origin-left">
+                            <h1 className="text-[25vw] md:text-[min(14vw,200px)] lg:text-[12vw] xl:text-[10vw] 2xl:text-[9vw] leading-[0.8] tracking-tighter text-primary font-regular origin-left whitespace-nowrap">
                                 Hello
                             </h1>
                         </div>
@@ -99,8 +99,8 @@ export default function Hero() {
                             </div>
                         </div>
                     </div>
-                    <div ref={scrollRef} className="hidden min-[720px]:block pb-12">
-                        <span className="text-base text-tertiary block">Scroll Down ↓</span>
+                    <div ref={scrollRef} className="hidden md:block pb-12">
+                        <span className="text-base text-tertiary block font-mono">Scroll Down ↓</span>
                     </div>
                 </div>
 
@@ -109,18 +109,18 @@ export default function Hero() {
                     {/* Parallax Container */}
                     <div
                         ref={parallaxRef}
-                        className="absolute bottom-0 -mb-6 left-0 right-0 w-full min-[720px]:mb-0 min-[720px]:fixed min-[720px]:left-auto min-[720px]:right-0 min-[720px]:w-[60vw] min-[720px]:h-[130vh] flex items-end justify-end origin-bottom min-[720px]:origin-bottom-right"
+                        className="absolute bottom-0 -mb-6 left-0 right-0 w-full md:mb-0 md:fixed md:left-auto md:right-0 md:w-[60vw] md:h-[130vh] flex items-end justify-end origin-bottom md:origin-bottom-right"
                     >
                         {/* Static Transform Container - Handles Desktop Offset Only */}
                         <div
-                            className="w-full flex items-end justify-center origin-bottom scale-150 min-[720px]:justify-end min-[720px]:scale-100 min-[720px]:h-full min-[720px]:translate-y-12"
+                            className="w-full flex items-end justify-center origin-bottom scale-150 md:justify-end md:scale-100 md:h-full md:translate-y-12"
                         >
                             <Image
                                 src="/images/Dahamimagefornow-dark.png"
                                 alt="Hero Image"
                                 width={1200}
                                 height={1400}
-                                className="w-full h-auto min-[720px]:h-full object-contain object-bottom min-[720px]:object-right-bottom"
+                                className="w-full h-auto md:h-full object-contain object-bottom md:object-right-bottom"
                                 priority
                             />
                         </div>

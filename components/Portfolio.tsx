@@ -157,7 +157,7 @@ export default function Portfolio() {
         <section
             id="portfolio"
             ref={sectionRef}
-            className="relative w-full min-h-screen bg-background text-secondary px-6 min-[720px]:px-12 lg:px-16"
+            className="relative w-full min-h-screen bg-background text-secondary px-6 md:px-12 lg:px-16"
         >
             <div className="max-w-[1920px] mx-auto">
                 <div className="flex flex-col lg:flex-row lg:gap-20">
@@ -177,7 +177,7 @@ export default function Portfolio() {
                     </div>
 
                     {/* Scrolling Content (Main Projects) */}
-                    <div className="lg:w-2/3 pb-24 min-[720px]:py-32">
+                    <div className="lg:w-2/3 pb-24 md:py-32">
                         <div ref={projectsContainerRef} className="flex flex-col">
                             {mainProjects.map((project, index) => (
                                 <div
@@ -193,7 +193,7 @@ export default function Portfolio() {
                                         <div className="flex items-baseline justify-between w-full">
                                             <div className="flex items-baseline gap-4 lg:gap-8">
                                                 <span className="text-lg lg:text-xl font-medium text-tertiary font-mono">0{index + 1}</span>
-                                                <h3 className="text-4xl lg:text-7xl font-medium tracking-tight group-hover:translate-x-4 transition-transform duration-500 ease-out">
+                                                <h3 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight group-hover:translate-x-4 transition-transform duration-500 ease-out">
                                                     {project.title}
                                                     {isMobile && (
                                                         <FiChevronDown
@@ -275,8 +275,8 @@ export default function Portfolio() {
                 {/* Mini Projects */}
                 <div ref={miniProjectsRef} className="py-6">
                     <div className="mb-12">
-                        <h2 className="text-3xl min-[720px]:text-4xl font-medium mb-2">Mini Projects</h2>
-                        <p className="text-tertiary text-lg">Small tools built to simplify tasks</p>
+                        <h2 className="text-3xl md:text-4xl font-medium mb-2">Mini Projects</h2>
+                        <p className="text-lg text-tertiary">Small tools built to simplify tasks</p>
                     </div>
 
                     {/* Stacked Cards - Responsive layout */}
