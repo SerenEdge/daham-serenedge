@@ -6,11 +6,13 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground font-sans w-full">
-      <Hero />
-      <RealMe />
-      <Portfolio />
-      <ResumeSection />
+    <main className="min-h-screen bg-background text-foreground font-sans w-full flex flex-col">
+      <div className="flex-grow">
+        <Hero />
+        <RealMe />
+        <Portfolio />
+        <ResumeSection />
+      </div>
       <Footer />
     </main>
   );
