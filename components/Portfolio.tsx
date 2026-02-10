@@ -124,7 +124,7 @@ export default function Portfolio() {
         {
             title: "Imposter Game",
             description: "Built using React and Vite, this custom Imposter Game is my answer to the trend of paywalled gaming apps. I created this project to provide a completely free, feature-rich alternative where users can enjoy all modes without payment. Hosted on GitHub Pages, it ensures a seamless and accessible experience for everyone to play together.",
-            link: "https://github.com/DahamDissanayake/Imposter-Game-But-Customized"
+            link: "https://github.com/DahamDissanayake/Imposter-Game-But-Customized-V2"
         },
         {
             title: "Flood-Watch [NullProduct]",
