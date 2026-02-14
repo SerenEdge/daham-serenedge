@@ -142,9 +142,9 @@ export default function Portfolio() {
             link: "https://github.com/DahamDissanayake/Apple-Photo-Sorter"
         },
         {
-            title: "FormCraft Debugger",
-            description: "I developed the FormCraft Debugger Chrome extension to eliminate the repetitive hustle of manual form testing. Built with Manifest V3, React, and Faker.js, it allows developers to create custom schema templates for complex workflows. The tool intelligently populates fields—including dropdowns and radio buttons—via DOM manipulation, ensuring rapid, thorough validation without manual entry burnout.",
-            link: "https://github.com/DahamDissanayake/formcraft-debug"
+            title: "VibeCheck [Chrome Extension]",
+            description: "I created the VibeCheck Layout Assistant to streamline “vibe coding,” effectively bridging the gap between spotting visual bugs and fixing them. By allowing users to overlay a grid, lock onto elements, and click to mark friction points, it automatically generates structured prompts. This tool makes communicating precise layout adjustments to your AI coding assistant both effortless and efficient.",
+            link: "https://github.com/DahamDissanayake/web-design-prompt-extension"
         },
         {
             title: "Visionslide",
