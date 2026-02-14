@@ -137,7 +137,7 @@ export default function Portfolio() {
             link: "https://github.com/DahamDissanayake/keyboard-macro-writer"
         },
         {
-            title: "Apple Photo Soter",
+            title: "Apple Photo Sorter",
             description: "I developed this Python and Tkinter application because copying photos from an iPhone often results in a messy, disorganized file structure. This tool solves that by automating the backup process: it scans the chaotic source folders and neatly sorts every image into clean, year-based directories at your chosen destination, ensuring a structured archive.",
             link: "https://github.com/DahamDissanayake/Apple-Photo-Sorter"
         },
@@ -148,8 +148,8 @@ export default function Portfolio() {
         },
         {
             title: "Visionslide",
-            description: "Currently under development, VisionSlide Remote eliminates the hustle of physical clickers during presentations. Using a custom YOLOv11 model and OpenCV, it detects real-time hand gestures to navigate slides touchlessly. By integrating PyAutoGUI, it converts visual cues into system commands, offering a professional, hands-free experience for dynamic speakers.",
-            link: "https://github.com/DahamDissanayake/visionslide-yolo"
+            description: "I built VisionSlide to navigate presentations hands-free, eliminating the need for a physical clicker. It uses a webcam to translate hand gestures into slide commands. The project is built with Python, utilizing OpenCV for motion tracking, PyAutoGUI for input simulation, and CustomTkinter for the interface.",
+            link: "https://github.com/DahamDissanayake/vision-slide"
         }
     ];
 
