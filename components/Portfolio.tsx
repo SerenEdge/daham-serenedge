@@ -211,7 +211,7 @@ export default function Portfolio() {
                     <div className="lg:w-2/3 pb-24 md:py-32">
                         <div ref={projectsContainerRef} className="flex flex-col">
                             {mainProjects.map((project, index) => (
-                                <div
+                                <article
                                     key={index}
                                     className={`project-card group relative border-b border-gray-200 cursor-pointer transition-all duration-500 ${hoveredProject !== null && hoveredProject !== index ? 'opacity-30 blur-[2px]' : 'opacity-100'
                                         }`}
@@ -352,7 +352,7 @@ export default function Portfolio() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </article>
                             ))}
                         </div>
                     </div>

@@ -95,7 +95,7 @@ export default function Footer() {
                         </div>
 
                         {/* Contact Details & Socials */}
-                        <div className="flex flex-col gap-6 items-center lg:items-start">
+                        <address className="flex flex-col gap-6 items-center lg:items-start not-italic">
                             <div className="flex flex-col gap-2 items-center lg:items-start">
                                 <h3 className="text-white font-medium">Connect</h3>
                                 <div className="flex gap-4">
@@ -124,7 +124,7 @@ export default function Footer() {
                                 <span className="hidden md:inline">|</span>
                                 <p className="text-xs sm:text-sm md:text-base">&copy; {new Date().getFullYear()} Daham Dissanayake</p>
                             </div>
-                        </div>
+                        </address>
                     </div>
 
 

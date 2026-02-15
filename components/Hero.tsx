@@ -117,7 +117,7 @@ export default function Hero() {
                         >
                             <Image
                                 src="/images/DAMAPortraitfinal2.webp"
-                                alt="Hero Image"
+                                alt="Daham Dissanayake - ComputerScience Undergraduate"
                                 width={1000}
                                 height={1200}
                                 className="w-full h-auto md:h-full object-contain object-bottom md:object-right-bottom"
