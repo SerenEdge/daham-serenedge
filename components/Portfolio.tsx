@@ -276,7 +276,7 @@ export default function Portfolio() {
                                                         </>
                                                     ) : (
                                                         <Image
-                                                            src={project.image}
+                                                            src={project.image || (project.images && project.images[0]) || ""}
                                                             alt={project.title}
                                                             fill
                                                             className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
