@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FiChevronDown, FiArrowUpRight } from "react-icons/fi";
+import { FiChevronDown, FiArrowUpRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -18,6 +18,7 @@ export default function Portfolio() {
     const [isTablet, setIsTablet] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
     const miniProjectsRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +27,7 @@ export default function Portfolio() {
         const timer = setTimeout(() => {
             ScrollTrigger.refresh();
         }, 550); // Wait for the 500ms transition to finish
+        setCurrentImageIndex(0); // Reset image slider when project changes
         return () => clearTimeout(timer);
     }, [hoveredProject]);
 
@@ -84,39 +86,39 @@ export default function Portfolio() {
     const mainProjects = [
         {
             title: "SoterCare",
-            subtitle: "(2nd Year Project)",
+            subtitle: "(2nd Year Project - Ongoing)",
             description: "IoT & ML Based Elderly Care Monitoring System.",
             longDescription: "SoterCare is an innovative IoT and Machine Learning-driven elderly care monitoring system designed to provide proactive, dignified safety. Unlike traditional reactive SOS buttons, it predicts falls and detects urinary incontinence in real-time. By integrating wearable sensor nodes with a dedicated edge gateway, the system ensures continuous vitals monitoring and automated emergency alerts, offering a comprehensive safety net for seniors while maintaining their independence.",
             tech: ["IoT", "Raspberry Pi", "React Native", "C++", "NestJS", "Python", "PostgreSQL", "Edge Impulse"],
             link: "https://sotercare.com",
-            image: "/images/projects/sotercare.png"
+            images: ["/images/projects/sotercare-website.webp", "/images/projects/sotercare-prototype1v.webp", "/images/projects/sotercare-studio.webp", "/images/projects/sotercare-mobileapp.webp", "/images/projects/sotercare-gitorg.webp"]
         },
         {
             title: "ReImage Agent",
-            subtitle: "(Under Dev)",
-            description: "Transform portraits into AI-powered image generation.",
-            longDescription: "ReImage Agent is a streamlined web service designed to transform personal photos into vibrant, cartoon-style portraits. By leveraging generative AI models, the agent processes user-uploaded images to generate high-quality stylized avatars against a clean, professional background. It aims to provide an accessible, chat-driven interface for instant creative transformation, making personalized digital art generation seamless and intuitive for everyday users.",
-            tech: ["Next.js", "FastAPI", "LangChain", "Gemini (Nano Banana)"],
+            subtitle: "(Ongoing)",
+            description: "AI-powered constant avatars for communities.",
+            longDescription: "I built ReImage-Agent to unify user identities across platforms, like clubs requiring consistent member avatars. By leveraging a custom prompt pipeline, it automatically transforms photos into cohesive, stylized cartoons while preserving facial features. The system is built with Next.js and Tailwind CSS for a sleek frontend, backed by FastAPI and Google's Gemini 2.5 Flash model for high-performance, intelligent image generation.",
+            tech: ["Next.js", "FastAPI", "Python", "Gemini (Nano Banana)"],
             link: "https://github.com/DahamDissanayake/ReImage-Agent",
-            image: "/images/projects/reimage.png"
+            image: "/images/projects/reimage.webp"
         },
         {
-            title: "Apple Home ESP32 Automation",
+            title: "Visionslide",
             subtitle: "",
-            description: "Home Automation System.",
-            longDescription: "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP32, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
-            tech: ["ESP32", "C++", "IoT"],
-            link: "https://github.com/DahamDissanayake/apple-home-auto32",
-            image: "/images/projects/home-automation.png"
+            description: "Hand Gesture Controlled Presentation Navigation.",
+            longDescription: "VisionSlide v2.1 is a Python-based hands-free presentation controller that transforms your webcam into a gesture interface. Powered by OpenCV and PyAutoGUI, it tracks vertical hand movements to simulate 'Up' and 'Down' arrow key presses, allowing seamless navigation of slides, documents, or web pages without physical devices. Featuring a modern CustomTkinter UI, real-time visual feedback, and adjustable sensitivity, VisionSlide offers an intuitive, accessible way to present and read dynamically.",
+            tech: ["Python", "OpenCV", "PyAutoGUI", "CustomTkinter"],
+            link: "https://github.com/DahamDissanayake/vision-slide",
+            image: "/images/projects/visionslide.webp"
         },
         {
-            title: "Expressions Detection System",
-            subtitle: "",
-            description: "YOLO Based human expression detection.",
-            longDescription: "This is a real-time facial expression recognition system that utilizes a customized YOLO architecture to identify and categorize human emotions with high precision. By training on diverse datasets of facial landmarks, the model detects subtle micro-expressions—such as happiness, anger, and surprise—directly within a video stream. This project bridges the gap between raw visual data and emotional intelligence, providing an efficient, low-latency solution for human-computer interaction, sentiment analysis, and user experience monitoring.",
-            tech: ["YOLOv8", "PyTorch", "OpenCV"],
-            link: "https://github.com/DahamDissanayake/expression-yolo",
-            image: "/images/projects/expressions.png"
+            title: "VibeCheck [Chrome Extension]",
+            subtitle: "Coming soon to the Chrome Web Store.",
+            description: "Visual web layout debugging assistant",
+            longDescription: "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It’s a Chrome Extension built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me inspect pages, overlay precision grids, and click to mark 'friction points.' The tool automatically synthesizes this visual data into structured prompts for AI assistants, drastically streamlining the process of turning design feedback into code.",
+            tech: ["JavaScript", "HTML5", "CSS3", "Manifest V3"],
+            link: "https://github.com/DahamDissanayake/web-design-prompt-extension",
+            image: "/images/projects/vibecheck.webp"
         }
     ];
 
@@ -142,14 +144,14 @@ export default function Portfolio() {
             link: "https://github.com/DahamDissanayake/Apple-Photo-Sorter"
         },
         {
-            title: "VibeCheck [Chrome Extension]",
-            description: "I created the VibeCheck Layout Assistant to streamline “vibe coding,” effectively bridging the gap between spotting visual bugs and fixing them. By allowing users to overlay a grid, lock onto elements, and click to mark friction points, it automatically generates structured prompts. This tool makes communicating precise layout adjustments to your AI coding assistant both effortless and efficient.",
-            link: "https://github.com/DahamDissanayake/web-design-prompt-extension"
+            title: "Tripwire-YOLO",
+            description: "I built Tripwire-YOLO as an intelligent security solution to monitor my space in real time. It allows me to draw a virtual line on a live webcam feed, triggering instant alerts and snapshots when crossed. Powered by YOLOv8 and CustomTkinter, it runs on a threaded architecture for smooth performance.",
+            link: "https://github.com/DahamDissanayake/tripwire-YOLO"
         },
         {
-            title: "Visionslide",
-            description: "I built VisionSlide to navigate presentations hands-free, eliminating the need for a physical clicker. It uses a webcam to translate hand gestures into slide commands. The project is built with Python, utilizing OpenCV for motion tracking, PyAutoGUI for input simulation, and CustomTkinter for the interface.",
-            link: "https://github.com/DahamDissanayake/vision-slide"
+            title: "Apple HomeKit Automation",
+            description: "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP8266, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
+            link: "https://github.com/DahamDissanayake/Apple-homekit-esp8266"
         }
     ];
 
@@ -222,14 +224,65 @@ export default function Portfolio() {
                                         <div className="pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pl-0 lg:pl-[calc(2rem+20px)]">
                                             {/* Image - now takes up more space */}
                                             <div className="lg:col-span-12 xl:col-span-7">
-                                                <div className={`relative overflow-hidden rounded-2xl bg-gray-100 shadow-2xl ${isMobile ? 'h-64' : 'h-[400px]'}`}>
-                                                    <Image
-                                                        src={project.image}
-                                                        alt={project.title}
-                                                        fill
-                                                        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                                                        sizes="(max-width: 768px) 100vw, 60vw"
-                                                    />
+                                                <div className={`relative overflow-hidden rounded-2xl bg-gray-100 shadow-2xl ${isMobile ? 'h-64' : 'h-[400px]'} group/slider`}>
+                                                    {project.images && project.images.length > 1 ? (
+                                                        <>
+                                                            <div
+                                                                className="flex h-full transition-transform duration-500 ease-out"
+                                                                style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+                                                            >
+                                                                {project.images.map((img, i) => (
+                                                                    <div key={i} className="relative min-w-full h-full">
+                                                                        <Image
+                                                                            src={img}
+                                                                            alt={`${project.title} - Image ${i + 1}`}
+                                                                            fill
+                                                                            className="object-cover object-top"
+                                                                            sizes="(max-width: 768px) 100vw, 60vw"
+                                                                        />
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+
+                                                            {/* Navigation Buttons */}
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    setCurrentImageIndex(prev => prev === 0 ? (project.images?.length || 1) - 1 : prev - 1);
+                                                                }}
+                                                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-white text-secondary z-10"
+                                                            >
+                                                                <FiChevronLeft size={24} />
+                                                            </button>
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    setCurrentImageIndex(prev => prev === ((project.images?.length || 1) - 1) ? 0 : prev + 1);
+                                                                }}
+                                                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-white text-secondary z-10"
+                                                            >
+                                                                <FiChevronRight size={24} />
+                                                            </button>
+
+                                                            {/* Dots Indicator */}
+                                                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                                                                {project.images.map((_, i) => (
+                                                                    <div
+                                                                        key={i}
+                                                                        className={`w-2 h-2 rounded-full transition-all ${i === currentImageIndex ? 'bg-white w-4' : 'bg-white/50'}`}
+                                                                    />
+                                                                ))}
+                                                            </div>
+                                                        </>
+                                                    ) : (
+                                                        <Image
+                                                            src={project.image}
+                                                            alt={project.title}
+                                                            fill
+                                                            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                                                            sizes="(max-width: 768px) 100vw, 60vw"
+                                                        />
+                                                    )}
                                                 </div>
                                             </div>
 
