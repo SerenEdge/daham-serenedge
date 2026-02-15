@@ -21,6 +21,35 @@ export default function Portfolio() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
     const miniProjectsRef = useRef<HTMLDivElement>(null);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = (projectImagesLength: number) => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe) {
+            // Next image
+            setCurrentImageIndex(prev => prev === (projectImagesLength - 1) ? 0 : prev + 1);
+        }
+        if (isRightSwipe) {
+            // Previous image
+            setCurrentImageIndex(prev => prev === 0 ? projectImagesLength - 1 : prev - 1);
+        }
+    };
 
     // Refresh ScrollTrigger when height changes (due to accordion)
     useEffect(() => {
@@ -224,7 +253,12 @@ export default function Portfolio() {
                                         <div className="pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pl-0 lg:pl-[calc(2rem+20px)]">
                                             {/* Image - now takes up more space */}
                                             <div className="lg:col-span-12 xl:col-span-7">
-                                                <div className={`relative overflow-hidden rounded-2xl bg-gray-100 shadow-2xl ${isMobile ? 'h-64' : 'h-[400px]'} group/slider`}>
+                                                <div
+                                                    className={`relative overflow-hidden rounded-2xl bg-gray-100 shadow-2xl ${isMobile ? 'h-64' : 'h-[400px]'} group/slider`}
+                                                    onTouchStart={onTouchStart}
+                                                    onTouchMove={onTouchMove}
+                                                    onTouchEnd={() => onTouchEnd(project.images?.length || 1)}
+                                                >
                                                     {project.images && project.images.length > 1 ? (
                                                         <>
                                                             <div
@@ -250,7 +284,7 @@ export default function Portfolio() {
                                                                     e.stopPropagation();
                                                                     setCurrentImageIndex(prev => prev === 0 ? (project.images?.length || 1) - 1 : prev - 1);
                                                                 }}
-                                                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-white text-secondary z-10"
+                                                                className={`absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg transition-opacity hover:bg-white text-secondary z-10 ${isMobile ? 'opacity-100' : 'opacity-0 group-hover/slider:opacity-100'}`}
                                                             >
                                                                 <FiChevronLeft size={24} />
                                                             </button>
@@ -259,7 +293,7 @@ export default function Portfolio() {
                                                                     e.stopPropagation();
                                                                     setCurrentImageIndex(prev => prev === ((project.images?.length || 1) - 1) ? 0 : prev + 1);
                                                                 }}
-                                                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-white text-secondary z-10"
+                                                                className={`absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg transition-opacity hover:bg-white text-secondary z-10 ${isMobile ? 'opacity-100' : 'opacity-0 group-hover/slider:opacity-100'}`}
                                                             >
                                                                 <FiChevronRight size={24} />
                                                             </button>
