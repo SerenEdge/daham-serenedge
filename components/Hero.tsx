@@ -113,13 +113,13 @@ export default function Hero() {
                     >
                         {/* Static Transform Container - Handles Desktop Offset Only */}
                         <div
-                            className="w-full flex items-end justify-center origin-bottom scale-150 md:justify-end md:scale-100 md:h-full md:translate-y-12"
+                            className="w-full flex items-end justify-center origin-bottom scale-100 md:justify-end md:scale-95 md:h-full md:translate-y-12"
                         >
                             <Image
-                                src="/images/Dahamimagefornow-dark.png"
+                                src="/images/DAMAPortraitfinal2.webp"
                                 alt="Hero Image"
-                                width={1200}
-                                height={1400}
+                                width={1000}
+                                height={1200}
                                 className="w-full h-auto md:h-full object-contain object-bottom md:object-right-bottom"
                                 priority
                             />
