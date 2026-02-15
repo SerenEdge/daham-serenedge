@@ -74,6 +74,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://serenedge.com",
   },
+  verification: {
+    google: "JZbYOAdrz10YPPu4FBfxAQS8xdykd42xtzFKDa9XkSI",
+  },
 };
 
 export default function RootLayout({
