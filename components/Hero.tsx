@@ -113,7 +113,7 @@ export default function Hero() {
                     >
                         {/* Static Transform Container - Handles Desktop Offset Only */}
                         <div
-                            className="w-full flex items-end justify-center origin-bottom scale-100 md:justify-end md:scale-95 md:h-full md:translate-y-12"
+                            className="w-full flex items-end justify-center origin-bottom scale-120 md:justify-end md:scale-95 md:h-full md:translate-y-12"
                         >
                             <Image
                                 src="/images/DAMAPortraitfinal2.webp"
