@@ -270,7 +270,7 @@ export default function ResumeSection() {
                         {/* Resume Button */}
                         <div className="mt-4 md:mt-8">
                             <Link
-                                href="/docs/DahamDissanayake_CV.pdf"
+                                href="/docs/DahamDissanayake-CV.pdf"
                                 target="_blank"
                                 className="group inline-flex items-center gap-2 px-6 py-2 md:px-8 md:py-3 bg-[#e6e6f0] text-[#1c1c2b] font-semibold rounded-full hover:bg-gray-200 transition-all hover:pr-10 text-sm md:text-base"
                             >
