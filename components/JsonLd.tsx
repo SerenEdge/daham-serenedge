@@ -16,7 +16,7 @@ export default function JsonLd() {
                     "@type": "Organization",
                     "name": "SerenEdge"
                 },
-                "description": "Computer Science Undergraduate, Full Stack Developer, and IoT Enthusiast.",
+                "description": "Computer Science Undergraduate, Full Stack Developer, Machine Learning and IoT Enthusiast.",
                 "knowsAbout": ["Web Development", "IoT", "Machine Learning", "React", "Next.js", "Python"]
             },
             {

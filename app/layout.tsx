@@ -24,6 +24,7 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://daham.serenedge.com"),
+  manifest: "/manifest.json",
   title: {
     default: "Daham Dissanayake | SerenEdge",
     template: "%s | SerenEdge",
