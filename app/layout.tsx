@@ -18,6 +18,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  themeColor: "#1c1c2b",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://daham.serenedge.com"),
   title: {
@@ -26,9 +30,9 @@ export const metadata: Metadata = {
   },
   description: "Computer Science Undergraduate, Full Stack Developer, and IoT Enthusiast from Sri Lanka. specializing in building exceptional digital experiences.",
   keywords: [
-    "Daham Dissanayake", "SerenEdge", "Full Stack Developer", "IoT Developer",
-    "React Developer", "Next.js", "Sri Lanka", "Software Engineer",
-    "Web Development", "Computer Science"
+    "Daham Dissanayake", "SerenEdge", "IIT Undergrad", "Daham", "Dissanayake", "serenedge",
+    "Full Stack Developer", "IoT Developer", "React Developer", "Next.js", "Sri Lanka",
+    "Software Engineer", "Web Development", "Computer Science"
   ],
   authors: [{ name: "Daham Dissanayake", url: "https://daham.serenedge.com" }],
   creator: "Daham Dissanayake",
@@ -72,7 +76,7 @@ export const metadata: Metadata = {
     apple: "/images/apple-touch-icon.png",
   },
   alternates: {
-    canonical: "https://serenedge.com",
+    canonical: "https://daham.serenedge.com",
   },
   verification: {
     google: "JZbYOAdrz10YPPu4FBfxAQS8xdykd42xtzFKDa9XkSI",

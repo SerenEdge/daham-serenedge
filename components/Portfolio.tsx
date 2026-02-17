@@ -195,9 +195,9 @@ export default function Portfolio() {
                     {/* Sticky Sidebar (Header) */}
                     <div className="lg:w-1/3 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-start lg:justify-center pt-24 pb-8 lg:py-0 z-20">
                         <div className="flex flex-col items-start border-b border-gray-200 lg:border-none pb-4 lg:pb-0 w-full">
-                            <h1 className="text-5xl md:text-8xl lg:text-9xl font-medium tracking-tight text-secondary leading-[0.8] mb-4 lg:mb-8">
+                            <h2 className="text-5xl md:text-8xl lg:text-9xl font-medium tracking-tight text-secondary leading-[0.8] mb-4 lg:mb-8">
                                 Portfolio
-                            </h1>
+                            </h2>
                             <div className="flex items-center gap-4 text-tertiary">
                                 <span className="h-[1px] w-12 bg-tertiary/50 hidden lg:block"></span>
                                 <span className="text-sm lg:text-base font-mono uppercase tracking-wider">
