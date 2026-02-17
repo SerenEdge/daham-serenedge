@@ -1,5 +1,3 @@
-import Script from 'next/script';
-
 export default function JsonLd() {
     const jsonLd = {
         "@context": "https://schema.org",
@@ -34,8 +32,7 @@ export default function JsonLd() {
     };
 
     return (
-        <Script
-            id="json-ld"
+        <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
