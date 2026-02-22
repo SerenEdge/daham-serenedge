@@ -124,6 +124,15 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
             images: ["/images/projects/sotercare-website.webp", "/images/projects/sotercare-prototype1v.webp", "/images/projects/sotercare-studio.webp", "/images/projects/sotercare-mobileapp.webp", "/images/projects/sotercare-gitorg.webp"]
         },
         {
+            title: "VibeCheck [Chrome Extension]",
+            subtitle: "Available on the Chrome Web Store.",
+            description: "Visual web layout debugging assistant",
+            longDescription: "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It’s a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me inspect pages, overlay precision grids, and click to mark 'friction points.' The tool automatically synthesizes this visual data into structured prompts for AI assistants, drastically streamlining the process of turning design feedback into code.",
+            tech: ["JavaScript", "HTML5", "CSS3", "Manifest V3"],
+            link: "https://github.com/DahamDissanayake/web-design-prompt-extension",
+            image: "/images/projects/vibecheck.webp"
+        },
+        {
             title: "ReImage Agent",
             subtitle: "(Ongoing)",
             description: "AI-powered constant avatars for communities.",
@@ -149,15 +158,6 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
             tech: ["Python", "OpenCV", "PyAutoGUI", "CustomTkinter"],
             link: "https://github.com/DahamDissanayake/vision-slide",
             image: "/images/projects/visionslide.webp"
-        },
-        {
-            title: "VibeCheck [Chrome Extension]",
-            subtitle: "Available on the Chrome Web Store.",
-            description: "Visual web layout debugging assistant",
-            longDescription: "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It’s a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me inspect pages, overlay precision grids, and click to mark 'friction points.' The tool automatically synthesizes this visual data into structured prompts for AI assistants, drastically streamlining the process of turning design feedback into code.",
-            tech: ["JavaScript", "HTML5", "CSS3", "Manifest V3"],
-            link: "https://github.com/DahamDissanayake/web-design-prompt-extension",
-            image: "/images/projects/vibecheck.webp"
         }
     ];
 
