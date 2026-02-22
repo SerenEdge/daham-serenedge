@@ -215,12 +215,13 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
                                 </span>
                             </div>
 
-                            {/* DevPulse Integration */}
+                            {/* DevPulse Integration - Temporarily disabled for production debugging
                             {pulseCard && (
                                 <div className="mt-8 lg:mt-12 block w-full max-w-sm">
                                     {pulseCard}
                                 </div>
                             )}
+                            */}
 
 
                         </div>
