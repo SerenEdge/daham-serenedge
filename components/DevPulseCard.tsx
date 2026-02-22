@@ -19,6 +19,12 @@ async function fetchPulseData(username: string): Promise<DevPulseData | null> {
     const apiKey = process.env.DEV_PULSE_API_KEY;
     const apiUrl = process.env.DEV_PULSE_API_URL;
 
+    // Safety check logging for Vercel troubleshooting
+    if (process.env.VERCEL) {
+        console.log(`[DevPulse Diagnostic] API URL present: ${!!apiUrl}`);
+        console.log(`[DevPulse Diagnostic] API Key present: ${!!apiKey} (${apiKey?.substring(0, 4)}***)`);
+    }
+
     const mockData: DevPulseData = {
         developer: username,
         profileName: "-",
@@ -42,7 +48,8 @@ async function fetchPulseData(username: string): Promise<DevPulseData | null> {
                 'Authorization': `Bearer ${apiKey}`,
                 'Accept': 'application/json'
             },
-            next: { revalidate: 3600 }
+            // Temporarily disabling cache with no-store/0 to ensure Vercel fetches fresh data
+            next: { revalidate: 0 }
         });
 
         if (!res.ok) {
@@ -56,6 +63,7 @@ async function fetchPulseData(username: string): Promise<DevPulseData | null> {
         return mockData;
     }
 }
+
 
 
 
