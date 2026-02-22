@@ -9,7 +9,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Portfolio() {
+export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }) {
+
     const sectionRef = useRef<HTMLElement>(null);
     const projectsContainerRef = useRef<HTMLDivElement>(null);
     const [hoveredProject, setHoveredProject] = useState<number | null>(null);
@@ -132,6 +133,15 @@ export default function Portfolio() {
             image: "/images/projects/reimage.webp"
         },
         {
+            title: "Dev-Pulse API",
+            subtitle: "",
+            description: "Real-time GitHub metrics aggregator.",
+            longDescription: "Dev-Pulse is a cloud-native Backend-for-Frontend (BFF) service that securely aggregates GitHub metrics like repositories and followers to calculate a live 'Dev-Pulse Score'. Built with the integration-first Ballerina language and hosted on WSO2 Choreo, it allows developers to showcase live statistics on their portfolios. The service ensures security by injecting Personal Access Tokens at runtime, preventing sensitive data exposure to the client-side while providing a seamless, real-time data experience.",
+            tech: ["Ballerina Swan Lake", "WSO2 Choreo", "GitHub API"],
+            link: "https://github.com/DahamDissanayake/dev-pulse-api",
+            images: ["/images/projects/devpulse1.webp", "/images/projects/devpulse2.webp"]
+        },
+        {
             title: "Visionslide",
             subtitle: "",
             description: "Hand Gesture Controlled Presentation Navigation.",
@@ -204,6 +214,15 @@ export default function Portfolio() {
                                     Selected Works
                                 </span>
                             </div>
+
+                            {/* DevPulse Integration */}
+                            {pulseCard && (
+                                <div className="mt-8 lg:mt-12 block w-full max-w-sm">
+                                    {pulseCard}
+                                </div>
+                            )}
+
+
                         </div>
                     </div>
 
