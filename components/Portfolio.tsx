@@ -130,7 +130,7 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
             longDescription: "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It’s a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me inspect pages, overlay precision grids, and click to mark 'friction points.' The tool automatically synthesizes this visual data into structured prompts for AI assistants, drastically streamlining the process of turning design feedback into code.",
             tech: ["JavaScript", "HTML5", "CSS3", "Manifest V3"],
             link: "https://github.com/DahamDissanayake/web-design-prompt-extension",
-            image: "/images/projects/vibecheck.webp"
+            images: ["/images/projects/vibecheck1.webp", "/images/projects/vibecheck2.webp"]
         },
         {
             title: "ReImage Agent",
