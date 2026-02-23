@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useLayoutEffect, useState } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -16,11 +16,11 @@ export default function Hero() {
     const parallaxRef = useRef<HTMLDivElement>(null);
     const scrollRef = useRef(null);
     const mobileScrollRef = useRef(null);
-    const roleRef = useRef<HTMLDivElement>(null);
-    const periodRef = useRef<HTMLDivElement>(null);
+    const roleRef = useRef<HTMLSpanElement>(null);
+    const periodRef = useRef<HTMLSpanElement>(null);
     const [isMobile, setIsMobile] = useState(false);
-    const [currentRole] = useState("CS Undergrad");
-    const [currentPeriod] = useState("Present");
+    const [currentRole, setCurrentRole] = useState("CS Undergrad");
+    const [currentPeriod, setCurrentPeriod] = useState("Present");
     const scale = useScale(720); // Base width for scaling
 
     useLayoutEffect(() => {
@@ -33,7 +33,6 @@ export default function Hero() {
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             // Parallax Scroll Effect (Outer Container)
-            // Moves down slightly as you scroll down, creating depth
             gsap.to(parallaxRef.current, {
                 y: 100,
                 ease: "none",
@@ -59,6 +58,80 @@ export default function Hero() {
         return () => ctx.revert();
     }, [isMobile]);
 
+    // Role and Period Animation Loop
+    useEffect(() => {
+        const roles = [
+            "CS Undergrad",
+            "IoT Enthusiast",
+            "ML Practitioner",
+            "Web Developer",
+            "Freelancer",
+            "Photographer",
+            "DX Toolmaker"
+        ];
+
+        let roleIndex = 0;
+        let isPresent = true;
+
+        const interval = setInterval(() => {
+            const roleEl = roleRef.current;
+            const periodEl = periodRef.current;
+
+            let nextRole = "";
+            let nextPeriod = "";
+            let periodWillChange = false;
+
+            if (isPresent) {
+                if (roleIndex < roles.length - 1) {
+                    roleIndex++;
+                    nextRole = roles[roleIndex];
+                    nextPeriod = "Present";
+                } else {
+                    isPresent = false;
+                    nextRole = "Who Knows!";
+                    nextPeriod = "Future";
+                    periodWillChange = true;
+                }
+            } else {
+                isPresent = true;
+                roleIndex = 0;
+                nextRole = roles[roleIndex];
+                nextPeriod = "Present";
+                periodWillChange = true;
+            }
+
+            // GSAP 3D Dice Roll - Out
+            const targets = periodWillChange ? [roleEl, periodEl] : [roleEl];
+
+            gsap.to(targets, {
+                rotateX: -90,
+                opacity: 0,
+                y: -10,
+                duration: 0.4,
+                ease: "power2.in",
+                onComplete: () => {
+                    setCurrentRole(nextRole);
+                    setCurrentPeriod(nextPeriod);
+
+                    // GSAP 3D Dice Roll - In
+                    gsap.fromTo(targets,
+                        { rotateX: 90, opacity: 0, y: 10 },
+                        {
+                            rotateX: 0,
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.4,
+                            ease: "power2.out",
+                            delay: 0.1
+                        }
+                    );
+                }
+            });
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <section id="home" ref={containerRef} className="relative w-full h-screen flex flex-col p-6 md:p-12 bg-background">
             {/* Navigation */}
@@ -67,12 +140,12 @@ export default function Hero() {
             {/* Main Content Grid */}
             <div className="flex-1 w-full grid grid-cols-12 relative min-h-0 max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 pb-20 md:pb-0">
                 {/* 1. Sidebar Timeline (Leftmost Column) */}
-                <div className="col-span-2 md:col-span-1 flex flex-col justify-center items-center gap-14 md:gap-14 lg:gap-18 pl-2 md:pl-0">
-                    <span className="-rotate-90 text-tertiary text-xs md:text-base lg:text-base tracking-wider whitespace-nowrap">
+                <div className="col-span-2 md:col-span-1 flex flex-col justify-center items-center gap-14 md:gap-14 lg:gap-18 pl-2 md:pl-0 [perspective:1000px]">
+                    <span ref={roleRef} className="-rotate-90 text-tertiary text-xs md:text-base lg:text-base tracking-wider whitespace-nowrap inline-block transform-gpu">
                         {currentRole}
                     </span>
                     <div className="w-[1px] h-[12vh] md:h-[28vh] lg:h-[38vh] bg-gray-300"></div>
-                    <span className="-rotate-90 text-tertiary text-xs md:text-base lg:text-base tracking-wider whitespace-nowrap">
+                    <span ref={periodRef} className="-rotate-90 text-tertiary text-xs md:text-base lg:text-base tracking-wider whitespace-nowrap inline-block transform-gpu">
                         {currentPeriod}
                     </span>
                 </div>
