@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import SplashScreen from "@/components/SplashScreen";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import JsonLd from "@/components/JsonLd";
 
 
@@ -113,6 +114,7 @@ export default function RootLayout({
           <div id="content-wrapper">
             {children}
             <Analytics />
+            <SpeedInsights />
           </div>
         </SmoothScroll>
       </body>
