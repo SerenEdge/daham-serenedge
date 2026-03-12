@@ -124,6 +124,15 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
             images: ["/images/projects/sotercare-website.webp", "/images/projects/sotercare-prototype1v.webp", "/images/projects/sotercare-studio.webp", "/images/projects/sotercare-mobileapp.webp", "/images/projects/sotercare-gitorg.webp"]
         },
         {
+            title: "ImgHarvest",
+            subtitle: "Powered by WSO2 Ballerina & Choreo",
+            description: "Image dataset collection tool for ML models",
+            longDescription: "I built Image Harvest to streamline the collection of high-quality image datasets for training image recognition ML models. The backend is powered by WSO2's Ballerina language, providing a robust and scalable integration layer for image fetching. Paired with a modern React frontend, the tool allows users to effortlessly search and download image batches. The complete application will soon be deployed and hosted on WSO2 Choreo for enterprise-grade reliability.",
+            tech: ["Ballerina", "Next.js", "TypeScript", "Docker", "WSO2 Choreo", "SerpApi", "GrokApi"],
+            link: "https://github.com/DahamDissanayake/img-harvest-ballerina",
+            images: ["/images/projects/imgharvest1.webp", "/images/projects/imgharvest2.webp"]
+        },
+        {
             title: "VibeCheck [Chrome Extension]",
             subtitle: "Available on the Chrome Web Store.",
             description: "Visual web layout debugging assistant",
@@ -149,19 +158,15 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
             tech: ["Ballerina Swan Lake", "WSO2 Choreo", "GitHub API"],
             link: "https://github.com/DahamDissanayake/dev-pulse-api",
             images: ["/images/projects/devpulse1.webp", "/images/projects/devpulse2.webp"]
-        },
-        {
-            title: "Visionslide",
-            subtitle: "",
-            description: "Hand Gesture Controlled Presentation Navigation.",
-            longDescription: "VisionSlide v2.1 is a Python-based hands-free presentation controller that transforms your webcam into a gesture interface. Powered by OpenCV and PyAutoGUI, it tracks vertical hand movements to simulate 'Up' and 'Down' arrow key presses, allowing seamless navigation of slides, documents, or web pages without physical devices. Featuring a modern CustomTkinter UI, real-time visual feedback, and adjustable sensitivity, VisionSlide offers an intuitive, accessible way to present and read dynamically.",
-            tech: ["Python", "OpenCV", "PyAutoGUI", "CustomTkinter"],
-            link: "https://github.com/DahamDissanayake/vision-slide",
-            image: "/images/projects/visionslide.webp"
         }
     ];
 
     const miniProjects = [
+        {
+            title: "Visionslide",
+            description: "VisionSlide v2.1 is a Python-based hands-free presentation controller that uses your webcam as a gesture interface. Built with OpenCV and PyAutoGUI, it detects vertical hand movements to trigger ‘Up’ and ‘Down’ key presses, enabling smooth slide or document navigation. A CustomTkinter UI, visual feedback, and adjustable sensitivity enhance usability.",
+            link: "https://github.com/DahamDissanayake/vision-slide"
+        },
         {
             title: "Imposter Game",
             description: "Built using React and Vite, this custom Imposter Game is my answer to the trend of paywalled gaming apps. I created this project to provide a completely free, feature-rich alternative where users can enjoy all modes without payment. Hosted on GitHub Pages, it ensures a seamless and accessible experience for everyone to play together.",
