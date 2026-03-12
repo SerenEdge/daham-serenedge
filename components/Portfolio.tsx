@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }) {
+export default function Portfolio() {
 
     const sectionRef = useRef<HTMLElement>(null);
     const projectsContainerRef = useRef<HTMLDivElement>(null);
@@ -95,16 +95,15 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
                 ease: "power4.out"
             });
 
-            // Staggered reveal for Mini Projects cards
-            gsap.from(".mini-project-wrapper", {
-                x: -100, // Slide in from left
+            // Separate animation for Mini Projects (Restored)
+            gsap.from(miniProjectsRef.current, {
+                y: 150,
                 opacity: 0,
-                duration: 1.2,
-                stagger: 0.2, // Stagger effect from left to right
-                ease: "power3.out",
+                duration: 2,
+                ease: "power4.out",
                 scrollTrigger: {
                     trigger: miniProjectsRef.current,
-                    start: "top 75%", // Trigger as they come into view
+                    start: "top 85%",
                     toggleActions: "play none none reverse"
                 }
             });
@@ -151,15 +150,6 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
             link: "https://github.com/DahamDissanayake/ReImage-Agent",
             image: "/images/projects/reimage.webp"
         },
-        {
-            title: "Dev-Pulse API",
-            subtitle: "",
-            description: "Real-time GitHub metrics aggregator.",
-            longDescription: "Dev-Pulse is a cloud-native Backend-for-Frontend (BFF) service that securely aggregates GitHub metrics like repositories and followers to calculate a live 'Dev-Pulse Score'. Built with the integration-first Ballerina language and hosted on WSO2 Choreo, it allows developers to showcase live statistics on their portfolios. The service ensures security by injecting Personal Access Tokens at runtime, preventing sensitive data exposure to the client-side while providing a seamless, real-time data experience.",
-            tech: ["Ballerina Swan Lake", "WSO2 Choreo", "GitHub API"],
-            link: "https://github.com/DahamDissanayake/dev-pulse-api",
-            images: ["/images/projects/devpulse1.webp", "/images/projects/devpulse2.webp"]
-        }
     ];
 
     const miniProjects = [
@@ -221,13 +211,7 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
                                 </span>
                             </div>
 
-                            {/* DevPulse Integration - Temporarily disabled for production debugging
-                            {pulseCard && (
-                                <div className="mt-8 lg:mt-12 block w-full max-w-sm">
-                                    {pulseCard}
-                                </div>
-                            )}
-                            */}
+
 
 
                         </div>
@@ -465,7 +449,7 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
                                         // Stable Container for Hover Detection
                                         <div
                                             key={index}
-                                            className={`mini-project-wrapper absolute cursor-pointer ${isTablet ? 'w-80 h-[380px]' : 'w-96 h-[450px]'}`}
+                                            className={`absolute cursor-pointer ${isTablet ? 'w-80 h-[380px]' : 'w-96 h-[450px]'}`}
                                             style={{
                                                 transform: `translateX(${translateX}px) rotate(${rotation}deg)`,
                                                 zIndex: isHovered ? 50 : zIndex, // Z-Index stays on the wrapper
