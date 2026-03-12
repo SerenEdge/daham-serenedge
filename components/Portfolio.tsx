@@ -95,15 +95,16 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
                 ease: "power4.out"
             });
 
-            // Separate animation for Mini Projects with its own trigger
-            gsap.from(miniProjectsRef.current, {
-                y: 150, // Much larger offset for visibility
+            // Staggered reveal for Mini Projects cards
+            gsap.from(".mini-project-wrapper", {
+                x: -100, // Slide in from left
                 opacity: 0,
-                duration: 2, // Longer duration
-                ease: "power4.out",
+                duration: 1.2,
+                stagger: 0.2, // Stagger effect from left to right
+                ease: "power3.out",
                 scrollTrigger: {
                     trigger: miniProjectsRef.current,
-                    start: "top 85%",
+                    start: "top 75%", // Trigger as they come into view
                     toggleActions: "play none none reverse"
                 }
             });
@@ -464,7 +465,7 @@ export default function Portfolio({ pulseCard }: { pulseCard?: React.ReactNode }
                                         // Stable Container for Hover Detection
                                         <div
                                             key={index}
-                                            className={`absolute cursor-pointer ${isTablet ? 'w-80 h-[380px]' : 'w-96 h-[450px]'}`}
+                                            className={`mini-project-wrapper absolute cursor-pointer ${isTablet ? 'w-80 h-[380px]' : 'w-96 h-[450px]'}`}
                                             style={{
                                                 transform: `translateX(${translateX}px) rotate(${rotation}deg)`,
                                                 zIndex: isHovered ? 50 : zIndex, // Z-Index stays on the wrapper

@@ -76,7 +76,7 @@ export default function ResumeSection() {
                 start: "top top",
                 end: isDesktop ? "+=900" : "+=600",
                 pin: true,
-                scrub: true,
+                scrub: 0.5, // Added slight scrub for smoothness
                 onUpdate: (self) => {
                     const progress = self.progress;
                     if (progress < 0.33) setActiveSkill(0);
