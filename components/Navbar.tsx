@@ -162,10 +162,10 @@ export default function Navbar() {
                     <div className="menu-footer absolute bottom-12 w-full px-6 md:px-12 flex flex-col md:flex-row gap-4 justify-between text-tertiary text-sm font-mono uppercase tracking-widest opacity-0">
                         <span>Daham Dissanayake</span>
                         <div className="flex gap-6">
-                            <a href="#" className="hover:text-white transition-colors">GitHub</a>
-                            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-                            <a href="#" className="hover:text-white transition-colors">Instagram</a>
-                            <a href="#" className="hover:text-white transition-colors">Email</a>
+                            <a href="https://github.com/DahamDissanayake" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
+                            <a href="https://www.linkedin.com/in/daham-dissanayake/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+                            <a href="https://www.instagram.com/dhmdissanayake/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
+                            <a href="mailto:dahamdissanayake05@gmail.com" className="hover:text-white transition-colors">Email</a>
                         </div>
                     </div>
                 </div>
