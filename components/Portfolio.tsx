@@ -123,7 +123,7 @@ export default function Portfolio() {
             longDescription: "SoterCare is an innovative IoT and Machine Learning-driven elderly care monitoring system designed to provide proactive, dignified safety. Unlike traditional reactive SOS buttons, it predicts falls and detects urinary incontinence in real-time. By integrating wearable sensor nodes with a dedicated edge gateway, the system ensures continuous vitals monitoring and automated emergency alerts, offering a comprehensive safety net for seniors while maintaining their independence.",
             tech: ["IoT", "Raspberry Pi", "React Native", "C++", "NestJS", "Python", "PostgreSQL", "Docker", "Redis", "RAG", "Edge Impulse"],
             link: "https://sotercare.com",
-            images: ["/images/projects/sotercare-website.webp", "/images/projects/sotercareteam.webp", "/images/projects/sotercare-prototype1v.webp", "/images/projects/sotercare-studio.webp", "/images/projects/sotercare-mobileapp.webp", "/images/projects/sotercare-gitorg.webp"]
+            images: ["/images/projects/sotercare-website.webp", "/images/projects/sotercareteam.webp", "/images/projects/sotercare-finaldevice.webp", "/images/projects/sotercare-prototype1v.webp", "/images/projects/sotercare-studio.webp", "/images/projects/sotercare-mobileapp.webp", "/images/projects/sotercare-gitorg.webp"]
         },
         {
             title: "ImgHarvest",
