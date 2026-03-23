@@ -164,6 +164,11 @@ export default function Portfolio() {
             link: "https://github.com/DahamDissanayake/Imposter-Game-But-Customized-V2"
         },
         {
+            title: "Dev-Pulse API",
+            description: "Dev-Pulse is a cloud-native BFF service that aggregates GitHub API data to generate a live Dev-Pulse Score. Built with Ballerina Swan Lake and hosted on WSO2 Choreo, it securely injects tokens at runtime, enabling real-time portfolio insights without exposing sensitive data.",
+            link: "https://github.com/DahamDissanayake/dev-pulse-api"
+        },
+        {
             title: "Flood-Watch [NullProduct]",
             description: "Flood-Watch is a real-time, offline-capable flood warning system designed to protect vulnerable communities in Sri Lanka. Winning runners-up at the Vertex'25 IoT competition, we built it using Edge Computing on ESP32 Magicbit and Ultrasonic Sensors to detect flash floods instantly. It ensures life-saving alerts even when internet connectivity fails.",
             link: "https://github.com/DahamDissanayake/NullProduct-VERTEX25"
