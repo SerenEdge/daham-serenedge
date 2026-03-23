@@ -18,6 +18,7 @@ export default function Portfolio() {
     const [isMobile, setIsMobile] = useState(false);
     const [isTablet, setIsTablet] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(0);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
@@ -65,9 +66,10 @@ export default function Portfolio() {
     useLayoutEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
-            setIsMobile(width < 720);
-            setIsTablet(width >= 720 && width < 1024);
-            setIsDesktop(width >= 1024);
+            setWindowWidth(width);
+            setIsMobile(width < 768);
+            setIsTablet(width >= 768 && width < 1280);
+            setIsDesktop(width >= 1280);
         };
 
         handleResize(); // Initial check
@@ -385,7 +387,7 @@ export default function Portfolio() {
                     <div className={`relative flex items-center ${isMobile
                         ? 'w-full flex-col py-8'
                         : 'justify-center'
-                        } ${isTablet ? 'h-[400px]' : isMobile ? 'h-auto' : 'h-[600px]'}`}>
+                        } ${isTablet ? 'h-[500px] mb-12' : isMobile ? 'h-auto mb-8' : 'h-[650px] mb-20'}`}>
                         {isMobile ? (
                             // Mobile: Horizontal scrollable carousel
                             <>
@@ -407,15 +409,15 @@ export default function Portfolio() {
                                                 key={index}
                                                 className="mini-project-card flex-shrink-0 w-[85vw] max-w-[100%] max-w-md h-[520px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
                                             >
-                                                <div className="flex flex-col h-full justify-between">
-                                                    <div>
+                                                <div className="flex flex-col h-full justify-between overflow-hidden">
+                                                    <div className="overflow-y-auto scrollbar-hide mb-4">
                                                         <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
                                                         <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
                                                     </div>
                                                     <Link
                                                         href={project.link}
                                                         target="_blank"
-                                                        className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
+                                                        className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start flex-shrink-0"
                                                     >
                                                         View More →
                                                     </Link>
@@ -445,7 +447,16 @@ export default function Portfolio() {
                                     const isHovered = hoveredMiniCard === index;
                                     const totalCards = miniProjects.length;
                                     const centerOffset = (totalCards - 1) / 2;
-                                    const spacing = isTablet ? 80 : 150;
+                                    
+                                    // Make spacing responsive to ensure cards fit in the viewport
+                                    const baseCardWidth = isTablet ? 320 : 384;
+                                    const availableWidthForSpacing = (windowWidth || 1920) - baseCardWidth - 60;
+                                    const maxAllowedSpacing = availableWidthForSpacing / (totalCards - 1);
+                                    
+                                    const spacing = isTablet 
+                                        ? Math.min(80, Math.max(45, maxAllowedSpacing))
+                                        : Math.min(150, Math.max(50, maxAllowedSpacing));
+
                                     const translateX = (index - centerOffset) * spacing;
                                     const rotation = isTablet ? 8 : 12;
                                     const zIndex = miniProjects.length - index;
@@ -464,7 +475,7 @@ export default function Portfolio() {
                                         >
                                             {/* Animated Visual Card - File Style */}
                                             <div
-                                                className={`mini-project-card relative w-full h-full bg-[#1c1c2b] text-white rounded-b-3xl rounded-tr-3xl rounded-tl-none p-8 transition-all duration-300 ease-out`}
+                                                className={`mini-project-card relative w-full h-full bg-[#1c1c2b] text-white rounded-b-3xl rounded-tr-3xl rounded-tl-none ${isTablet ? 'p-6' : 'p-8'} transition-all duration-300 ease-out`}
                                                 style={{
                                                     transform: isHovered
                                                         ? `translateY(-80px) rotate(${-rotation}deg) scale(1.1)` // Counter-rotate to 0, move up
@@ -481,15 +492,15 @@ export default function Portfolio() {
                                                 />
 
                                                 {isHovered ? (
-                                                    <div className="flex flex-col h-full justify-between animate-in fade-in duration-300 relative z-10">
-                                                        <div>
-                                                            <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
-                                                            <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
+                                                    <div className="flex flex-col h-full justify-between animate-in fade-in duration-300 relative z-10 overflow-hidden">
+                                                        <div className="overflow-y-auto scrollbar-hide mb-4">
+                                                            <h3 className={`font-medium mb-3 ${isTablet ? 'text-xl' : 'text-2xl'}`}>{project.title}</h3>
+                                                            <p className={`text-gray-300 leading-relaxed ${isTablet ? 'text-sm' : 'text-base'}`}>{project.description}</p>
                                                         </div>
                                                         <Link
                                                             href={project.link}
                                                             target="_blank"
-                                                            className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start"
+                                                            className={`inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start flex-shrink-0 ${isTablet ? 'text-sm' : 'text-base'}`}
                                                         >
                                                             View More →
                                                         </Link>
