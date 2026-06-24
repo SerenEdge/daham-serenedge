@@ -4,7 +4,7 @@ import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import { FiGithub, FiLinkedin, FiInstagram, FiMail } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiArrowUpRight } from "react-icons/fi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useScale from "@/hooks/useScale";
@@ -170,6 +170,19 @@ export default function Hero() {
                                 <Link href="https://www.instagram.com/dhmdissanayake/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><FiInstagram /></Link>
                                 <Link href="mailto:dahamdissanayake05@gmail.com" className="hover:text-primary transition-colors"><FiMail /></Link>
                             </div>
+                        </div>
+                        <div className="mt-6">
+                            <Link
+                                href="/docs/DahamDissanayake-CV.pdf"
+                                target="_blank"
+                                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[#1c1c2b] px-6 py-3 text-white transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]"
+                            >
+                                <span className="absolute inset-0 z-0 bg-white/10 transition-transform duration-500 scale-x-0 group-hover:scale-x-100 origin-center" />
+                                <span className="relative z-10 text-sm font-medium tracking-wide">Resume</span>
+                                <span className="relative z-10 flex items-center justify-center w-7 h-7 rounded-full bg-white/10 text-white transition-all duration-500 group-hover:rotate-45 group-hover:bg-white/20">
+                                    <FiArrowUpRight className="w-4 h-4" />
+                                </span>
+                            </Link>
                         </div>
                     </div>
                     <div ref={scrollRef} className="hidden md:block pb-12">

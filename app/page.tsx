@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import RealMe from "@/components/RealMe";
 import Portfolio from "@/components/Portfolio";
-import ResumeSection from "@/components/ResumeSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -11,7 +10,6 @@ export default function Home() {
         <Hero />
         <RealMe />
         <Portfolio />
-        <ResumeSection />
       </div>
 
       <Footer />

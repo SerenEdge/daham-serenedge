@@ -11,7 +11,6 @@ const menuLinks = [
     { title: "Home", href: "#" },
     { title: "Real Me", href: "#realme" },
     { title: "Portfolio", href: "#portfolio" },
-    { title: "Resume", href: "#resume" },
     { title: "Contact", href: "#contact" },
 ];
 

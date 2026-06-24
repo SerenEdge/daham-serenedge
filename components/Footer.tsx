@@ -87,7 +87,7 @@ export default function Footer() {
                         {/* Heading */}
                         <div className="flex flex-col gap-2 md:gap-4">
                             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-[#e6e6f0] tracking-tight leading-tight">
-                                Let's build something extraordinary.
+                                Contact me via SerenEdge, or send a message personally.
                             </h2>
                             <p className="text-sm sm:text-lg text-gray-400 max-w-md leading-relaxed mx-auto lg:mx-0">
                                 Whether you have a project in mind or just want to say hi, I'm always open to discussing new ideas and opportunities.
@@ -118,6 +118,13 @@ export default function Footer() {
                                     ))}
                                 </div>
                             </div>
+
+                            <a
+                                href="tel:+94704888440"
+                                className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors tracking-wide"
+                            >
+                                +94 70 488 8440
+                            </a>
 
                             <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500">
                                 <span>Based in Sri Lanka</span>
