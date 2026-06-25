@@ -100,6 +100,7 @@ export default function Navbar() {
                 {/* Logo - Natural Color (No Invert) */}
                 <Link
                     href="#"
+                    aria-label="Back to top"
                     className="pointer-events-auto z-[100]"
                     onClick={(e) => handleScroll(e, "#")}
                 >

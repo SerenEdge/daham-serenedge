@@ -134,6 +134,9 @@ export default function Hero() {
 
     return (
         <section id="home" ref={containerRef} className="relative w-full h-screen flex flex-col p-6 md:p-12 bg-background">
+            {/* SEO-only heading — visually hidden, gives Google a meaningful H1 */}
+            <h1 className="sr-only">Daham Dissanayake — Full Stack Developer, Computer Science Undergraduate &amp; IoT Enthusiast from Sri Lanka</h1>
+
             {/* Navigation */}
             <Navbar />
 
@@ -154,9 +157,9 @@ export default function Hero() {
                 <div className="col-span-10 md:col-span-6 lg:col-span-5 flex flex-col z-10 pl-6 md:pl-20 lg:pl-32 xl:pl-48 h-full relative">
                     <div className="flex-1 flex flex-col justify-center">
                         <div>
-                            <h1 className="text-[min(25vw,300px)] md:text-[min(14vw,200px)] leading-[0.8] tracking-tighter text-primary font-regular origin-left whitespace-nowrap">
+                            <div className="text-[min(25vw,300px)] md:text-[min(14vw,200px)] leading-[0.8] tracking-tighter text-primary font-regular origin-left whitespace-nowrap" aria-hidden="true">
                                 Hello
-                            </h1>
+                            </div>
                         </div>
                         <div className="overflow-hidden mt-2">
                             <p className="text-xl min-[720px]:text-xl lg:text-xl text-secondary font-medium">
@@ -165,10 +168,10 @@ export default function Hero() {
                         </div>
                         <div className="flex gap-6 text-tertiary text-xl min-[720px]:text-xl mt-4 overflow-hidden">
                             <div className="flex gap-6">
-                                <Link href="https://github.com/DahamDissanayake" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><FiGithub /></Link>
-                                <Link href="https://www.linkedin.com/in/daham-dissanayake/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><FiLinkedin /></Link>
-                                <Link href="https://www.instagram.com/dhmdissanayake/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors"><FiInstagram /></Link>
-                                <Link href="mailto:dahamdissanayake05@gmail.com" className="hover:text-primary transition-colors"><FiMail /></Link>
+                                <Link href="https://github.com/DahamDissanayake" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="hover:text-primary transition-colors"><FiGithub /></Link>
+                                <Link href="https://www.linkedin.com/in/daham-dissanayake/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="hover:text-primary transition-colors"><FiLinkedin /></Link>
+                                <Link href="https://www.instagram.com/dhmdissanayake/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" className="hover:text-primary transition-colors"><FiInstagram /></Link>
+                                <Link href="mailto:dahamdissanayake05@gmail.com" aria-label="Send Email" className="hover:text-primary transition-colors"><FiMail /></Link>
                             </div>
                         </div>
                         <div className="mt-6">
@@ -203,7 +206,7 @@ export default function Hero() {
                         >
                             <Image
                                 src="/images/DAMAPortraitfinal2.webp"
-                                alt="Daham Dissanayake - ComputerScience Undergraduate"
+                                alt="Daham Dissanayake - Computer Science Undergraduate and Full Stack Developer"
                                 width={1000}
                                 height={1200}
                                 className="w-full h-auto md:h-full object-contain object-bottom md:object-right-bottom"

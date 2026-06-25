@@ -4,28 +4,36 @@ export default function JsonLd() {
         "@graph": [
             {
                 "@type": "Person",
+                "@id": "https://daham.serenedge.com/#person",
                 "name": "Daham Dissanayake",
                 "url": "https://daham.serenedge.com",
+                "image": "https://daham.serenedge.com/images/og-image.png",
+                "jobTitle": "Full Stack Developer & Computer Science Undergraduate",
+                "description": "Computer Science Undergraduate at IIT Sri Lanka, Full Stack Developer, Machine Learning and IoT Enthusiast.",
+                "alumniOf": {
+                    "@type": "EducationalOrganization",
+                    "name": "Informatics Institute of Technology (IIT), Sri Lanka",
+                    "url": "https://www.iit.ac.lk"
+                },
+                "knowsAbout": [
+                    "Web Development", "IoT", "Machine Learning", "React", "Next.js",
+                    "Python", "TypeScript", "Embedded Systems", "React Native", "Docker"
+                ],
                 "sameAs": [
                     "https://github.com/DahamDissanayake",
                     "https://www.linkedin.com/in/daham-dissanayake/",
                     "https://www.instagram.com/dhmdissanayake/"
-                ],
-                "jobTitle": "Software Engineer",
-                "worksFor": {
-                    "@type": "Organization",
-                    "name": "SerenEdge"
-                },
-                "description": "Computer Science Undergraduate, Full Stack Developer, Machine Learning and IoT Enthusiast.",
-                "knowsAbout": ["Web Development", "IoT", "Machine Learning", "React", "Next.js", "Python"]
+                ]
             },
             {
                 "@type": "WebSite",
+                "@id": "https://daham.serenedge.com/#website",
                 "name": "Daham Dissanayake | SerenEdge",
                 "url": "https://daham.serenedge.com",
+                "description": "Portfolio of Daham Dissanayake — Computer Science Undergraduate, Full Stack Developer, and IoT Enthusiast from Sri Lanka.",
                 "author": {
                     "@type": "Person",
-                    "name": "Daham Dissanayake"
+                    "@id": "https://daham.serenedge.com/#person"
                 }
             }
         ]

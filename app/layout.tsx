@@ -32,9 +32,11 @@ export const metadata: Metadata = {
   },
   description: "Computer Science Undergraduate, Full Stack Developer, and IoT Enthusiast from Sri Lanka. specializing in building exceptional digital experiences.",
   keywords: [
-    "Daham Dissanayake", "SerenEdge", "IIT Undergrad", "Daham", "Dissanayake", "serenedge",
+    "Daham Dissanayake", "SerenEdge", "IIT Sri Lanka", "IIT Undergrad", "Daham", "Dissanayake", "serenedge",
     "Full Stack Developer", "IoT Developer", "React Developer", "Next.js", "Sri Lanka",
-    "Software Engineer", "Web Development", "Computer Science"
+    "Software Engineer", "Web Development", "Computer Science", "portfolio",
+    "Computer Science student Sri Lanka", "ESP32 developer", "Machine Learning engineer",
+    "React Native developer", "TypeScript developer", "Informatics Institute of Technology"
   ],
   authors: [{ name: "Daham Dissanayake", url: "https://daham.serenedge.com" }],
   creator: "Daham Dissanayake",
@@ -108,6 +110,11 @@ export default function RootLayout({
         className={`${geistMono.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
+        <noscript>
+          <p style={{ position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap", border: 0 }}>
+            Daham Dissanayake — Computer Science Undergraduate, Full Stack Developer, and IoT Enthusiast from Sri Lanka. Specializing in web development, machine learning, and embedded systems. View projects at daham.serenedge.com.
+          </p>
+        </noscript>
         <JsonLd />
         <SmoothScroll>
           <SplashScreen />
