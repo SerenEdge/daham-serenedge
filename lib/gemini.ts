@@ -1,5 +1,3 @@
-import { GoogleGenAI } from "@google/genai";
-
 export type AutofillKind = "portfolio" | "other";
 
 export interface AutofillResult {
@@ -9,29 +7,56 @@ export interface AutofillResult {
   tech?: string[];
 }
 
-export interface GenAILike {
-  models: {
-    generateContent(args: unknown): Promise<{ text?: string }>;
-  };
-}
+// Injection hook used only in tests
+export type LLMFn = (prompt: string) => Promise<string>;
 
-const MODEL = "gemini-2.0-flash";
+const MODEL = "llama-3.1-8b-instant";
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+
+async function callGroq(prompt: string): Promise<string> {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) throw new Error("GROQ_API_KEY is not set.");
+
+  const res = await fetch(GROQ_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" },
+      temperature: 0.1,
+      max_tokens: 1024,
+    }),
+  });
+
+  if (!res.ok) throw new Error(await res.text());
+
+  const data = (await res.json()) as {
+    choices: Array<{ message: { content: string } }>;
+  };
+  const text = data.choices?.[0]?.message?.content;
+  if (!text) throw new Error("Groq returned an empty response.");
+  return text;
+}
 
 function buildPrompt(readme: string, kind: AutofillKind): string {
   const fields =
     kind === "portfolio"
-      ? `- title: the project name (short)
-- shortDescription: one sentence, max ~12 words
-- longDescription: 2-4 sentences describing what it does and how it's built, first person ("I built...")
-- tech: array of the main technologies/languages/frameworks used`
-      : `- title: the project name (short)
-- shortDescription: 2-4 sentences describing what it does and how it's built, first person ("I built...")`;
+      ? `Return a JSON object with exactly these keys:
+- "title": project name (short)
+- "shortDescription": one sentence, max ~12 words
+- "longDescription": 2-4 sentences, first person ("I built...")
+- "tech": array of main technologies/languages/frameworks`
+      : `Return a JSON object with exactly these keys:
+- "title": project name (short)
+- "shortDescription": 2-4 sentences describing what it does and how it's built, first person ("I built...")`;
 
-  return `You are extracting structured portfolio metadata from a GitHub project's README.
-Return ONLY the requested fields based on the README. Do not invent facts not supported by the README.
-
-Fields:
+  return `Extract structured portfolio metadata from this GitHub README.
 ${fields}
+Return ONLY valid JSON with those exact keys. No extra fields, no explanation.
 
 README:
 """
@@ -39,57 +64,25 @@ ${readme.slice(0, 12000)}
 """`;
 }
 
-function buildSchema(kind: AutofillKind) {
-  const properties: Record<string, unknown> = {
-    title: { type: "STRING" },
-    shortDescription: { type: "STRING" },
-  };
-  const required = ["title", "shortDescription"];
-  if (kind === "portfolio") {
-    properties.longDescription = { type: "STRING" };
-    properties.tech = { type: "ARRAY", items: { type: "STRING" } };
-    required.push("longDescription", "tech");
-  }
-  return { type: "OBJECT", properties, required };
-}
-
 export async function extractProjectFromReadme(
   readme: string,
   kind: AutofillKind,
-  client?: GenAILike
+  llm?: LLMFn
 ): Promise<AutofillResult> {
   if (!readme || readme.trim().length === 0) {
     throw new Error("README is empty — nothing to extract.");
   }
 
-  const genai: GenAILike =
-    client ??
-    (() => {
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) throw new Error("GEMINI_API_KEY is not set.");
-      return new GoogleGenAI({ apiKey }) as unknown as GenAILike;
-    })();
+  const text = await (llm ?? callGroq)(buildPrompt(readme, kind));
 
-  const res = await genai.models.generateContent({
-    model: MODEL,
-    contents: buildPrompt(readme, kind),
-    config: {
-      responseMimeType: "application/json",
-      responseSchema: buildSchema(kind),
-    },
-  });
-
-  if (!res.text) {
-    throw new Error("Gemini returned an empty response.");
-  }
   let parsed: AutofillResult;
   try {
-    parsed = JSON.parse(res.text) as AutofillResult;
+    parsed = JSON.parse(text) as AutofillResult;
   } catch {
-    throw new Error("Failed to parse Gemini response as JSON.");
+    throw new Error("Failed to parse response as JSON.");
   }
   if (!parsed.title || !parsed.shortDescription) {
-    throw new Error("Gemini response missing required fields.");
+    throw new Error("Response missing required fields.");
   }
   return parsed;
 }
