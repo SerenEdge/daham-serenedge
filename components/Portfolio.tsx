@@ -6,22 +6,23 @@ import Image from "next/image";
 import { FiChevronDown, FiArrowUpRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import projectsData from "@/data/projects.json";
+import type { ProjectsData } from "@/types/projects";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const { portfolio: mainProjects, otherProjects } = projectsData as ProjectsData;
 
 export default function Portfolio() {
 
     const sectionRef = useRef<HTMLElement>(null);
     const projectsContainerRef = useRef<HTMLDivElement>(null);
     const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-    const [hoveredMiniCard, setHoveredMiniCard] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
     const [isTablet, setIsTablet] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
-    const [activeCardIndex, setActiveCardIndex] = useState(0);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const carouselRef = useRef<HTMLDivElement>(null);
     const miniProjectsRef = useRef<HTMLDivElement>(null);
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -97,105 +98,29 @@ export default function Portfolio() {
                 ease: "power4.out"
             });
 
-            // Separate animation for Mini Projects (Restored)
-            gsap.from(miniProjectsRef.current, {
-                y: 150,
-                opacity: 0,
-                duration: 2,
-                ease: "power4.out",
-                scrollTrigger: {
-                    trigger: miniProjectsRef.current,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                }
-            });
+            // Stagger-reveal the "Other projects" cards
+            const otherCards = miniProjectsRef.current
+                ? gsap.utils.toArray<HTMLElement>(".other-card", miniProjectsRef.current)
+                : [];
+            if (otherCards.length) {
+                gsap.from(otherCards, {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "power3.out",
+                    stagger: 0.06,
+                    scrollTrigger: {
+                        trigger: miniProjectsRef.current,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse",
+                    },
+                });
+            }
 
         }, sectionRef);
 
         return () => ctx.revert();
     }, []);
-
-    const mainProjects = [
-        {
-            title: "SoterCare",
-            subtitle: "(2nd Year Project - Ongoing)",
-            description: "IoT & ML Based Elderly Care Monitoring System.",
-            longDescription: "SoterCare is an innovative IoT and Machine Learning-driven elderly care monitoring system designed to provide proactive, dignified safety. Unlike traditional reactive SOS buttons, it predicts falls and detects urinary incontinence in real-time. By integrating wearable sensor nodes with a dedicated edge gateway, the system ensures continuous vitals monitoring and automated emergency alerts, offering a comprehensive safety net for seniors while maintaining their independence.",
-            tech: ["IoT", "Raspberry Pi", "React Native", "C++", "NestJS", "Python", "PostgreSQL", "Docker", "Redis", "RAG", "Edge Impulse"],
-            link: "https://sotercare.com",
-            images: ["/images/projects/sotercare-website.webp", "/images/projects/sotercareteam.webp", "/images/projects/sotercare-finaldevice.webp", "/images/projects/sotercare-prototype1v.webp", "/images/projects/sotercare-studio.webp", "/images/projects/sotercare-mobileapp.webp", "/images/projects/sotercare-gitorg.webp"]
-        },
-        {
-            title: "ImgHarvest",
-            subtitle: "Powered by WSO2 Ballerina & Choreo",
-            description: "Image dataset collection tool for ML models",
-            longDescription: "I built Image Harvest to streamline the collection of high-quality image datasets for training image recognition ML models. The backend is powered by WSO2's Ballerina language, providing a robust and scalable integration layer for image fetching. Paired with a modern React frontend, the tool allows users to effortlessly search and download image batches. The complete application will soon be deployed and hosted on WSO2 Choreo for enterprise-grade reliability.",
-            tech: ["Ballerina", "Next.js", "TypeScript", "Docker", "WSO2 Choreo", "SerpApi", "GrokApi"],
-            link: "https://github.com/DahamDissanayake/img-harvest-ballerina",
-            images: ["/images/projects/imgharvest1.webp", "/images/projects/imgharvest2.webp"]
-        },
-        {
-            title: "VibeCheck [Chrome Extension]",
-            subtitle: "Available on the Chrome Web Store.",
-            description: "Visual web layout debugging assistant",
-            longDescription: "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It’s a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me inspect pages, overlay precision grids, and click to mark 'friction points.' The tool automatically synthesizes this visual data into structured prompts for AI assistants, drastically streamlining the process of turning design feedback into code.",
-            tech: ["JavaScript", "HTML5", "CSS3", "Manifest V3"],
-            link: "https://github.com/DahamDissanayake/web-design-prompt-extension",
-            images: ["/images/projects/vibecheck1.webp", "/images/projects/vibecheck2.webp"]
-        },
-        {
-            title: "ReImage Agent",
-            subtitle: "(Ongoing)",
-            description: "AI-powered constant avatars for communities.",
-            longDescription: "I built ReImage-Agent to unify user identities across platforms, like clubs requiring consistent member avatars. By leveraging a custom prompt pipeline, it automatically transforms photos into cohesive, stylized cartoons while preserving facial features. The system is built with Next.js and Tailwind CSS for a sleek frontend, backed by FastAPI and Google's Gemini 2.5 Flash model for high-performance, intelligent image generation.",
-            tech: ["Next.js", "FastAPI", "Python", "Gemini (Nano Banana)"],
-            link: "https://github.com/DahamDissanayake/ReImage-Agent",
-            image: "/images/projects/reimage.webp"
-        },
-    ];
-
-    const miniProjects = [
-        {
-            title: "Visionslide",
-            description: "VisionSlide v2.1 is a Python-based hands-free presentation controller that uses your webcam as a gesture interface. Built with OpenCV and PyAutoGUI, it detects vertical hand movements to trigger ‘Up’ and ‘Down’ key presses, enabling smooth slide or document navigation. A CustomTkinter UI, visual feedback, and adjustable sensitivity enhance usability.",
-            link: "https://github.com/DahamDissanayake/vision-slide"
-        },
-        {
-            title: "Imposter Game",
-            description: "Built using React and Vite, this custom Imposter Game is my answer to the trend of paywalled gaming apps. I created this project to provide a completely free, feature-rich alternative where users can enjoy all modes without payment. Hosted on GitHub Pages, it ensures a seamless and accessible experience for everyone to play together.",
-            link: "https://github.com/DahamDissanayake/Imposter-Game-But-Customized-V2"
-        },
-        {
-            title: "Dev-Pulse API",
-            description: "Dev-Pulse is a cloud-native BFF service that aggregates GitHub API data to generate a live Dev-Pulse Score. Built with Ballerina Swan Lake and hosted on WSO2 Choreo, it securely injects tokens at runtime, enabling real-time portfolio insights without exposing sensitive data.",
-            link: "https://github.com/DahamDissanayake/dev-pulse-api"
-        },
-        {
-            title: "Flood-Watch [NullProduct]",
-            description: "Flood-Watch is a real-time, offline-capable flood warning system designed to protect vulnerable communities in Sri Lanka. Winning runners-up at the Vertex'25 IoT competition, we built it using Edge Computing on ESP32 Magicbit and Ultrasonic Sensors to detect flash floods instantly. It ensures life-saving alerts even when internet connectivity fails.",
-            link: "https://github.com/DahamDissanayake/NullProduct-VERTEX25"
-        },
-        {
-            title: "Keyboard Macro Writer",
-            description: "I developed this Python-based Keystroke Simulator to automate data entry with a human touch. Utilizing pynput for precise keyboard control and tkinter for an intuitive GUI, the tool lets me pre-record text and replay it with randomized delays. My goal was to create a seamless way to mimic natural typing patterns, making automated inputs indistinguishable from manual keystrokes.",
-            link: "https://github.com/DahamDissanayake/keyboard-macro-writer"
-        },
-        {
-            title: "Apple Photo Sorter",
-            description: "I developed this Python and Tkinter application because copying photos from an iPhone often results in a messy, disorganized file structure. This tool solves that by automating the backup process: it scans the chaotic source folders and neatly sorts every image into clean, year-based directories at your chosen destination, ensuring a structured archive.",
-            link: "https://github.com/DahamDissanayake/Apple-Photo-Sorter"
-        },
-        {
-            title: "Tripwire-YOLO",
-            description: "I built Tripwire-YOLO as an intelligent security solution to monitor my space in real time. It allows me to draw a virtual line on a live webcam feed, triggering instant alerts and snapshots when crossed. Powered by YOLOv8 and CustomTkinter, it runs on a threaded architecture for smooth performance.",
-            link: "https://github.com/DahamDissanayake/tripwire-YOLO"
-        },
-        {
-            title: "Apple HomeKit Automation",
-            description: "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP8266, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
-            link: "https://github.com/DahamDissanayake/Apple-homekit-esp8266"
-        }
-    ];
 
     return (
         <section
@@ -327,7 +252,7 @@ export default function Portfolio() {
                                                         </>
                                                     ) : (
                                                         <Image
-                                                            src={project.image || (project.images && project.images[0]) || ""}
+                                                            src={project.images[0] ?? ""}
                                                             alt={project.title}
                                                             fill
                                                             className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
@@ -376,151 +301,35 @@ export default function Portfolio() {
                 </div>
 
 
-                {/* Mini Projects */}
+                {/* Other projects */}
                 <div ref={miniProjectsRef} className="py-6">
                     <div className="mb-12">
-                        <h2 className="text-3xl md:text-4xl font-medium mb-2">Mini Projects</h2>
+                        <h2 className="text-3xl md:text-4xl font-medium mb-2">Other projects</h2>
                         <p className="text-lg text-tertiary">Small tools built to simplify tasks</p>
                     </div>
 
-                    {/* Stacked Cards - Responsive layout */}
-                    <div className={`relative flex items-center ${isMobile
-                        ? 'w-full flex-col py-8'
-                        : 'justify-center'
-                        } ${isTablet ? 'h-[500px] mb-12' : isMobile ? 'h-auto mb-8' : 'h-[650px] mb-20'}`}>
-                        {isMobile ? (
-                            // Mobile: Horizontal scrollable carousel
-                            <>
-                                <div
-                                    ref={carouselRef}
-                                    className="w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-                                    onScroll={(e) => {
-                                        const container = e.currentTarget;
-                                        // Approximate card width (85vw) + gap (16px)
-                                        const cardWidth = window.innerWidth * 0.85 + 16;
-                                        const scrollLeft = container.scrollLeft;
-                                        const index = Math.round(scrollLeft / cardWidth);
-                                        setActiveCardIndex(index);
-                                    }}
-                                >
-                                    <div className="flex gap-4 px-6 w-max">
-                                        {miniProjects.map((project, index) => (
-                                            <div
-                                                key={index}
-                                                className="mini-project-card flex-shrink-0 w-[85vw] max-w-[100%] max-w-md h-[520px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
-                                            >
-                                                <div className="flex flex-col h-full justify-between overflow-hidden">
-                                                    <div className="overflow-y-auto scrollbar-hide mb-4">
-                                                        <h3 className="text-2xl font-medium mb-4">{project.title}</h3>
-                                                        <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
-                                                    </div>
-                                                    <Link
-                                                        href={project.link}
-                                                        target="_blank"
-                                                        className="inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start flex-shrink-0"
-                                                    >
-                                                        View More →
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
+                        {otherProjects.map((project, index) => (
+                            <a
+                                key={project.id ?? index}
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="other-card group relative flex flex-col justify-between bg-[#1c1c2b] text-white rounded-b-2xl rounded-tr-2xl rounded-tl-none p-6 min-h-[220px] transition-transform duration-300 ease-out hover:-translate-y-2 hover:rotate-[-1deg] shadow-[0_16px_32px_rgba(0,0,0,0.28)]"
+                            >
+                                {/* File tab */}
+                                <span className="absolute -top-6 left-0 w-20 h-6 bg-[#1c1c2b] rounded-t-xl" />
+                                <div className="relative z-10 overflow-hidden">
+                                    <h3 className="text-lg md:text-xl font-medium mb-3">{project.title}</h3>
+                                    <p className="text-gray-300 text-sm leading-relaxed line-clamp-5">
+                                        {project.description}
+                                    </p>
                                 </div>
-
-                                {/* Scroll Indicators */}
-                                <div className="flex justify-center gap-2 mt-6">
-                                    {miniProjects.map((_, index) => (
-                                        <div
-                                            key={index}
-                                            className={`h-1.5 rounded-full transition-all duration-300 ${index === activeCardIndex
-                                                ? 'w-8 bg-[#1c1c2b]'
-                                                : 'w-1.5 bg-[#1c1c2b]/40'
-                                                }`}
-                                        />
-                                    ))}
-                                </div>
-                            </>
-                        ) : (
-                            // Tablet & Desktop: Tilted stack (Restored)
-                            <>
-                                {miniProjects.map((project, index) => {
-                                    const isHovered = hoveredMiniCard === index;
-                                    const totalCards = miniProjects.length;
-                                    const centerOffset = (totalCards - 1) / 2;
-                                    
-                                    // Make spacing responsive to ensure cards fit in the viewport
-                                    const baseCardWidth = isTablet ? 320 : 384;
-                                    const availableWidthForSpacing = (windowWidth || 1920) - baseCardWidth - 60;
-                                    const maxAllowedSpacing = availableWidthForSpacing / (totalCards - 1);
-                                    
-                                    const spacing = isTablet 
-                                        ? Math.min(80, Math.max(45, maxAllowedSpacing))
-                                        : Math.min(150, Math.max(50, maxAllowedSpacing));
-
-                                    const translateX = (index - centerOffset) * spacing;
-                                    const rotation = isTablet ? 8 : 12;
-                                    const zIndex = miniProjects.length - index;
-
-                                    return (
-                                        // Stable Container for Hover Detection
-                                        <div
-                                            key={index}
-                                            className={`absolute cursor-pointer ${isTablet ? 'w-80 h-[380px]' : 'w-96 h-[450px]'}`}
-                                            style={{
-                                                transform: `translateX(${translateX}px) rotate(${rotation}deg)`,
-                                                zIndex: isHovered ? 50 : zIndex, // Z-Index stays on the wrapper
-                                            }}
-                                            onMouseEnter={() => setHoveredMiniCard(index)}
-                                            onMouseLeave={() => setHoveredMiniCard(null)}
-                                        >
-                                            {/* Animated Visual Card - File Style */}
-                                            <div
-                                                className={`mini-project-card relative w-full h-full bg-[#1c1c2b] text-white rounded-b-3xl rounded-tr-3xl rounded-tl-none ${isTablet ? 'p-6' : 'p-8'} transition-all duration-300 ease-out`}
-                                                style={{
-                                                    transform: isHovered
-                                                        ? `translateY(-80px) rotate(${-rotation}deg) scale(1.1)` // Counter-rotate to 0, move up
-                                                        : `translateY(0px) rotate(0deg) scale(1)`,
-                                                    boxShadow: isHovered
-                                                        ? '0 30px 60px rgba(0, 0, 0, 0.5)'
-                                                        : '0 20px 40px rgba(0, 0, 0, 0.3)',
-                                                }}
-                                            >
-                                                {/* File Tab */}
-                                                <div
-                                                    className="absolute -top-8 left-0 w-32 h-8 bg-[#1c1c2b] rounded-t-2xl"
-                                                    style={{ content: '""' }}
-                                                />
-
-                                                {isHovered ? (
-                                                    <div className="flex flex-col h-full justify-between animate-in fade-in duration-300 relative z-10 overflow-hidden">
-                                                        <div className="overflow-y-auto scrollbar-hide mb-4">
-                                                            <h3 className={`font-medium mb-3 ${isTablet ? 'text-xl' : 'text-2xl'}`}>{project.title}</h3>
-                                                            <p className={`text-gray-300 leading-relaxed ${isTablet ? 'text-sm' : 'text-base'}`}>{project.description}</p>
-                                                        </div>
-                                                        <Link
-                                                            href={project.link}
-                                                            target="_blank"
-                                                            className={`inline-block text-white underline underline-offset-4 hover:text-gray-300 transition-colors self-start flex-shrink-0 ${isTablet ? 'text-sm' : 'text-base'}`}
-                                                        >
-                                                            View More →
-                                                        </Link>
-                                                    </div>
-                                                ) : (
-                                                    <div className="flex items-center justify-end h-full pr-4 relative z-10">
-                                                        <h3
-                                                            className="text-xl font-medium"
-                                                            style={{ writingMode: 'vertical-lr', textOrientation: 'mixed', transform: 'rotate(180deg)' }}
-                                                        >
-                                                            {project.title}
-                                                        </h3>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </>
-                        )}
+                                <span className="relative z-10 mt-5 inline-flex items-center gap-1 text-sm text-white/90 underline underline-offset-4 group-hover:text-white">
+                                    View More →
+                                </span>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
