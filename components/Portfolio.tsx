@@ -279,7 +279,7 @@ export default function Portfolio() {
                 <div ref={miniProjectsRef} className="py-6">
                     <div className="mb-12">
                         <h2 className="text-3xl md:text-4xl font-medium mb-2">Other projects</h2>
-                        <p className="text-lg text-tertiary">Small tools built to simplify tasks</p>
+                        <p className="text-lg text-tertiary">Projects outside the featured selection</p>
                     </div>
 
                     <div className={`relative flex items-center ${isMobile
@@ -342,13 +342,12 @@ export default function Portfolio() {
                                     const totalCards = otherProjects.length;
                                     const centerOffset = (totalCards - 1) / 2;
 
-                                    const baseCardWidth = isTablet ? 320 : 384;
-                                    const availableWidthForSpacing = (windowWidth || 1920) - baseCardWidth - 60;
-                                    const maxAllowedSpacing = availableWidthForSpacing / (totalCards - 1);
-
-                                    const spacing = isTablet
-                                        ? Math.min(80, Math.max(45, maxAllowedSpacing))
-                                        : Math.min(150, Math.max(50, maxAllowedSpacing));
+                                    const cardWidth = isTablet ? 320 : 384;
+                                    // Account for page padding (lg:px-16 = 64px each side = 128px total)
+                                    const containerWidth = (windowWidth || 1920) - 128;
+                                    // Max spacing so all cards fit with 40px breathing room on each side
+                                    const maxSpacing = (containerWidth - 80 - cardWidth) / Math.max(1, totalCards - 1);
+                                    const spacing = Math.min(isTablet ? 75 : 110, maxSpacing);
 
                                     const translateX = (index - centerOffset) * spacing;
                                     const rotation = isTablet ? 8 : 12;
