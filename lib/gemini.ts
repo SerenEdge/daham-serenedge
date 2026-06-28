@@ -57,6 +57,7 @@ function buildPrompt(readme: string, kind: AutofillKind): string {
   return `Extract structured portfolio metadata from this GitHub README.
 ${fields}
 Return ONLY valid JSON with those exact keys. No extra fields, no explanation.
+Do NOT use em dashes (—) anywhere in the output. Use plain hyphens (-) or rewrite the sentence instead.
 
 README:
 """
