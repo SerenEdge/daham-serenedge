@@ -34,3 +34,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Editing projects
+
+Project content lives in `data/projects.json`. To edit it with a UI, run the
+app locally and open `/dashboard` (dev only — the route 404s in production):
+
+```bash
+npm run dev
+# open http://localhost:3000/dashboard
+```
+
+You can edit the 4 portfolio cards and the "Other projects" list, upload
+images, and autofill fields from a GitHub repo's README (requires
+`GEMINI_API_KEY` in `.env.local`). Click **Save all**, then commit & push
+`data/projects.json` (and any new images in `public/images/projects/`) to
+publish.
