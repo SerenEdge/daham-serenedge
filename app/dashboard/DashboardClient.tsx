@@ -186,10 +186,22 @@ function ImageManager({ images, onChange }: ImageManagerProps) {
 // ---------------------------------------------------------------------------
 // Main DashboardClient
 // ---------------------------------------------------------------------------
+function summarizeForOther(longDescription: string): string {
+  if (!longDescription.trim()) return "";
+  const sentences = longDescription.match(/[^.!?]+[.!?]+/g) ?? [];
+  if (sentences.length === 0) return longDescription.slice(0, 220).trim();
+  let result = sentences[0].trim();
+  if (result.length < 120 && sentences[1]) result += " " + sentences[1].trim();
+  if (result.length > 220) result = result.slice(0, 217) + "...";
+  return result;
+}
+
 export default function DashboardClient({ initial }: { initial: ProjectsData }) {
   const [data, setData] = useState<ProjectsData>(initial);
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
+  const [pendingMoveIndex, setPendingMoveIndex] = useState<number | null>(null);
+  const [pendingRemoveIndex, setPendingRemoveIndex] = useState<number | null>(null);
 
   function updatePortfolio(i: number, patch: Partial<PortfolioProject>) {
     setData((d) => {
@@ -219,6 +231,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
       ...d,
       otherProjects: d.otherProjects.filter((_, j) => j !== i),
     }));
+    setPendingRemoveIndex(null);
   }
   function moveOther(i: number, dir: -1 | 1) {
     setData((d) => {
@@ -245,10 +258,9 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
       const asOther: OtherProject = {
         id: crypto.randomUUID(),
         title: proj.title,
-        description: proj.description,
+        description: summarizeForOther(proj.longDescription) || proj.description,
         link: proj.link,
       };
-      // Clear the portfolio slot so the user can fill it with a new project
       portfolio[i] = {
         id: proj.id,
         title: "",
@@ -261,6 +273,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
       };
       return { ...d, portfolio, otherProjects: [...d.otherProjects, asOther] };
     });
+    setPendingMoveIndex(null);
   }
 
   function findValidationError(d: ProjectsData): string | null {
@@ -362,13 +375,31 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
                       className={btnGhost}
                       title="Move down"
                     >↓</button>
-                    <button
-                      onClick={() => moveToOtherProjects(i)}
-                      className="text-xs font-mono uppercase tracking-wider text-tertiary hover:text-secondary transition-colors"
-                      title="Move this project to Other projects and clear this slot"
-                    >
-                      → Other projects
-                    </button>
+                    {pendingMoveIndex === i ? (
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs font-mono text-tertiary">Move to other projects?</span>
+                        <button
+                          onClick={() => moveToOtherProjects(i)}
+                          className="text-xs font-mono uppercase tracking-wider text-secondary hover:text-red-600 transition-colors"
+                        >
+                          Confirm
+                        </button>
+                        <button
+                          onClick={() => setPendingMoveIndex(null)}
+                          className={btnGhost}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => setPendingMoveIndex(i)}
+                        className="text-xs font-mono uppercase tracking-wider text-tertiary hover:text-secondary transition-colors"
+                        title="Move this project to Other projects and clear this slot"
+                      >
+                        → Other projects
+                      </button>
+                    )}
                   </div>
                 </div>
 
@@ -561,12 +592,30 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
                     >
                       ↓
                     </button>
-                    <button
-                      onClick={() => removeOther(i)}
-                      className="text-xs font-mono uppercase tracking-wider text-tertiary hover:text-red-500 transition-colors"
-                    >
-                      Remove
-                    </button>
+                    {pendingRemoveIndex === i ? (
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs font-mono text-tertiary">Remove this project?</span>
+                        <button
+                          onClick={() => removeOther(i)}
+                          className="text-xs font-mono uppercase tracking-wider text-red-600 hover:text-red-700 transition-colors"
+                        >
+                          Confirm
+                        </button>
+                        <button
+                          onClick={() => setPendingRemoveIndex(null)}
+                          className={btnGhost}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => setPendingRemoveIndex(i)}
+                        className="text-xs font-mono uppercase tracking-wider text-tertiary hover:text-red-500 transition-colors"
+                      >
+                        Remove
+                      </button>
+                    )}
                   </div>
                 </div>
 
