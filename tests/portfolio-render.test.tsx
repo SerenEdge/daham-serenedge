@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeAll } from "vitest";
+import { describe, it, expect } from "vitest";
 
 // jsdom-free smoke: assert the data contract the component relies on.
 import data from "@/data/projects.json";

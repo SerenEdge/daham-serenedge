@@ -308,7 +308,7 @@ export default function Portfolio() {
                         <p className="text-lg text-tertiary">Small tools built to simplify tasks</p>
                     </div>
 
-                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
                         {otherProjects.map((project, index) => (
                             <a
                                 key={project.id ?? index}
@@ -326,7 +326,7 @@ export default function Portfolio() {
                                     </p>
                                 </div>
                                 <span className="relative z-10 mt-5 inline-flex items-center gap-1 text-sm text-white/90 underline underline-offset-4 group-hover:text-white">
-                                    View More →
+                                    View More <span aria-hidden="true">→</span>
                                 </span>
                             </a>
                         ))}
