@@ -71,19 +71,29 @@
     },
     {
       "id": "reimage",
-      "title": "ReImage Agent",
-      "subtitle": "(Ongoing)",
-      "description": "AI-powered constant avatars for communities.",
-      "longDescription": "I built ReImage-Agent to unify user identities across platforms, like clubs requiring consistent member avatars. By leveraging a custom prompt pipeline, it automatically transforms photos into cohesive, stylized cartoons while preserving facial features. The system is built with Next.js and Tailwind CSS for a sleek frontend, backed by FastAPI and Google's Gemini 2.5 Flash model for high-performance, intelligent image generation.",
+      "title": "IIT-GPU-Manager",
+      "description": "Secure terminal gateway for SLURM GPU job submission at IIT",
+      "longDescription": "I built a secure terminal gateway for SLURM GPU job submission at IIT. Users connect via SSH and interact with a forced-command TUI. Every action is logged to SQLite and JSONL before it is executed. The gateway provides a menu-driven interface for users to upload files, set up environments, run jobs, and monitor their queue.",
       "tech": [
-        "Next.js",
-        "FastAPI",
         "Python",
-        "Gemini (Nano Banana)"
+        "SLURM",
+        "SQLite",
+        "JSONL",
+        "Rich",
+        "Questionary",
+        "Conda",
+        "PyTorch",
+        "TensorFlow",
+        "JAX",
+        "HuggingFace",
+        "SSH",
+        "systemd"
       ],
-      "link": "https://github.com/DahamDissanayake/ReImage-Agent",
+      "link": "https://github.com/DahamDissanayake/IIT-Secure-SLURM-Job-Gateway",
       "images": [
-        "/images/projects/reimage.webp"
+        "/images/projects/startingpage.webp",
+        "/images/projects/livedahsboard.webp",
+        "/images/projects/email-gpu.webp"
       ]
     }
   ],
@@ -135,6 +145,12 @@
       "title": "Apple HomeKit Automation",
       "description": "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP8266, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
       "link": "https://github.com/DahamDissanayake/Apple-homekit-esp8266"
+    },
+    {
+      "id": "c69dbd5d-2625-4b54-9843-aa5ffbc39182",
+      "title": "ReImage Agent",
+      "description": "I built a high-quality cartoon image generator using AI-powered image generation. It transforms portraits into cartoons with a white background and studio lighting. The app uses the Google Gemini API and supports drag and drop upload, automatic retry, and secure API key management.",
+      "link": "https://github.com/DahamDissanayake/ReImage-Agent"
     }
   ]
 }
