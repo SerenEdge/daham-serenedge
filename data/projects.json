@@ -6,9 +6,29 @@
       "subtitle": "(2nd Year Project - Ongoing)",
       "description": "IoT & ML Based Elderly Care Monitoring System.",
       "longDescription": "SoterCare is an innovative IoT and Machine Learning-driven elderly care monitoring system designed to provide proactive, dignified safety. Unlike traditional reactive SOS buttons, it predicts falls and detects urinary incontinence in real-time. By integrating wearable sensor nodes with a dedicated edge gateway, the system ensures continuous vitals monitoring and automated emergency alerts, offering a comprehensive safety net for seniors while maintaining their independence.",
-      "tech": ["IoT", "Raspberry Pi", "React Native", "C++", "NestJS", "Python", "PostgreSQL", "Docker", "Redis", "RAG", "Edge Impulse"],
+      "tech": [
+        "IoT",
+        "Raspberry Pi",
+        "React Native",
+        "C++",
+        "NestJS",
+        "Python",
+        "PostgreSQL",
+        "Docker",
+        "Redis",
+        "RAG",
+        "Edge Impulse"
+      ],
       "link": "https://sotercare.com",
-      "images": ["/images/projects/sotercare-website.webp", "/images/projects/sotercareteam.webp", "/images/projects/sotercare-finaldevice.webp", "/images/projects/sotercare-prototype1v.webp", "/images/projects/sotercare-studio.webp", "/images/projects/sotercare-mobileapp.webp", "/images/projects/sotercare-gitorg.webp"]
+      "images": [
+        "/images/projects/sotercare-website.webp",
+        "/images/projects/sotercareteam.webp",
+        "/images/projects/sotercare-finaldevice.webp",
+        "/images/projects/sotercare-prototype1v.webp",
+        "/images/projects/sotercare-studio.webp",
+        "/images/projects/sotercare-mobileapp.webp",
+        "/images/projects/sotercare-gitorg.webp"
+      ]
     },
     {
       "id": "imgharvest",
@@ -16,9 +36,20 @@
       "subtitle": "Powered by WSO2 Ballerina & Choreo",
       "description": "Image dataset collection tool for ML models",
       "longDescription": "I built Image Harvest to streamline the collection of high-quality image datasets for training image recognition ML models. The backend is powered by WSO2's Ballerina language, providing a robust and scalable integration layer for image fetching. Paired with a modern React frontend, the tool allows users to effortlessly search and download image batches. The complete application will soon be deployed and hosted on WSO2 Choreo for enterprise-grade reliability.",
-      "tech": ["Ballerina", "Next.js", "TypeScript", "Docker", "WSO2 Choreo", "SerpApi", "GrokApi"],
+      "tech": [
+        "Ballerina",
+        "Next.js",
+        "TypeScript",
+        "Docker",
+        "WSO2 Choreo",
+        "SerpApi",
+        "GrokApi"
+      ],
       "link": "https://github.com/DahamDissanayake/img-harvest-ballerina",
-      "images": ["/images/projects/imgharvest1.webp", "/images/projects/imgharvest2.webp"]
+      "images": [
+        "/images/projects/imgharvest1.webp",
+        "/images/projects/imgharvest2.webp"
+      ]
     },
     {
       "id": "vibecheck",
@@ -26,9 +57,17 @@
       "subtitle": "Available on the Chrome Web Store.",
       "description": "Visual web layout debugging assistant",
       "longDescription": "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It's a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me inspect pages, overlay precision grids, and click to mark 'friction points.' The tool automatically synthesizes this visual data into structured prompts for AI assistants, drastically streamlining the process of turning design feedback into code.",
-      "tech": ["JavaScript", "HTML5", "CSS3", "Manifest V3"],
+      "tech": [
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Manifest V3"
+      ],
       "link": "https://github.com/DahamDissanayake/web-design-prompt-extension",
-      "images": ["/images/projects/vibecheck1.webp", "/images/projects/vibecheck2.webp"]
+      "images": [
+        "/images/projects/vibecheck1.webp",
+        "/images/projects/vibecheck2.webp"
+      ]
     },
     {
       "id": "reimage",
@@ -36,19 +75,72 @@
       "subtitle": "(Ongoing)",
       "description": "AI-powered constant avatars for communities.",
       "longDescription": "I built ReImage-Agent to unify user identities across platforms, like clubs requiring consistent member avatars. By leveraging a custom prompt pipeline, it automatically transforms photos into cohesive, stylized cartoons while preserving facial features. The system is built with Next.js and Tailwind CSS for a sleek frontend, backed by FastAPI and Google's Gemini 2.5 Flash model for high-performance, intelligent image generation.",
-      "tech": ["Next.js", "FastAPI", "Python", "Gemini (Nano Banana)"],
+      "tech": [
+        "Next.js",
+        "FastAPI",
+        "Python",
+        "Gemini (Nano Banana)"
+      ],
       "link": "https://github.com/DahamDissanayake/ReImage-Agent",
-      "images": ["/images/projects/reimage.webp"]
+      "images": [
+        "/images/projects/reimage.webp"
+      ]
     }
   ],
   "otherProjects": [
-    { "id": "visionslide", "title": "Visionslide", "description": "VisionSlide v2.1 is a Python-based hands-free presentation controller that uses your webcam as a gesture interface. Built with OpenCV and PyAutoGUI, it detects vertical hand movements to trigger 'Up' and 'Down' key presses, enabling smooth slide or document navigation. A CustomTkinter UI, visual feedback, and adjustable sensitivity enhance usability.", "link": "https://github.com/DahamDissanayake/vision-slide" },
-    { "id": "imposter-game", "title": "Imposter Game", "description": "Built using React and Vite, this custom Imposter Game is my answer to the trend of paywalled gaming apps. I created this project to provide a completely free, feature-rich alternative where users can enjoy all modes without payment. Hosted on GitHub Pages, it ensures a seamless and accessible experience for everyone to play together.", "link": "https://github.com/DahamDissanayake/Imposter-Game-But-Customized-V2" },
-    { "id": "dev-pulse-api", "title": "Dev-Pulse API", "description": "Dev-Pulse is a cloud-native BFF service that aggregates GitHub API data to generate a live Dev-Pulse Score. Built with Ballerina Swan Lake and hosted on WSO2 Choreo, it securely injects tokens at runtime, enabling real-time portfolio insights without exposing sensitive data.", "link": "https://github.com/DahamDissanayake/dev-pulse-api" },
-    { "id": "flood-watch", "title": "Flood-Watch [NullProduct]", "description": "Flood-Watch is a real-time, offline-capable flood warning system designed to protect vulnerable communities in Sri Lanka. Winning runners-up at the Vertex'25 IoT competition, we built it using Edge Computing on ESP32 Magicbit and Ultrasonic Sensors to detect flash floods instantly. It ensures life-saving alerts even when internet connectivity fails.", "link": "https://github.com/DahamDissanayake/NullProduct-VERTEX25" },
-    { "id": "keyboard-macro-writer", "title": "Keyboard Macro Writer", "description": "I developed this Python-based Keystroke Simulator to automate data entry with a human touch. Utilizing pynput for precise keyboard control and tkinter for an intuitive GUI, the tool lets me pre-record text and replay it with randomized delays. My goal was to create a seamless way to mimic natural typing patterns, making automated inputs indistinguishable from manual keystrokes.", "link": "https://github.com/DahamDissanayake/keyboard-macro-writer" },
-    { "id": "apple-photo-sorter", "title": "Apple Photo Sorter", "description": "I developed this Python and Tkinter application because copying photos from an iPhone often results in a messy, disorganized file structure. This tool solves that by automating the backup process: it scans the chaotic source folders and neatly sorts every image into clean, year-based directories at your chosen destination, ensuring a structured archive.", "link": "https://github.com/DahamDissanayake/Apple-Photo-Sorter" },
-    { "id": "tripwire-yolo", "title": "Tripwire-YOLO", "description": "I built Tripwire-YOLO as an intelligent security solution to monitor my space in real time. It allows me to draw a virtual line on a live webcam feed, triggering instant alerts and snapshots when crossed. Powered by YOLOv8 and CustomTkinter, it runs on a threaded architecture for smooth performance.", "link": "https://github.com/DahamDissanayake/tripwire-YOLO" },
-    { "id": "apple-homekit-automation", "title": "Apple HomeKit Automation", "description": "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP8266, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.", "link": "https://github.com/DahamDissanayake/Apple-homekit-esp8266" }
+    {
+      "id": "visionslide",
+      "title": "Visionslide",
+      "description": "VisionSlide v2.1 is a Python-based hands-free presentation controller that uses your webcam as a gesture interface. Built with OpenCV and PyAutoGUI, it detects vertical hand movements to trigger 'Up' and 'Down' key presses, enabling smooth slide or document navigation. A CustomTkinter UI, visual feedback, and adjustable sensitivity enhance usability.",
+      "link": "https://github.com/DahamDissanayake/vision-slide"
+    },
+    {
+      "id": "imposter-game",
+      "title": "Imposter Game",
+      "description": "Built using React and Vite, this custom Imposter Game is my answer to the trend of paywalled gaming apps. I created this project to provide a completely free, feature-rich alternative where users can enjoy all modes without payment. Hosted on GitHub Pages, it ensures a seamless and accessible experience for everyone to play together.",
+      "link": "https://github.com/DahamDissanayake/Imposter-Game-But-Customized-V2"
+    },
+    {
+      "id": "dev-pulse-api",
+      "title": "Dev-Pulse API",
+      "description": "Dev-Pulse is a cloud-native BFF service that aggregates GitHub API data to generate a live Dev-Pulse Score. Built with Ballerina Swan Lake and hosted on WSO2 Choreo, it securely injects tokens at runtime, enabling real-time portfolio insights without exposing sensitive data.",
+      "link": "https://github.com/DahamDissanayake/dev-pulse-api"
+    },
+    {
+      "id": "flood-watch",
+      "title": "Flood-Watch [NullProduct]",
+      "description": "Flood-Watch is a real-time, offline-capable flood warning system designed to protect vulnerable communities in Sri Lanka. Winning runners-up at the Vertex'25 IoT competition, we built it using Edge Computing on ESP32 Magicbit and Ultrasonic Sensors to detect flash floods instantly. It ensures life-saving alerts even when internet connectivity fails.",
+      "link": "https://github.com/DahamDissanayake/NullProduct-VERTEX25"
+    },
+    {
+      "id": "keyboard-macro-writer",
+      "title": "Keyboard Macro Writer",
+      "description": "I developed this Python-based Keystroke Simulator to automate data entry with a human touch. Utilizing pynput for precise keyboard control and tkinter for an intuitive GUI, the tool lets me pre-record text and replay it with randomized delays. My goal was to create a seamless way to mimic natural typing patterns, making automated inputs indistinguishable from manual keystrokes.",
+      "link": "https://github.com/DahamDissanayake/keyboard-macro-writer"
+    },
+    {
+      "id": "apple-photo-sorter",
+      "title": "Apple Photo Sorter",
+      "description": "I developed this Python and Tkinter application because copying photos from an iPhone often results in a messy, disorganized file structure. This tool solves that by automating the backup process: it scans the chaotic source folders and neatly sorts every image into clean, year-based directories at your chosen destination, ensuring a structured archive.",
+      "link": "https://github.com/DahamDissanayake/Apple-Photo-Sorter"
+    },
+    {
+      "id": "tripwire-yolo",
+      "title": "Tripwire-YOLO",
+      "description": "I built Tripwire-YOLO as an intelligent security solution to monitor my space in real time. It allows me to draw a virtual line on a live webcam feed, triggering instant alerts and snapshots when crossed. Powered by YOLOv8 and CustomTkinter, it runs on a threaded architecture for smooth performance.",
+      "link": "https://github.com/DahamDissanayake/tripwire-YOLO"
+    },
+    {
+      "id": "apple-homekit-automation",
+      "title": "Apple HomeKit Automation",
+      "description": "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP8266, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
+      "link": "https://github.com/DahamDissanayake/Apple-homekit-esp8266"
+    },
+    {
+      "id": "f49c2c53-bd37-46e4-b3bb-120b985e19c9",
+      "title": "IIT-GPU-Manager",
+      "description": "I built a secure terminal gateway and TUI for SLURM GPU job submission, ensuring users remain inside a restricted interface without direct shell access. Developed with Python, Rich, and Questionary, the system manages path-jailed file transfers, environment setups, and active job monitoring. It also includes an audit logging daemon that records every transaction to SQLite and JSONL to maintain cluster security.",
+      "link": "https://github.com/DahamDissanayake/IIT-Secure-SLURM-Job-Gateway"
+    }
   ]
 }
