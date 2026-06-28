@@ -22,7 +22,7 @@ const content = {
         icon: FiUser,
         text: (
             <>
-                <span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>I’m a Computer Science undergrad who has been hooked on tech since childhood. I love building clean, well-planned solutions for real-world problems. I always prioritize clear code, proper formatting, and purposeful, modern execution.<span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>
+                <span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>I’m a Computer Science undergrad who got tired of just studying tech and started building with it. Right now I’m working on a startup while doing research in computer vision and robotics. I like the kind of problems that sit at the edge of hardware and software, where things get genuinely interesting.<span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>
             </>
         )
     },
