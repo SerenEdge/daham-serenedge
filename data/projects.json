@@ -59,6 +59,41 @@
       ]
     },
     {
+      "id": "imgharvest",
+      "title": "AutoHub",
+      "subtitle": "Will OSS soon!!",
+      "description": "Self-hosted personal automation OS for Raspberry Pi 5",
+      "longDescription": "I built AutoHub as a self-hosted personal automation OS for my Raspberry Pi 5. It bundles a web terminal, plugin runner, Docker manager, n8n workflow integration, file browser, and Telegram notifications into a single Docker Compose stack. I wanted a simple way to manage my home automation, workflows, and development projects from a single interface. Planning to release this as OSS but since I'm also fully using this I have reduce the security vulnerabilities.",
+      "tech": [
+        "Next.js",
+        "NestJS",
+        "Node.js",
+        "Docker",
+        "N8n",
+        "PostgreSQL",
+        "Redis",
+        "Cloudflare Tunnel",
+        "WebSocket",
+        "Express",
+        "Tailwind CSS",
+        "Passport",
+        "JWT",
+        "Telegram Bot API",
+        "TanStack Query",
+        "Zustand",
+        "date-fns",
+        "Linux"
+      ],
+      "link": "https://github.com/DahamDissanayake/auto-hub",
+      "images": [
+        "/images/projects/autohub-5.webp",
+        "/images/projects/autohub-4.webp",
+        "/images/projects/autohub-3.webp",
+        "/images/projects/autohub-2.webp",
+        "/images/projects/autohub-1.webp"
+      ]
+    },
+    {
       "id": "vibecheck",
       "title": "VibeCheck [Chrome Extension]",
       "subtitle": "Available on the Chrome Web Store.",
@@ -74,27 +109,6 @@
       "images": [
         "/images/projects/vibecheck1.webp",
         "/images/projects/vibecheck2.webp"
-      ]
-    },
-    {
-      "id": "imgharvest",
-      "title": "ImgHarvest",
-      "subtitle": "Powered by WSO2 Ballerina & Choreo",
-      "description": "Image dataset collection tool for ML models",
-      "longDescription": "I built Image Harvest to streamline the collection of high-quality image datasets for training image recognition ML models. The backend is powered by WSO2's Ballerina language, providing a robust and scalable integration layer for image fetching. Paired with a modern React frontend, the tool allows users to effortlessly search and download image batches. The complete application will soon be deployed and hosted on WSO2 Choreo for enterprise-grade reliability.",
-      "tech": [
-        "Ballerina",
-        "Next.js",
-        "TypeScript",
-        "Docker",
-        "WSO2 Choreo",
-        "SerpApi",
-        "GrokApi"
-      ],
-      "link": "https://github.com/DahamDissanayake/img-harvest-ballerina",
-      "images": [
-        "/images/projects/imgharvest1.webp",
-        "/images/projects/imgharvest2.webp"
       ]
     }
   ],
@@ -164,6 +178,12 @@
       "title": "Local-QWEN2.5-runner",
       "description": "I built a Python-based utility script to automate Java code completion using a local Large Language Model. It leverages Ollama to process Java source code and complete tasks while following strict formatting rules. The script offers both a GUI and CLI interface for easy use.",
       "link": "https://github.com/DahamDissanayake/Local-QWEN2.5-runner"
+    },
+    {
+      "id": "c32d5acb-1607-4762-8d2b-ff5ae4591969",
+      "title": "ImgHarvest",
+      "description": "I built ImgHarvest to provide a seamless AI-powered image dataset building experience. It works by having an AI agent refine user search queries, fetching images via a SerpApi integration, and using parallel client-side processing to package the selected images into a ZIP file. The project leverages a modern web and microservices stack to deliver this experience.",
+      "link": "https://github.com/DahamDissanayake/img-harvest-ballerina"
     }
   ]
 }
