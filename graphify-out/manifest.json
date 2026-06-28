@@ -1,0 +1,312 @@
+{
+  "D:\\Github\\daham-serenedge\\.vscode\\settings.json": {
+    "mtime": 1770416224.4714932,
+    "ast_hash": "e762bd0dc15efdbdcf153c82acd63b7e",
+    "semantic_hash": "e762bd0dc15efdbdcf153c82acd63b7e"
+  },
+  "D:\\Github\\daham-serenedge\\app\\actions.ts": {
+    "mtime": 1770650638.972502,
+    "ast_hash": "2f9461bb659e36f55d3800a15c48a616",
+    "semantic_hash": "2f9461bb659e36f55d3800a15c48a616"
+  },
+  "D:\\Github\\daham-serenedge\\app\\layout.tsx": {
+    "mtime": 1782356789.006783,
+    "ast_hash": "9cf61b2642220d8b607880f2bd0ed108",
+    "semantic_hash": "9cf61b2642220d8b607880f2bd0ed108"
+  },
+  "D:\\Github\\daham-serenedge\\app\\not-found.tsx": {
+    "mtime": 1782356789.0247836,
+    "ast_hash": "5aeee44085437422f4ebd92ba73be666",
+    "semantic_hash": "5aeee44085437422f4ebd92ba73be666"
+  },
+  "D:\\Github\\daham-serenedge\\app\\page.tsx": {
+    "mtime": 1782356789.045745,
+    "ast_hash": "e061e42be7786af5e29178aca863943c",
+    "semantic_hash": "e061e42be7786af5e29178aca863943c"
+  },
+  "D:\\Github\\daham-serenedge\\app\\robots.ts": {
+    "mtime": 1782356789.0637457,
+    "ast_hash": "aca7cda2e609601b48a5558a940a4f72",
+    "semantic_hash": "aca7cda2e609601b48a5558a940a4f72"
+  },
+  "D:\\Github\\daham-serenedge\\app\\sitemap.ts": {
+    "mtime": 1782356789.081755,
+    "ast_hash": "32e361937d3220e1b659406292c4004a",
+    "semantic_hash": "32e361937d3220e1b659406292c4004a"
+  },
+  "D:\\Github\\daham-serenedge\\components\\DevPulseCard.tsx": {
+    "mtime": 1771798171.7685728,
+    "ast_hash": "a9381809c321bbeb9714664e4d63bea6",
+    "semantic_hash": "a9381809c321bbeb9714664e4d63bea6"
+  },
+  "D:\\Github\\daham-serenedge\\components\\Footer.tsx": {
+    "mtime": 1782323372.5849667,
+    "ast_hash": "2a931fa16af3475db48734407cb0699a",
+    "semantic_hash": "2a931fa16af3475db48734407cb0699a"
+  },
+  "D:\\Github\\daham-serenedge\\components\\Hero.tsx": {
+    "mtime": 1782356789.1002803,
+    "ast_hash": "8ae956f103d1bbf9d3a55a4e262d2255",
+    "semantic_hash": "8ae956f103d1bbf9d3a55a4e262d2255"
+  },
+  "D:\\Github\\daham-serenedge\\components\\JsonLd.tsx": {
+    "mtime": 1782356789.1192822,
+    "ast_hash": "de3475023ab92027ea08934963fe8b21",
+    "semantic_hash": "de3475023ab92027ea08934963fe8b21"
+  },
+  "D:\\Github\\daham-serenedge\\components\\MiniProjectsScrollDemo.tsx": {
+    "mtime": 1770544436.5260842,
+    "ast_hash": "31702998b5dc51eb7d3c25dd81bbce96",
+    "semantic_hash": "31702998b5dc51eb7d3c25dd81bbce96"
+  },
+  "D:\\Github\\daham-serenedge\\components\\Navbar.tsx": {
+    "mtime": 1782356789.1382833,
+    "ast_hash": "cb5a83abf7b42f5fdbcb6335be60b98c",
+    "semantic_hash": "cb5a83abf7b42f5fdbcb6335be60b98c"
+  },
+  "D:\\Github\\daham-serenedge\\components\\Portfolio.tsx": {
+    "mtime": 1774288951.3001003,
+    "ast_hash": "a891373ef2ac05639168f8d7cd35653e",
+    "semantic_hash": "a891373ef2ac05639168f8d7cd35653e"
+  },
+  "D:\\Github\\daham-serenedge\\components\\RealMe.tsx": {
+    "mtime": 1770669467.1905198,
+    "ast_hash": "417b1cb646e95552509419fefccac119",
+    "semantic_hash": "417b1cb646e95552509419fefccac119"
+  },
+  "D:\\Github\\daham-serenedge\\components\\Scrolltemp.tsx": {
+    "mtime": 1770543783.3807802,
+    "ast_hash": "31702998b5dc51eb7d3c25dd81bbce96",
+    "semantic_hash": "31702998b5dc51eb7d3c25dd81bbce96"
+  },
+  "D:\\Github\\daham-serenedge\\components\\SmoothScroll.tsx": {
+    "mtime": 1770582995.308277,
+    "ast_hash": "0c678d81fedb25d56318730889ea3294",
+    "semantic_hash": "0c678d81fedb25d56318730889ea3294"
+  },
+  "D:\\Github\\daham-serenedge\\components\\SplashScreen.tsx": {
+    "mtime": 1773356501.673725,
+    "ast_hash": "2602b3a9985884eb318cf8322a09a3a6",
+    "semantic_hash": "2602b3a9985884eb318cf8322a09a3a6"
+  },
+  "D:\\Github\\daham-serenedge\\eslint.config.mjs": {
+    "mtime": 1770191894.647166,
+    "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
+    "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "D:\\Github\\daham-serenedge\\hooks\\useScale.ts": {
+    "mtime": 1770531626.304615,
+    "ast_hash": "ce5c20ac0effdfe6c1992bafffc9e85a",
+    "semantic_hash": "ce5c20ac0effdfe6c1992bafffc9e85a"
+  },
+  "D:\\Github\\daham-serenedge\\next.config.ts": {
+    "mtime": 1770457212.8156998,
+    "ast_hash": "6562a29d283debacea68a18b31d937b0",
+    "semantic_hash": "6562a29d283debacea68a18b31d937b0"
+  },
+  "D:\\Github\\daham-serenedge\\package.json": {
+    "mtime": 1773356906.9234295,
+    "ast_hash": "c3e461d12e77adf15d68aa671603e373",
+    "semantic_hash": "c3e461d12e77adf15d68aa671603e373"
+  },
+  "D:\\Github\\daham-serenedge\\postcss.config.mjs": {
+    "mtime": 1770191894.7181284,
+    "ast_hash": "239f3ebf717465dc636818a1a619398d",
+    "semantic_hash": "239f3ebf717465dc636818a1a619398d"
+  },
+  "D:\\Github\\daham-serenedge\\public\\.well-known\\appspecific\\com.chrome.devtools.json": {
+    "mtime": 1770457046.1441228,
+    "ast_hash": "c443b04d0fc26b0a5a4573a78e0082a1",
+    "semantic_hash": "c443b04d0fc26b0a5a4573a78e0082a1"
+  },
+  "D:\\Github\\daham-serenedge\\public\\manifest.json": {
+    "mtime": 1771313653.710366,
+    "ast_hash": "dd7dffd3c42eaa52f936fae163883a8e",
+    "semantic_hash": "dd7dffd3c42eaa52f936fae163883a8e"
+  },
+  "D:\\Github\\daham-serenedge\\tsconfig.json": {
+    "mtime": 1770462306.8346188,
+    "ast_hash": "e134964b69345cef43f81292fafe10c1",
+    "semantic_hash": "e134964b69345cef43f81292fafe10c1"
+  },
+  "D:\\Github\\daham-serenedge\\README.md": {
+    "mtime": 1770191894.593622,
+    "ast_hash": "f15aaa42d5d299d091b1171097ea56ad",
+    "semantic_hash": "f15aaa42d5d299d091b1171097ea56ad"
+  },
+  "D:\\Github\\daham-serenedge\\app\\google5ecffaaeec0becce.html": {
+    "mtime": 1771183352.0701706,
+    "ast_hash": "bfbc5bb3128664abbe13be0b2e088fd8",
+    "semantic_hash": "bfbc5bb3128664abbe13be0b2e088fd8"
+  },
+  "D:\\Github\\daham-serenedge\\dev-logs\\SEOissues.md": {
+    "mtime": 1782356789.1592822,
+    "ast_hash": "c9c7679eec40e80c52195796e63d64cc",
+    "semantic_hash": "c9c7679eec40e80c52195796e63d64cc"
+  },
+  "D:\\Github\\daham-serenedge\\dev-logs\\SEOproper.md": {
+    "mtime": 1782356789.1792834,
+    "ast_hash": "8664b371496add987d2d98753e9f16e3",
+    "semantic_hash": "8664b371496add987d2d98753e9f16e3"
+  },
+  "D:\\Github\\daham-serenedge\\public\\docs\\DahamDissanayake-CV.pdf": {
+    "mtime": 1774251731.6580145,
+    "ast_hash": "d68c328056e2ed2a2537c14c877d726d",
+    "semantic_hash": "d68c328056e2ed2a2537c14c877d726d"
+  },
+  "D:\\Github\\daham-serenedge\\public\\file.svg": {
+    "mtime": 1770191894.736191,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "D:\\Github\\daham-serenedge\\public\\globe.svg": {
+    "mtime": 1770191894.761716,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\DAMAPortrait-png.png": {
+    "mtime": 1771156154.386379,
+    "ast_hash": "e8c1ee17f5f0b62ae958b461a639c67b",
+    "semantic_hash": "e8c1ee17f5f0b62ae958b461a639c67b"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\DAMAPortrait-webp.webp": {
+    "mtime": 1771155641.4673247,
+    "ast_hash": "f517e26e93482de8c6efd3f80cfd3600",
+    "semantic_hash": "f517e26e93482de8c6efd3f80cfd3600"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\DAMAPortraitfinal.webp": {
+    "mtime": 1771155579.5023575,
+    "ast_hash": "6484ff57f64900b841b46f18219f408d",
+    "semantic_hash": "6484ff57f64900b841b46f18219f408d"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\DAMAPortraitfinal2.webp": {
+    "mtime": 1771156415.4512467,
+    "ast_hash": "0bec0d3250d96907154bb6ad3793fc26",
+    "semantic_hash": "0bec0d3250d96907154bb6ad3793fc26"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\Dahamimagefornow-dark.png": {
+    "mtime": 1770455176.9671829,
+    "ast_hash": "998551998e0ea88c4d4ffcdb62e6ece5",
+    "semantic_hash": "998551998e0ea88c4d4ffcdb62e6ece5"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\Dahamimagefornow.png": {
+    "mtime": 1770443768.5861504,
+    "ast_hash": "c002722a6d05dcd0427e47e9295f0b3f",
+    "semantic_hash": "c002722a6d05dcd0427e47e9295f0b3f"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\apple-touch-icon.png": {
+    "mtime": 1771181822.5873067,
+    "ast_hash": "5f2737bd961cbb5afa6f0dce68ceb5b6",
+    "semantic_hash": "5f2737bd961cbb5afa6f0dce68ceb5b6"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\daham-sign-dark.png": {
+    "mtime": 1770448775.8055816,
+    "ast_hash": "4555115d42f123c827e4d751d9d54b26",
+    "semantic_hash": "4555115d42f123c827e4d751d9d54b26"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\daham-sign-white.png": {
+    "mtime": 1674850350.0,
+    "ast_hash": "e98ed7c24c3c6ace02821ac02c693bd2",
+    "semantic_hash": "e98ed7c24c3c6ace02821ac02c693bd2"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\logo.png": {
+    "mtime": 1771313344.9892395,
+    "ast_hash": "7cbaaba52af8dcf9bdb5e99b656228ff",
+    "semantic_hash": "7cbaaba52af8dcf9bdb5e99b656228ff"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\og-image.png": {
+    "mtime": 1771182230.1455257,
+    "ast_hash": "3c69408df3dc1a87588dd848ed5c4974",
+    "semantic_hash": "3c69408df3dc1a87588dd848ed5c4974"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\devpulse1.webp": {
+    "mtime": 1771797128.6204784,
+    "ast_hash": "1304fa4d26d880f8dbc61422cf58ce8a",
+    "semantic_hash": "1304fa4d26d880f8dbc61422cf58ce8a"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\devpulse2.webp": {
+    "mtime": 1771797136.7519927,
+    "ast_hash": "dacc793c8a790dad36ee8b887e640d9f",
+    "semantic_hash": "dacc793c8a790dad36ee8b887e640d9f"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\imgharvest1.webp": {
+    "mtime": 1773351969.601146,
+    "ast_hash": "290e8889f5e382f4bf98a2bf27235a8d",
+    "semantic_hash": "290e8889f5e382f4bf98a2bf27235a8d"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\imgharvest2.webp": {
+    "mtime": 1773351962.5420668,
+    "ast_hash": "53757512b42b9e43fd659b13679b9f05",
+    "semantic_hash": "53757512b42b9e43fd659b13679b9f05"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\reimage.webp": {
+    "mtime": 1771178700.1761389,
+    "ast_hash": "782d4dc75b67992513841e5832aa82f9",
+    "semantic_hash": "782d4dc75b67992513841e5832aa82f9"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\sotercare-finaldevice.webp": {
+    "mtime": 1774288883.8625996,
+    "ast_hash": "162ac74f19c1a76b74ec371b6d661460",
+    "semantic_hash": "162ac74f19c1a76b74ec371b6d661460"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\sotercare-gitorg.webp": {
+    "mtime": 1771178704.142645,
+    "ast_hash": "fb14573ddc48ba4281e3949421d98db1",
+    "semantic_hash": "fb14573ddc48ba4281e3949421d98db1"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\sotercare-mobileapp.webp": {
+    "mtime": 1771178706.5605457,
+    "ast_hash": "cbd44b1c66c5216acc87c66f9f7cce0a",
+    "semantic_hash": "cbd44b1c66c5216acc87c66f9f7cce0a"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\sotercare-prototype1v.webp": {
+    "mtime": 1771179060.3046327,
+    "ast_hash": "fffd3aa7729353bfc6a6873061a43e75",
+    "semantic_hash": "fffd3aa7729353bfc6a6873061a43e75"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\sotercare-studio.webp": {
+    "mtime": 1771178714.8549728,
+    "ast_hash": "2faa4db30c1a0121aba710d91aabeb04",
+    "semantic_hash": "2faa4db30c1a0121aba710d91aabeb04"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\sotercare-website.webp": {
+    "mtime": 1771178717.6354365,
+    "ast_hash": "f270d742cda7f60ad4e8839fcb45f4af",
+    "semantic_hash": "f270d742cda7f60ad4e8839fcb45f4af"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\sotercareteam.webp": {
+    "mtime": 1773354018.9560454,
+    "ast_hash": "427913e62cef95e7332492e98e02c550",
+    "semantic_hash": "427913e62cef95e7332492e98e02c550"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\vibecheck1.webp": {
+    "mtime": 1771880910.7403083,
+    "ast_hash": "7e1c905d400842339c218cd09a89d96f",
+    "semantic_hash": "7e1c905d400842339c218cd09a89d96f"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\vibecheck2.webp": {
+    "mtime": 1771178720.3641167,
+    "ast_hash": "89c9f53b4ad260e117f11e83516c8388",
+    "semantic_hash": "89c9f53b4ad260e117f11e83516c8388"
+  },
+  "D:\\Github\\daham-serenedge\\public\\images\\projects\\visionslide.webp": {
+    "mtime": 1771178722.870128,
+    "ast_hash": "1b02562f55214aadeedd3f3e8ed85c4f",
+    "semantic_hash": "1b02562f55214aadeedd3f3e8ed85c4f"
+  },
+  "D:\\Github\\daham-serenedge\\public\\next.svg": {
+    "mtime": 1770191894.7926996,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "D:\\Github\\daham-serenedge\\public\\vercel.svg": {
+    "mtime": 1770191894.819723,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "D:\\Github\\daham-serenedge\\public\\window.svg": {
+    "mtime": 1770191894.8458579,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}
