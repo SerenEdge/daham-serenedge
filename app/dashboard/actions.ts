@@ -4,34 +4,33 @@ import { mkdir, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { readProjects, writeProjects } from "@/lib/projects-store";
 import { safeImageFilename } from "@/lib/upload";
-import { fetchReadme } from "@/lib/github";
+import { fetchReadme, parseRepoUrl } from "@/lib/github";
 import {
   extractProjectFromReadme,
   type AutofillKind,
   type AutofillResult,
 } from "@/lib/gemini";
-import { parseRepoUrl } from "@/lib/github";
 import type { ProjectsData } from "@/types/projects";
 
-export function assertDev(): void {
+export async function assertDev(): Promise<void> {
   if (process.env.NODE_ENV === "production") {
-    throw new Error("Dashboard is disabled in production.");
+    throw new Error("Dashboard is disabled in production");
   }
 }
 
 export async function getProjectsAction(): Promise<ProjectsData> {
-  assertDev();
+  await assertDev();
   return readProjects();
 }
 
 export async function saveProjectsAction(data: ProjectsData): Promise<{ ok: true }> {
-  assertDev();
+  await assertDev();
   await writeProjects(data);
   return { ok: true };
 }
 
 export async function uploadImageAction(formData: FormData): Promise<{ path: string }> {
-  assertDev();
+  await assertDev();
   const file = formData.get("file");
   if (!(file instanceof File)) throw new Error("No file provided.");
 
@@ -49,7 +48,7 @@ export async function autofillFromRepoAction(
   repoUrl: string,
   kind: AutofillKind
 ): Promise<AutofillResult & { link: string }> {
-  assertDev();
+  await assertDev();
   const { owner, repo } = parseRepoUrl(repoUrl);
   const readme = await fetchReadme(repoUrl);
   const result = await extractProjectFromReadme(readme, kind);
