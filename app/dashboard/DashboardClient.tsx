@@ -190,7 +190,7 @@ function summarizeForOther(longDescription: string): string {
   if (!longDescription.trim()) return "";
   const sentences = longDescription.match(/[^.!?]+[.!?]+/g) ?? [];
   if (sentences.length === 0) return longDescription.slice(0, 220).trim();
-  let result = sentences[0].trim();
+  let result = sentences[0]!.trim();
   if (result.length < 120 && sentences[1]) result += " " + sentences[1].trim();
   if (result.length > 220) result = result.slice(0, 217) + "...";
   return result;
