@@ -114,10 +114,34 @@
   ],
   "otherProjects": [
     {
+      "id": "c32d5acb-1607-4762-8d2b-ff5ae4591969",
+      "title": "ImgHarvest",
+      "description": "I built ImgHarvest to provide a seamless AI-powered image dataset building experience. It works by having an AI agent refine user search queries, fetching images via a SerpApi integration, and using parallel client-side processing to package the selected images into a ZIP file. The project leverages a modern web and microservices stack to deliver this experience.",
+      "link": "https://github.com/DahamDissanayake/img-harvest-ballerina"
+    },
+    {
+      "id": "6649a27b-0d1e-48be-9b51-c0dbc1943fd7",
+      "title": "Local-QWEN2.5-runner",
+      "description": "I built a Python-based utility script to automate Java code completion using a local Large Language Model. It leverages Ollama to process Java source code and complete tasks while following strict formatting rules. The script offers both a GUI and CLI interface for easy use.",
+      "link": "https://github.com/DahamDissanayake/Local-QWEN2.5-runner"
+    },
+    {
       "id": "visionslide",
       "title": "Visionslide",
       "description": "VisionSlide v2.1 is a Python-based hands-free presentation controller that uses your webcam as a gesture interface. Built with OpenCV and PyAutoGUI, it detects vertical hand movements to trigger 'Up' and 'Down' key presses, enabling smooth slide or document navigation. A CustomTkinter UI, visual feedback, and adjustable sensitivity enhance usability.",
       "link": "https://github.com/DahamDissanayake/vision-slide"
+    },
+    {
+      "id": "a282e064-2b20-43ba-a950-2eb4dba9964a",
+      "title": "vid2oled",
+      "description": "I built a tool that converts video files into C++ code arrays for playback on an OLED display connected to an Arduino or ESP32. I take any video file and convert it into a frames.h header file containing raw PROGMEM byte arrays, plus a ready-to-use sketch.ino that plays the animation on your OLED display. I require Python 3.10+ and use pip to install dependencies.",
+      "link": "https://github.com/DahamDissanayake/vid-to-oled-esp32"
+    },
+    {
+      "id": "c69dbd5d-2625-4b54-9843-aa5ffbc39182",
+      "title": "ReImage Agent",
+      "description": "I built a high-quality cartoon image generator using AI-powered image generation. It transforms portraits into cartoons with a white background and studio lighting. The app uses the Google Gemini API and supports drag and drop upload, automatic retry, and secure API key management.",
+      "link": "https://github.com/DahamDissanayake/ReImage-Agent"
     },
     {
       "id": "imposter-game",
@@ -160,30 +184,6 @@
       "title": "Apple HomeKit Automation",
       "description": "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP8266, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
       "link": "https://github.com/DahamDissanayake/Apple-homekit-esp8266"
-    },
-    {
-      "id": "c69dbd5d-2625-4b54-9843-aa5ffbc39182",
-      "title": "ReImage Agent",
-      "description": "I built a high-quality cartoon image generator using AI-powered image generation. It transforms portraits into cartoons with a white background and studio lighting. The app uses the Google Gemini API and supports drag and drop upload, automatic retry, and secure API key management.",
-      "link": "https://github.com/DahamDissanayake/ReImage-Agent"
-    },
-    {
-      "id": "a282e064-2b20-43ba-a950-2eb4dba9964a",
-      "title": "vid2oled",
-      "description": "I built a tool that converts video files into C++ code arrays for playback on an OLED display connected to an Arduino or ESP32. I take any video file and convert it into a frames.h header file containing raw PROGMEM byte arrays, plus a ready-to-use sketch.ino that plays the animation on your OLED display. I require Python 3.10+ and use pip to install dependencies.",
-      "link": "https://github.com/DahamDissanayake/vid-to-oled-esp32"
-    },
-    {
-      "id": "6649a27b-0d1e-48be-9b51-c0dbc1943fd7",
-      "title": "Local-QWEN2.5-runner",
-      "description": "I built a Python-based utility script to automate Java code completion using a local Large Language Model. It leverages Ollama to process Java source code and complete tasks while following strict formatting rules. The script offers both a GUI and CLI interface for easy use.",
-      "link": "https://github.com/DahamDissanayake/Local-QWEN2.5-runner"
-    },
-    {
-      "id": "c32d5acb-1607-4762-8d2b-ff5ae4591969",
-      "title": "ImgHarvest",
-      "description": "I built ImgHarvest to provide a seamless AI-powered image dataset building experience. It works by having an AI agent refine user search queries, fetching images via a SerpApi integration, and using parallel client-side processing to package the selected images into a ZIP file. The project leverages a modern web and microservices stack to deliver this experience.",
-      "link": "https://github.com/DahamDissanayake/img-harvest-ballerina"
     }
   ]
 }
