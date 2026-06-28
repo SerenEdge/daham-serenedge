@@ -19,9 +19,6 @@ export default function Portfolio() {
     const projectsContainerRef = useRef<HTMLDivElement>(null);
     const [hoveredProject, setHoveredProject] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
-    const [isTablet, setIsTablet] = useState(false);
-    const [isDesktop, setIsDesktop] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(0);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const miniProjectsRef = useRef<HTMLDivElement>(null);
     const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -66,11 +63,7 @@ export default function Portfolio() {
     // Responsive breakpoint detection
     useLayoutEffect(() => {
         const handleResize = () => {
-            const width = window.innerWidth;
-            setWindowWidth(width);
-            setIsMobile(width < 768);
-            setIsTablet(width >= 768 && width < 1280);
-            setIsDesktop(width >= 1280);
+            setIsMobile(window.innerWidth < 768);
         };
 
         handleResize(); // Initial check

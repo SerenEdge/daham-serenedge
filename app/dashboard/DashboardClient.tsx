@@ -208,7 +208,32 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
     });
   }
 
+  function findValidationError(d: ProjectsData): string | null {
+    for (let i = 0; i < d.portfolio.length; i++) {
+      const p = d.portfolio[i];
+      const label = p.title.trim() ? `"${p.title.trim()}"` : `Portfolio slot ${i + 1}`;
+      if (!p.title.trim()) return `Cannot save: ${label} is missing a title.`;
+      if (!p.description.trim()) return `Cannot save: portfolio ${label} is missing a description.`;
+      if (!p.longDescription.trim()) return `Cannot save: portfolio ${label} is missing a long description.`;
+      if (!p.link.trim()) return `Cannot save: portfolio ${label} is missing a link.`;
+      if (!p.images || p.images.length < 1) return `Cannot save: portfolio ${label} needs at least one image.`;
+    }
+    for (let i = 0; i < d.otherProjects.length; i++) {
+      const p = d.otherProjects[i];
+      const label = p.title.trim() ? `"${p.title.trim()}"` : `other project ${i + 1}`;
+      if (!p.title.trim()) return `Cannot save: other project ${i + 1} is missing a title.`;
+      if (!p.description.trim()) return `Cannot save: other project ${label} is missing a description.`;
+      if (!p.link.trim()) return `Cannot save: other project ${label} is missing a link.`;
+    }
+    return null;
+  }
+
   async function handleSave() {
+    const validationError = findValidationError(data);
+    if (validationError) {
+      setStatus(validationError);
+      return;
+    }
     setSaving(true);
     setStatus(null);
     try {
@@ -314,8 +339,10 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
                     {t}
                     <button
                       onClick={() =>
-                        updatePortfolio(i, {
-                          tech: proj.tech.filter((x) => x !== t),
+                        setData((d) => {
+                          const portfolio = d.portfolio.slice();
+                          portfolio[i] = { ...portfolio[i], tech: portfolio[i].tech.filter((x) => x !== t) };
+                          return { ...d, portfolio };
                         })
                       }
                       className="text-gray-500 hover:text-red-600 text-xs leading-none"
@@ -333,8 +360,14 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     const val = (e.currentTarget.value ?? "").trim();
-                    if (val && !proj.tech.includes(val)) {
-                      updatePortfolio(i, { tech: [...proj.tech, val] });
+                    if (val) {
+                      setData((d) => {
+                        const portfolio = d.portfolio.slice();
+                        if (!portfolio[i].tech.includes(val)) {
+                          portfolio[i] = { ...portfolio[i], tech: [...portfolio[i].tech, val] };
+                        }
+                        return { ...d, portfolio };
+                      });
                     }
                     e.currentTarget.value = "";
                   }

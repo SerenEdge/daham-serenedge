@@ -11,7 +11,7 @@ export interface AutofillResult {
 
 export interface GenAILike {
   models: {
-    generateContent(args: unknown): Promise<{ text: string }>;
+    generateContent(args: unknown): Promise<{ text?: string }>;
   };
 }
 
@@ -79,6 +79,9 @@ export async function extractProjectFromReadme(
     },
   });
 
+  if (!res.text) {
+    throw new Error("Gemini returned an empty response.");
+  }
   let parsed: AutofillResult;
   try {
     parsed = JSON.parse(res.text) as AutofillResult;
