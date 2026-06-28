@@ -1,3 +1,53 @@
+# Dashboard UI Redesign Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Rewrite `app/dashboard/DashboardClient.tsx` so the dashboard matches the site's editorial design language — off-white background, dark navy text, bottom-border inputs, navy rounded-full buttons, Portfolio.tsx-style numbered section headers, and mono uppercase labels — with zero logic changes.
+
+**Architecture:** Single-file visual-only rewrite. All component logic (state, actions, validation) stays identical; only Tailwind class strings and JSX structure change. No new files, no new dependencies, no new tests needed — the existing 29 tests cover the logic and continue to pass unchanged. Visual verification is done by opening localhost:3000/dashboard.
+
+**Tech Stack:** Tailwind v4, CSS custom properties from `app/globals.css`, React 19.
+
+## Global Constraints
+
+- Page background: `bg-background` (resolves to `#f8f8f8` via `--background`)
+- Main text: `text-secondary` (resolves to `#1c1c2b` via `--secondary`)
+- Muted text: `text-tertiary` (resolves to `#7b7b7b` via `--tertiary`)
+- Dark accent / primary button bg: `bg-[#1c1c2b]`
+- Body font: Aeonik — already applied globally; use `font-sans` when you need to explicitly assert it
+- Mono font: `font-mono` (Geist Mono) for labels, tags, paths, and status messages
+- Inputs: bottom-border only — `border-0 border-b border-gray-300` on a transparent background
+- Primary button shape: `rounded-full bg-[#1c1c2b] text-white`
+- Tech chip style exactly matches `Portfolio.tsx` line 278: `px-3 py-1.5 border border-gray-200 text-secondary rounded-full text-sm`
+- Section cards: numbered with `font-mono text-tertiary` index matching Portfolio.tsx's `0{index+1}` pattern, separated by `border-t border-gray-200` — no box shadows, no heavy elevation
+- No `bg-white` box cards with all-sides borders — the site does not use that pattern
+
+---
+
+### Task 1: Complete DashboardClient.tsx UI redesign
+
+This is a single-cohesive visual rewrite. All logic is preserved verbatim; only class strings and layout structure change.
+
+**Files:**
+- Modify: `app/dashboard/DashboardClient.tsx` (full rewrite of JSX and class strings; logic unchanged)
+
+**Interfaces:**
+- Consumes: `ProjectsData`, `PortfolioProject`, `OtherProject` from `@/types/projects`; `saveProjectsAction`, `uploadImageAction`, `autofillFromRepoAction` from `./actions` — all unchanged
+- Produces: same exported `default function DashboardClient({ initial })` — same props contract
+
+- [ ] **Step 1: Confirm existing tests pass before touching anything**
+
+```bash
+npx vitest run
+```
+
+Expected: `Test Files  8 passed (8)` / `Tests  29 passed (29)`. If anything is failing, stop and fix it first.
+
+- [ ] **Step 2: Replace `app/dashboard/DashboardClient.tsx` with the redesigned version**
+
+Write the file below verbatim. Every logic path is identical to the current file — only class strings, layout wrappers, and visual structure change.
+
+```tsx
 "use client";
 
 import { useState } from "react";
@@ -306,7 +356,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
             {data.portfolio.map((proj, i) => (
               <div key={proj.id} className="border-t border-gray-200 py-12 space-y-8">
 
-                {/* Slot number + current title — mirrors Portfolio.tsx card headers */}
+                {/* Slot number + current title */}
                 <div className="flex items-baseline gap-6">
                   <span className="text-3xl md:text-4xl font-medium text-tertiary font-mono">
                     0{i + 1}
@@ -316,6 +366,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
                   </h3>
                 </div>
 
+                {/* Autofill */}
                 <AutofillRow
                   kind="portfolio"
                   onFill={(result) =>
@@ -331,6 +382,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
                   }
                 />
 
+                {/* Title + Subtitle side by side on desktop */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="flex flex-col gap-2">
                     <label className={labelCls}>Title</label>
@@ -376,7 +428,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
                   />
                 </div>
 
-                {/* Tech chips — exact match to Portfolio.tsx technology pills */}
+                {/* Tech chips — exact match to Portfolio.tsx line 278 style */}
                 <div className="flex flex-col gap-3">
                   <label className={labelCls}>Technologies</label>
                   <div className="flex flex-wrap gap-2 min-h-[2rem]">
@@ -479,6 +531,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
             {data.otherProjects.map((proj, i) => (
               <div key={proj.id} className="border-t border-gray-200 py-10 space-y-8">
 
+                {/* Number + title + controls */}
                 <div className="flex items-baseline justify-between">
                   <div className="flex items-baseline gap-4">
                     <span className="text-xl font-medium text-tertiary font-mono">
@@ -514,6 +567,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
                   </div>
                 </div>
 
+                {/* Autofill */}
                 <AutofillRow
                   kind="other"
                   onFill={(result) =>
@@ -585,3 +639,44 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
     </main>
   );
 }
+```
+
+- [ ] **Step 3: Confirm tests still pass**
+
+```bash
+npx vitest run
+```
+
+Expected: `Test Files  8 passed (8)` / `Tests  29 passed (29)` — identical to Step 1. Zero logic changed, so zero tests should change.
+
+- [ ] **Step 4: Visual verification**
+
+Open `http://localhost:3000/dashboard` (dev server must be running: `npm run dev`).
+
+Check all of the following:
+
+| Check | Expected |
+|-------|----------|
+| Page background | Off-white `#f8f8f8` — not pure white, not dark |
+| All text | Dark navy `#1c1c2b` — clearly readable |
+| Labels | Tiny, grey, uppercase, monospaced (`AUTOFILL FROM GITHUB`) |
+| Inputs | Bottom border only, no box, text turns dark on focus |
+| "Autofill" button | Dark navy pill, white text |
+| "Save all" button | Dark navy pill in bottom bar, white text |
+| "+ Add project" button | Dark navy pill, white text |
+| Tech chips | Outlined pill, dark navy text — matches site's Portfolio section |
+| Portfolio headers | `01`, `02`, `03`, `04` in grey mono next to project title |
+| Other project headers | `01`, `02` … in grey mono |
+| Section dividers | Thin `1px` light-grey horizontal lines — no boxes |
+| Save bar | Fixed bottom, frosted glass `bg-background/90 backdrop-blur-sm` |
+| Success status | Green mono text left of save button |
+| Error status | Red mono text left of save button |
+| "Upload images" | Text link with underline, not a box button |
+| Image list paths | Truncated mono text, grey, small |
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add app/dashboard/DashboardClient.tsx
+git commit -m "style: redesign dashboard UI to match site design language"
+```
