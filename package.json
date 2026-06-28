@@ -20,7 +20,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
-    "resend": "^6.9.1"
+    "resend": "^6.9.1",
+    "sharp": "^0.35.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

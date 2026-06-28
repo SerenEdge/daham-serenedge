@@ -3,9 +3,9 @@
     {
       "id": "sotercare",
       "title": "SoterCare",
-      "subtitle": "(2nd Year Project - Ongoing)",
+      "subtitle": "SDGP to Startup!",
       "description": "IoT & ML Based Elderly Care Monitoring System.",
-      "longDescription": "SoterCare is an innovative IoT and Machine Learning-driven elderly care monitoring system designed to provide proactive, dignified safety. Unlike traditional reactive SOS buttons, it predicts falls and detects urinary incontinence in real-time. By integrating wearable sensor nodes with a dedicated edge gateway, the system ensures continuous vitals monitoring and automated emergency alerts, offering a comprehensive safety net for seniors while maintaining their independence.",
+      "longDescription": "SoterCare is a wearable IoT and AI system designed to monitor elderly individuals around the clock. A discreet thigh-worn device tracks movement, temperature, and hygiene in real time, analysing gait to prevent accidents before they happen. Three AI agents work continuously in the background, sending instant alerts, generating daily health summaries, and answering medication questions. Like having a nurse by their side, 24/7.",
       "tech": [
         "IoT",
         "Raspberry Pi",

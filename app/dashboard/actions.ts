@@ -2,6 +2,7 @@
 
 import { mkdir, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import sharp from "sharp";
 import { readProjects, writeProjects } from "@/lib/projects-store";
 import { safeImageFilename } from "@/lib/upload";
 import { fetchReadme, parseRepoUrl } from "@/lib/github";
@@ -37,10 +38,14 @@ export async function uploadImageAction(formData: FormData): Promise<{ path: str
   const dir = join(process.cwd(), "public", "images", "projects");
   await mkdir(dir, { recursive: true });
   const existing = await readdir(dir).catch(() => [] as string[]);
-  const name = safeImageFilename(file.name, existing);
+
+  const dot = file.name.lastIndexOf(".");
+  const baseName = dot >= 0 ? file.name.slice(0, dot) : file.name;
+  const name = safeImageFilename(`${baseName}.webp`, existing);
 
   const bytes = Buffer.from(await file.arrayBuffer());
-  await writeFile(join(dir, name), bytes);
+  const webpBytes = await sharp(bytes).webp({ quality: 85 }).toBuffer();
+  await writeFile(join(dir, name), webpBytes);
   return { path: `/images/projects/${name}` };
 }
 
