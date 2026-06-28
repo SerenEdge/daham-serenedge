@@ -15,7 +15,7 @@ export interface GenAILike {
   };
 }
 
-const MODEL = "gemini-flash-latest";
+const MODEL = "gemini-2.0-flash";
 
 function buildPrompt(readme: string, kind: AutofillKind): string {
   const fields =
@@ -41,16 +41,16 @@ ${readme.slice(0, 12000)}
 
 function buildSchema(kind: AutofillKind) {
   const properties: Record<string, unknown> = {
-    title: { type: "string" },
-    shortDescription: { type: "string" },
+    title: { type: "STRING" },
+    shortDescription: { type: "STRING" },
   };
   const required = ["title", "shortDescription"];
   if (kind === "portfolio") {
-    properties.longDescription = { type: "string" };
-    properties.tech = { type: "array", items: { type: "string" } };
+    properties.longDescription = { type: "STRING" };
+    properties.tech = { type: "ARRAY", items: { type: "STRING" } };
     required.push("longDescription", "tech");
   }
-  return { type: "object", properties, required };
+  return { type: "OBJECT", properties, required };
 }
 
 export async function extractProjectFromReadme(

@@ -229,6 +229,39 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
       return { ...d, otherProjects: arr };
     });
   }
+  function movePortfolio(i: number, dir: -1 | 1) {
+    setData((d) => {
+      const portfolio = d.portfolio.slice();
+      const j = i + dir;
+      if (j < 0 || j >= portfolio.length) return d;
+      [portfolio[i], portfolio[j]] = [portfolio[j], portfolio[i]];
+      return { ...d, portfolio };
+    });
+  }
+  function moveToOtherProjects(i: number) {
+    setData((d) => {
+      const portfolio = d.portfolio.slice();
+      const proj = portfolio[i];
+      const asOther: OtherProject = {
+        id: crypto.randomUUID(),
+        title: proj.title,
+        description: proj.description,
+        link: proj.link,
+      };
+      // Clear the portfolio slot so the user can fill it with a new project
+      portfolio[i] = {
+        id: proj.id,
+        title: "",
+        subtitle: undefined,
+        description: "",
+        longDescription: "",
+        tech: [],
+        link: "",
+        images: [],
+      };
+      return { ...d, portfolio, otherProjects: [...d.otherProjects, asOther] };
+    });
+  }
 
   function findValidationError(d: ProjectsData): string | null {
     for (let i = 0; i < d.portfolio.length; i++) {
@@ -298,7 +331,7 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
               Portfolio
             </h2>
             <span className="text-tertiary font-mono text-sm uppercase tracking-wider hidden md:block">
-              4 fixed slots
+              Always 4 · reorderable
             </span>
           </div>
 
@@ -306,14 +339,37 @@ export default function DashboardClient({ initial }: { initial: ProjectsData }) 
             {data.portfolio.map((proj, i) => (
               <div key={proj.id} className="border-t border-gray-200 py-12 space-y-8">
 
-                {/* Slot number + current title — mirrors Portfolio.tsx card headers */}
-                <div className="flex items-baseline gap-6">
-                  <span className="text-3xl md:text-4xl font-medium text-tertiary font-mono">
-                    0{i + 1}
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-secondary">
-                    {proj.title || "Untitled"}
-                  </h3>
+                {/* Slot number + title + reorder/move controls */}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-baseline gap-6">
+                    <span className="text-3xl md:text-4xl font-medium text-tertiary font-mono">
+                      0{i + 1}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-secondary">
+                      {proj.title || "Untitled"}
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-4 pt-1 shrink-0">
+                    <button
+                      onClick={() => movePortfolio(i, -1)}
+                      disabled={i === 0}
+                      className={btnGhost}
+                      title="Move up"
+                    >↑</button>
+                    <button
+                      onClick={() => movePortfolio(i, 1)}
+                      disabled={i === data.portfolio.length - 1}
+                      className={btnGhost}
+                      title="Move down"
+                    >↓</button>
+                    <button
+                      onClick={() => moveToOtherProjects(i)}
+                      className="text-xs font-mono uppercase tracking-wider text-tertiary hover:text-secondary transition-colors"
+                      title="Move this project to Other projects and clear this slot"
+                    >
+                      → Other projects
+                    </button>
+                  </div>
                 </div>
 
                 <AutofillRow
