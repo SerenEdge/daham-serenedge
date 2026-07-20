@@ -131,6 +131,12 @@
   ],
   "otherProjects": [
     {
+      "id": "73962de6-82b2-4982-84c6-551d21a15196",
+      "title": "VibeCheck [Chrome Extension]",
+      "description": "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It's a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me ins...",
+      "link": "https://github.com/DahamDissanayake/web-design-prompt-extension"
+    },
+    {
       "id": "c32d5acb-1607-4762-8d2b-ff5ae4591969",
       "title": "ImgHarvest",
       "description": "I built ImgHarvest to provide a seamless AI-powered image dataset building experience. It works by having an AI agent refine user search queries, fetching images via a SerpApi integration, and using parallel client-side processing to package the selected images into a ZIP file. The project leverages a modern web and microservices stack to deliver this experience.",
@@ -201,12 +207,6 @@
       "title": "Apple HomeKit Automation",
       "description": "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP8266, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
       "link": "https://github.com/DahamDissanayake/Apple-homekit-esp8266"
-    },
-    {
-      "id": "73962de6-82b2-4982-84c6-551d21a15196",
-      "title": "VibeCheck [Chrome Extension]",
-      "description": "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It's a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me ins...",
-      "link": "https://github.com/DahamDissanayake/web-design-prompt-extension"
     }
   ]
 }
