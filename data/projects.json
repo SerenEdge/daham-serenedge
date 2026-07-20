@@ -34,6 +34,38 @@
       ]
     },
     {
+      "id": "vibecheck",
+      "title": "MILO Robot",
+      "subtitle": "On Going!",
+      "description": "A free-roaming quadruped robot.",
+      "longDescription": "I built MILO, a free-roaming quadruped robot that walks with a neural net, remembers you, and borrows brains. It keeps Sesame's 3D-printed frame, 8× MG90 servo layout, and expressive OLED face, and replaces everything else: the ESP32 gives way to a Raspberry Pi Zero 2W with a camera, stereo microphones, a speaker, and an IMU. MILO walks with a reinforcement-learning-trained neural network, stores everyone it meets in an on-robot knowledge graph, and gets its intelligence (LLM, speech, vision) from any GPU machine on your LAN running the Milo Brain desktop app.",
+      "tech": [
+        "Python",
+        "Raspberry Pi Zero 2W",
+        "Neural Network",
+        "Reinforcement Learning",
+        "SQLite",
+        "WebSocket",
+        "mDNS",
+        "Apache 2.0",
+        "I2C",
+        "I2S",
+        "Ollama",
+        "Piper TTS",
+        "Textual TUI",
+        "Python 3.11",
+        "WebSocket protocol",
+        "Vision",
+        "Knowledge Graphs"
+      ],
+      "link": "https://github.com/DahamDissanayake/MILO-Robot",
+      "images": [
+        "/images/projects/img-6319-2.webp",
+        "/images/projects/img-6273-1.webp",
+        "/images/projects/img-6241-1.webp"
+      ]
+    },
+    {
       "id": "reimage",
       "title": "IIT-GPU-Manager",
       "subtitle": "Implemented & Running 24/7",
@@ -94,24 +126,6 @@
         "/images/projects/autohub-3.webp",
         "/images/projects/autohub-2.webp",
         "/images/projects/autohub-1.webp"
-      ]
-    },
-    {
-      "id": "vibecheck",
-      "title": "VibeCheck [Chrome Extension]",
-      "subtitle": "Available on the Chrome Web Store.",
-      "description": "Visual web layout debugging assistant",
-      "longDescription": "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It's a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me inspect pages, overlay precision grids, and click to mark 'friction points.' The tool automatically synthesizes this visual data into structured prompts for AI assistants, drastically streamlining the process of turning design feedback into code.",
-      "tech": [
-        "JavaScript",
-        "HTML5",
-        "CSS3",
-        "Manifest V3"
-      ],
-      "link": "https://github.com/DahamDissanayake/web-design-prompt-extension",
-      "images": [
-        "/images/projects/vibecheck1.webp",
-        "/images/projects/vibecheck2.webp"
       ]
     }
   ],
@@ -187,6 +201,12 @@
       "title": "Apple HomeKit Automation",
       "description": "This is a native HomeKit-integrated IoT switch that enables direct voice control over high-voltage home electronics. By implementing the Apple HomeKit Accessory Protocol (HAP) on an ESP8266, the project allows for seamless pairing with the Apple Home app via QR code. Users can trigger a physical relay to toggle appliances—such as lamps or fans—using Siri commands or automated scenes, all while maintaining local, bridge-free communication for low latency and enhanced privacy.",
       "link": "https://github.com/DahamDissanayake/Apple-homekit-esp8266"
+    },
+    {
+      "id": "73962de6-82b2-4982-84c6-551d21a15196",
+      "title": "VibeCheck [Chrome Extension]",
+      "description": "I built VibeCheck to bridge the gap between spotting visual layout bugs and fixing them. It's a Chrome Extension available on the chrome web store, built with JavaScript, HTML5, and CSS3 (Manifest V3) that lets me ins...",
+      "link": "https://github.com/DahamDissanayake/web-design-prompt-extension"
     }
   ]
 }
