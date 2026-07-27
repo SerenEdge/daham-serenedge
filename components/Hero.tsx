@@ -65,6 +65,9 @@ export default function Hero() {
             "IoT Enthusiast",
             "ML Practitioner",
             "Web Developer",
+            "Researcher",
+            "Robotics",
+            "Founder",
             "Freelancer",
             "Photographer",
             "DX Toolmaker"
@@ -158,7 +161,7 @@ export default function Hero() {
                     <div className="flex-1 flex flex-col justify-center">
                         <div>
                             <div className="text-[min(25vw,300px)] md:text-[min(14vw,200px)] leading-[0.8] tracking-tighter text-primary font-regular origin-left whitespace-nowrap" aria-hidden="true">
-                                Hello
+                                YES!
                             </div>
                         </div>
                         <div className="overflow-hidden mt-2">
