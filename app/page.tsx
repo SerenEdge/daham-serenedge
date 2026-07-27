@@ -5,8 +5,8 @@ import Portfolio from "@/components/Portfolio";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Daham Dissanayake | Full Stack Developer & CS Undergraduate",
-  description: "Portfolio of Daham Dissanayake — Computer Science Undergraduate at IIT Sri Lanka, Full Stack Developer, and IoT Enthusiast. Explore projects in web development, machine learning, and embedded systems.",
+  title: "Daham Dissanayake | Full Stack Developer & Edge AI Researcher",
+  description: "Portfolio of Daham Dissanayake — Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning. Explore projects in web development, edge AI, and embedded systems.",
 };
 
 export default function Home() {

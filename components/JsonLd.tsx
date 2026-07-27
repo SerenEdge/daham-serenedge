@@ -10,8 +10,8 @@ export default function JsonLd() {
                 "familyName": "Dissanayake",
                 "url": "https://daham.serenedge.com",
                 "image": "https://daham.serenedge.com/images/og-image.png",
-                "jobTitle": "Full Stack Developer & Computer Science Undergraduate",
-                "description": "Computer Science Undergraduate at IIT Sri Lanka, Full Stack Developer, Machine Learning and IoT Enthusiast.",
+                "jobTitle": "Full Stack Developer & Edge AI and Robotics Researcher",
+                "description": "Full Stack Developer, Edge AI & Robotics Researcher at IIT Sri Lanka, specializing in IoT and Reinforcement Learning.",
                 "nationality": {
                     "@type": "Country",
                     "name": "Sri Lanka"
@@ -22,8 +22,8 @@ export default function JsonLd() {
                     "url": "https://www.iit.ac.lk"
                 },
                 "knowsAbout": [
-                    "Web Development", "IoT", "Machine Learning", "React", "Next.js",
-                    "Python", "TypeScript", "Embedded Systems", "React Native", "Docker"
+                    "Web Development", "Edge AI", "Robotics", "IoT", "Reinforcement Learning", "Machine Learning",
+                    "React", "Next.js", "Python", "TypeScript", "Embedded Systems", "React Native", "Docker"
                 ],
                 "sameAs": [
                     "https://github.com/DahamDissanayake",
@@ -36,7 +36,7 @@ export default function JsonLd() {
                 "@id": "https://daham.serenedge.com/#profilepage",
                 "name": "Daham Dissanayake — Portfolio",
                 "url": "https://daham.serenedge.com",
-                "description": "Official portfolio and profile of Daham Dissanayake — Full Stack Developer, Computer Science Undergraduate, and IoT Enthusiast from Sri Lanka.",
+                "description": "Official portfolio and profile of Daham Dissanayake — Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning, from Sri Lanka.",
                 "mainEntity": {
                     "@type": "Person",
                     "@id": "https://daham.serenedge.com/#person"
@@ -48,7 +48,7 @@ export default function JsonLd() {
                 "@id": "https://daham.serenedge.com/#website",
                 "name": "Daham Dissanayake | SerenEdge",
                 "url": "https://daham.serenedge.com",
-                "description": "Portfolio of Daham Dissanayake — Computer Science Undergraduate, Full Stack Developer, and IoT Enthusiast from Sri Lanka.",
+                "description": "Portfolio of Daham Dissanayake — Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning, from Sri Lanka.",
                 "author": {
                     "@type": "Person",
                     "@id": "https://daham.serenedge.com/#person"

@@ -135,7 +135,7 @@ export default function Hero() {
     return (
         <section id="home" ref={containerRef} className="relative w-full h-screen flex flex-col p-6 md:p-12 bg-background">
             {/* SEO-only heading — visually hidden, gives Google a meaningful H1 */}
-            <h1 className="sr-only">Daham Dissanayake — Full Stack Developer, Computer Science Undergraduate &amp; IoT Enthusiast from Sri Lanka</h1>
+            <h1 className="sr-only">Daham Dissanayake — Full Stack Developer, Edge AI &amp; Robotics Researcher, specializing in IoT and Reinforcement Learning from Sri Lanka</h1>
 
             {/* Navigation */}
             <Navbar />
@@ -193,7 +193,7 @@ export default function Hero() {
                         >
                             <Image
                                 src="/images/DAMAPortraitfinal2.webp"
-                                alt="Daham Dissanayake - Computer Science Undergraduate and Full Stack Developer"
+                                alt="Daham Dissanayake - Full Stack Developer and Edge AI & Robotics Researcher"
                                 width={1000}
                                 height={1200}
                                 className="w-full h-auto md:h-full object-contain object-bottom md:object-right-bottom"
