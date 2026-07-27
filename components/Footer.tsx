@@ -119,12 +119,21 @@ export default function Footer() {
                                 </div>
                             </div>
 
-                            <a
-                                href="tel:+94704888440"
-                                className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors tracking-wide"
-                            >
-                                +94 70 488 8440
-                            </a>
+                            <div className="flex items-center gap-3">
+                                <a
+                                    href="tel:+94704888440"
+                                    className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors tracking-wide"
+                                >
+                                    +94 70 488 8440
+                                </a>
+                                <Link
+                                    href="/docs/DahamDissanayake-CV.pdf"
+                                    target="_blank"
+                                    className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors tracking-wide underline underline-offset-4"
+                                >
+                                    Resume
+                                </Link>
+                            </div>
 
                             <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500">
                                 <span>Based in Sri Lanka</span>
