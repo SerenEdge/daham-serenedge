@@ -1,14 +1,27 @@
 import { MetadataRoute } from "next";
+import { SITE_URL, CONTENT_LAST_UPDATED } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://daham.serenedge.com";
+  const lastModified = new Date(CONTENT_LAST_UPDATED);
 
   return [
     {
-      url: baseUrl,
-      lastModified: new Date("2025-06-01"),
+      url: SITE_URL,
+      lastModified,
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${SITE_URL}/docs/DahamDissanayake-CV.pdf`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${SITE_URL}/llms.txt`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.5,
     },
   ];
 }
