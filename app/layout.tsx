@@ -75,8 +75,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/images/daham-sign-strokeicon.ico",
-    shortcut: "/images/daham-sign-strokeicon.ico",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/images/apple-touch-icon.png",
   },
   alternates: {
@@ -98,9 +98,21 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              if (!sessionStorage.getItem('splash-loaded')) {
-                document.documentElement.classList.add('splash-active');
-                document.documentElement.style.backgroundColor = '#1c1c2b';
+              try {
+                if (!sessionStorage.getItem('splash-loaded')) {
+                  var d = document.documentElement;
+                  d.classList.add('splash-active');
+                  d.style.backgroundColor = '#1c1c2b';
+                  // Failsafe: if SplashScreen never mounts (JS error, slow chunk),
+                  // don't leave the document permanently scroll-locked.
+                  setTimeout(function () {
+                    d.classList.remove('splash-active');
+                    d.style.backgroundColor = '';
+                    if (document.body) document.body.style.overflow = '';
+                  }, 4000);
+                }
+              } catch (e) {
+                // sessionStorage throws in some privacy modes — skip the splash.
               }
             `,
           }}

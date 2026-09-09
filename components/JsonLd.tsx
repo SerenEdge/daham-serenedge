@@ -1,4 +1,5 @@
 import projectsData from "@/data/projects.json";
+import { projectPath } from "@/lib/projects";
 import type { ProjectsData } from "@/types/projects";
 import { SITE_URL, CONTENT_LAST_UPDATED } from "@/lib/site";
 
@@ -7,11 +8,12 @@ export default function JsonLd() {
 
     const projectNodes = portfolio.map((project) => ({
         "@type": "CreativeWork",
-        "@id": `${SITE_URL}/#project-${project.id}`,
+        "@id": `${SITE_URL}${projectPath(project)}#project`,
         name: project.title,
         headline: project.description,
         description: project.longDescription,
-        url: project.link,
+        url: `${SITE_URL}${projectPath(project)}`,
+        sameAs: project.link,
         keywords: project.tech.join(", "),
         author: { "@id": `${SITE_URL}/#person` },
         creator: { "@id": `${SITE_URL}/#person` },

@@ -23,22 +23,16 @@
   --light-text: #e6e6f0;
 }
 
-/* Splash Screen Hiding Logic */
+/* Splash Screen Logic
+   The splash is a full-screen opaque overlay (z-9999), so it already hides the
+   page visually. Deliberately nothing here sets opacity/visibility on
+   #content-wrapper: Googlebot renders with an empty sessionStorage every time,
+   so .splash-active is always applied on its visit, and hiding the wrapper
+   made the entire page render as visibility:hidden for the crawler. */
 .splash-active,
 .splash-active body {
   background-color: #1c1c2b !important;
   overflow: hidden !important;
-}
-
-.splash-active #content-wrapper {
-  opacity: 0;
-  visibility: hidden;
-}
-
-#content-wrapper {
-  transition:
-    opacity 0.6s ease-in-out,
-    visibility 0.6s ease-in-out;
 }
 
 @theme inline {

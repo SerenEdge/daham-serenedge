@@ -78,7 +78,7 @@ export default function Footer() {
                 <div ref={lineRef} className="w-[90%] h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent origin-center" />
             </div>
 
-            <div ref={contentRef} className="container mx-auto px-6 md:px-12 lg:px-16 opacity-0 py-4 lg:py-0">
+            <div ref={contentRef} className="container mx-auto px-6 md:px-12 lg:px-16 py-4 lg:py-0">
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center h-full">
 

@@ -137,9 +137,6 @@ export default function Hero() {
 
     return (
         <section id="home" ref={containerRef} className="relative w-full h-screen flex flex-col p-6 md:p-12 bg-background">
-            {/* SEO-only heading — visually hidden, gives Google a meaningful H1 */}
-            <h1 className="sr-only">Daham Dissanayake — Full Stack Developer, Edge AI &amp; Robotics Researcher, specializing in IoT and Reinforcement Learning from Sri Lanka</h1>
-
             {/* Navigation */}
             <Navbar />
 
@@ -165,10 +162,14 @@ export default function Hero() {
                             </div>
                         </div>
                         <div className="overflow-hidden mt-2">
-                            <p className="text-xl min-[720px]:text-xl lg:text-xl text-secondary font-medium">
+                            <h1 className="text-xl min-[720px]:text-xl lg:text-xl text-secondary font-medium">
                                 -It’s Daham Dissanayake
-                            </p>
+                            </h1>
                         </div>
+                        <p className="mt-2 max-w-md text-sm min-[720px]:text-lg text-tertiary leading-snug">
+                            Edge AI &amp; Robotics Researcher and Full Stack Developer — IoT,
+                            computer vision, and reinforcement learning, from Sri Lanka.
+                        </p>
                         <div className="flex gap-6 text-tertiary text-xl min-[720px]:text-xl mt-4 overflow-hidden">
                             <div className="flex gap-6">
                                 <Link href="https://github.com/DahamDissanayake" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="hover:text-primary transition-colors"><FiGithub /></Link>

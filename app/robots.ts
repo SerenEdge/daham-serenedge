@@ -23,16 +23,21 @@ const AI_USER_AGENTS = [
   "Bytespider",
 ];
 
+/** Dev-only surfaces that must never be indexed. */
+const DISALLOWED = ["/dashboard"];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
+        disallow: DISALLOWED,
       },
       {
         userAgent: AI_USER_AGENTS,
         allow: "/",
+        disallow: DISALLOWED,
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

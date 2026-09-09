@@ -1,5 +1,7 @@
 export interface PortfolioProject {
   id: string;
+  /** Optional URL slug override; defaults to a slugified `title`. */
+  slug?: string;
   title: string;
   subtitle?: string;
   description: string;

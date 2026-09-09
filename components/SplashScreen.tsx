@@ -41,19 +41,15 @@ export default function SplashScreen() {
                     }
                 });
 
-                // Unveil Animation
+                // Unveil Animation — fades the overlay out to reveal the page
+                // underneath. The page itself is never faded: it must stay
+                // visible in the DOM for crawlers at all times.
                 tl.to(containerRef.current, {
                     opacity: 0,
                     duration: 0.6,
                     ease: "power2.inOut",
                     delay: 0.3
-                })
-                    .to("#content-wrapper", {
-                        opacity: 1,
-                        visibility: "visible",
-                        duration: 0.6,
-                        ease: "power2.inOut"
-                    }, "-=0.6"); // Sync with splash fade
+                });
             };
 
             // Wait for window load or at least 2.5 seconds (minimal zoom time + buffer)

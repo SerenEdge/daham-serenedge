@@ -21,6 +21,7 @@ function validatePortfolio(p: unknown, i: number): PortfolioProject {
     throw new Error(`portfolio[${i}].images must be a non-empty array`);
   return {
     id: o.id,
+    ...(isStr(o.slug) ? { slug: o.slug } : {}),
     title: o.title,
     subtitle: isStr(o.subtitle) ? o.subtitle : undefined,
     description: o.description,

@@ -7,6 +7,7 @@ import { FiChevronDown, FiArrowUpRight, FiChevronLeft, FiChevronRight } from "re
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import projectsData from "@/data/projects.json";
+import { projectPath } from "@/lib/projects";
 import type { ProjectsData } from "@/types/projects";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -248,8 +249,7 @@ export default function Portfolio() {
                                                         {project.longDescription}
                                                     </p>
                                                     <Link
-                                                        href={project.link}
-                                                        target="_blank"
+                                                        href={projectPath(project)}
                                                         className="group/link inline-flex items-center gap-2 text-xl font-medium text-primary hover:opacity-70 transition-opacity mb-8"
                                                     >
                                                         View More
@@ -277,9 +277,18 @@ export default function Portfolio() {
 
                 {/* Other Projects — stacked card design */}
                 <div ref={miniProjectsRef} className="py-6">
-                    <div className="mb-12">
-                        <h2 className="text-3xl md:text-4xl font-medium mb-2">Other projects</h2>
-                        <p className="text-lg text-tertiary">Projects outside the featured selection</p>
+                    <div className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                        <div>
+                            <h2 className="text-3xl md:text-4xl font-medium mb-2">Other projects</h2>
+                            <p className="text-lg text-tertiary">Projects outside the featured selection</p>
+                        </div>
+                        <Link
+                            href="/projects"
+                            className="group/all inline-flex items-center gap-2 text-lg font-medium text-primary hover:opacity-70 transition-opacity shrink-0"
+                        >
+                            View all projects
+                            <FiArrowUpRight className="group-hover/all:translate-x-1 group-hover/all:-translate-y-1 transition-transform" />
+                        </Link>
                     </div>
 
                     <div className={`relative flex items-center ${isMobile
