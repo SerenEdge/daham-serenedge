@@ -167,7 +167,7 @@ export default function Hero() {
                             </h1>
                         </div>
                         <p className="mt-2 max-w-md text-sm min-[720px]:text-lg text-tertiary leading-snug">
-                            Edge AI &amp; Robotics Researcher and Full Stack Developer — IoT,
+                            Edge AI &amp; Robotics Researcher and Full Stack Developer - IoT,
                             computer vision, and reinforcement learning, from Sri Lanka.
                         </p>
                         <div className="flex gap-6 text-tertiary text-xl min-[720px]:text-xl mt-4 overflow-hidden">
