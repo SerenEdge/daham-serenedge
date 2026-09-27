@@ -34,6 +34,18 @@
       ]
     },
     {
+      "id": "imgharvest",
+      "title": "SerenEdge",
+      "subtitle": "Start-up, developer community!",
+      "description": "An IT studio that ships across the whole stack - for each node.",
+      "longDescription": "SerenEdge is a full-stack IT studio from Sri Lanka delivering web platforms, IoT firmware, automation, custom systems and AI end to end. Our Delivery Platform scopes and assigns tasks, keeps clients watching real progress and milestones live, and gives developers and AI agents a shared knowledge base so everyone works from the same context.",
+      "tech": [],
+      "link": "https://serenedge.com/",
+      "images": [
+        "/images/projects/og-page.webp"
+      ]
+    },
+    {
       "id": "vibecheck",
       "title": "MILO Robot",
       "subtitle": "On Going!",
@@ -92,44 +104,15 @@
         "/images/projects/livedahsboard.webp",
         "/images/projects/email-gpu.webp"
       ]
-    },
-    {
-      "id": "imgharvest",
-      "title": "AutoHub",
-      "subtitle": "Will OSS soon!!",
-      "description": "Self-hosted personal automation OS for Raspberry Pi 5",
-      "longDescription": "I built AutoHub as a self-hosted personal automation OS for my Raspberry Pi 5. It bundles a web terminal, plugin runner, Docker manager, n8n workflow integration, file browser, and Telegram notifications into a single Docker Compose stack. I wanted a simple way to manage my home automation, workflows, and development projects from a single interface. Planning to release this as OSS but since I'm also fully using this I have reduce the security vulnerabilities.",
-      "tech": [
-        "Next.js",
-        "NestJS",
-        "Node.js",
-        "Docker",
-        "N8n",
-        "PostgreSQL",
-        "Redis",
-        "Cloudflare Tunnel",
-        "WebSocket",
-        "Express",
-        "Tailwind CSS",
-        "Passport",
-        "JWT",
-        "Telegram Bot API",
-        "TanStack Query",
-        "Zustand",
-        "date-fns",
-        "Linux"
-      ],
-      "link": "https://github.com/DahamDissanayake/auto-hub",
-      "images": [
-        "/images/projects/autohub-5.webp",
-        "/images/projects/autohub-4.webp",
-        "/images/projects/autohub-3.webp",
-        "/images/projects/autohub-2.webp",
-        "/images/projects/autohub-1.webp"
-      ]
     }
   ],
   "otherProjects": [
+    {
+      "id": "731aac0d-98ab-45ae-b1ed-3e504de76c06",
+      "title": "AutoHub",
+      "description": "I built AutoHub as a self-hosted personal automation OS for my Raspberry Pi 5. It bundles a web terminal, plugin runner, Docker manager, n8n workflow integration, file browser, and Telegram notifications into a single...",
+      "link": "https://github.com/DahamDissanayake/auto-hub"
+    },
     {
       "id": "73962de6-82b2-4982-84c6-551d21a15196",
       "title": "VibeCheck [Chrome Extension]",
