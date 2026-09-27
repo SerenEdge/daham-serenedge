@@ -35,6 +35,19 @@
   overflow: hidden !important;
 }
 
+/* The overlay itself is always in the DOM (rendered on server and client
+   alike) but hidden by default, so it never mismatches during hydration.
+   It only becomes visible once `.splash-active` is present — which the
+   inline <head> script sets synchronously before the body paints — so the
+   splash is on screen for the very first frame instead of popping in after
+   React hydrates. */
+#splash-screen-overlay {
+  display: none;
+}
+.splash-active #splash-screen-overlay {
+  display: flex;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

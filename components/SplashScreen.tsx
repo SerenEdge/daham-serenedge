@@ -1,26 +1,21 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
 export default function SplashScreen() {
-    const [isVisible, setIsVisible] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Check if this is the first load of the session
-        const hasLoaded = sessionStorage.getItem("splash-loaded");
-        if (!hasLoaded) {
-            setIsVisible(true);
-            // Lock body scroll
-            document.body.style.overflow = "hidden";
-        }
-    }, []);
+        // Returning visitor this session: the inline <head> script never added
+        // `splash-active`, so the overlay below is already CSS-hidden and
+        // there is nothing to animate.
+        if (sessionStorage.getItem("splash-loaded")) return;
 
-    useEffect(() => {
-        if (!isVisible) return;
+        // Lock body scroll
+        document.body.style.overflow = "hidden";
 
         const ctx = gsap.context(() => {
             // Initial Zoom-out Animation
@@ -32,7 +27,6 @@ export default function SplashScreen() {
             const handleExit = () => {
                 const tl = gsap.timeline({
                     onComplete: () => {
-                        setIsVisible(false);
                         sessionStorage.setItem("splash-loaded", "true");
                         // Cleanup
                         document.documentElement.classList.remove("splash-active");
@@ -71,14 +65,18 @@ export default function SplashScreen() {
         });
 
         return () => ctx.revert();
-    }, [isVisible]);
+    }, []);
 
-    if (!isVisible) return null;
-
+    // Always rendered (server and client) so the overlay exists in the very
+    // first paint. Actual visibility is driven purely by the `.splash-active`
+    // class the inline <head> script sets synchronously before the body
+    // paints — never by React state — so there is no gap where the real page
+    // is visible before the splash appears.
     return (
         <div
+            id="splash-screen-overlay"
             ref={containerRef}
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#1c1c2b]"
+            className="fixed inset-0 z-[9999] items-center justify-center bg-[#1c1c2b]"
         >
             <div ref={logoRef} className="w-32 min-[720px]:w-48 h-auto">
                 <Image
