@@ -6,6 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiSend } from "react-icons/fi";
 import { sendContactEmail } from "@/app/actions";
+import TurnstileWidget from "@/components/TurnstileWidget";
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +20,8 @@ export default function Footer() {
 
     const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [statusMessage, setStatusMessage] = useState("");
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+    const [turnstileReset, setTurnstileReset] = useState(0);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -49,13 +54,22 @@ export default function Footer() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!turnstileToken) {
+            setFormStatus("error");
+            setStatusMessage("Please complete the human verification.");
+            return;
+        }
         setFormStatus("submitting");
         setStatusMessage("");
 
         const formData = new FormData(e.currentTarget);
+        formData.set("cf-turnstile-response", turnstileToken);
         try {
             // Call Server Action
             const result = await sendContactEmail(null, formData); // prevState is null for direct call
+
+            // Tokens are single-use; always get a fresh one after an attempt.
+            setTurnstileReset((n) => n + 1);
 
             if (result?.error) {
                 setFormStatus("error");
@@ -200,13 +214,21 @@ export default function Footer() {
                                 ></textarea>
                             </div>
 
+                            {TURNSTILE_SITE_KEY && (
+                                <TurnstileWidget
+                                    siteKey={TURNSTILE_SITE_KEY}
+                                    onToken={setTurnstileToken}
+                                    resetKey={turnstileReset}
+                                />
+                            )}
+
                             {formStatus === "error" && (
                                 <p className="text-red-400 text-sm">{statusMessage}</p>
                             )}
 
                             <button
                                 type="submit"
-                                disabled={formStatus === "submitting"}
+                                disabled={formStatus === "submitting" || !turnstileToken}
                                 className="mt-1 bg-white text-black font-bold py-2.5 px-6 rounded-full hover:bg-gray-200 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group text-sm"
                             >
                                 {formStatus === "submitting" ? "Sending..." : "Send Message"}

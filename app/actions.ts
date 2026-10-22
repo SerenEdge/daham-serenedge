@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { Resend } from "resend";
 
 // Initialize Resend with API Key (Needs env variable)
@@ -10,9 +11,38 @@ export async function sendContactEmail(prevState: any, formData: FormData) {
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
 
+  const token = formData.get("cf-turnstile-response") as string | null;
+
   // Basic Validation
   if (!name || !email || !message) {
     return { error: "Please fill in all fields." };
+  }
+
+  // Cloudflare Turnstile human verification (server-side)
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    console.error("TURNSTILE_SECRET_KEY is not set.");
+    return { error: "Verification is not configured. Please try again later." };
+  }
+  if (!token) {
+    return { error: "Please complete the human verification." };
+  }
+  try {
+    const verifyBody = new URLSearchParams({ secret, response: token });
+    const forwardedFor = (await headers()).get("x-forwarded-for");
+    if (forwardedFor) verifyBody.set("remoteip", forwardedFor.split(",")[0].trim());
+
+    const verifyRes = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      { method: "POST", body: verifyBody },
+    );
+    const verify = (await verifyRes.json()) as { success: boolean };
+    if (!verify.success) {
+      return { error: "Human verification failed. Please try again." };
+    }
+  } catch (error) {
+    console.error("Turnstile verify error:", error);
+    return { error: "Could not verify you're human. Please try again." };
   }
 
   try {
