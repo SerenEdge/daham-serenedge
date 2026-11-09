@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       url,
       title,
       description: project.longDescription,
-      siteName: "SerenEdge",
+      siteName: "Daham Dissanayake",
       images: project.images.map((image) => ({ url: image, alt: project.title })),
     },
     twitter: {

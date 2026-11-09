@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://daham.serenedge.com"),
   manifest: "/manifest.json",
   title: {
-    default: "Daham Dissanayake | SerenEdge",
-    template: "%s | SerenEdge",
+    default: "Daham Dissanayake | Edge AI & Robotics Researcher, Full Stack Developer",
+    template: "%s | Daham Dissanayake",
   },
   description: "Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning from Sri Lanka.",
   keywords: [
@@ -44,21 +44,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://daham.serenedge.com",
-    title: "Daham Dissanayake | SerenEdge",
+    title: "Daham Dissanayake | Edge AI & Robotics Researcher",
     description: "Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning from Sri Lanka.",
-    siteName: "SerenEdge",
+    siteName: "Daham Dissanayake",
     images: [
       {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Daham Dissanayake - SerenEdge Portfolio",
+        alt: "Daham Dissanayake — Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daham Dissanayake | SerenEdge",
+    title: "Daham Dissanayake | Edge AI & Robotics Researcher",
     description: "Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning.",
     images: ["/images/og-image.png"],
     creator: "@dhmdissanayake",
@@ -99,7 +99,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                if (!sessionStorage.getItem('splash-loaded')) {
+                // Crawlers never keep sessionStorage, so without this check
+                // every Googlebot render would start behind the splash overlay.
+                var isBot = /bot|crawl|spider|slurp|lighthouse|inspectiontool|headless/i.test(navigator.userAgent);
+                if (!isBot && !sessionStorage.getItem('splash-loaded')) {
                   var d = document.documentElement;
                   d.classList.add('splash-active');
                   d.style.backgroundColor = '#1c1c2b';

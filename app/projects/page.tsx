@@ -12,6 +12,14 @@ export const metadata: Metadata = {
   title: "Projects",
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/projects` },
+  openGraph: {
+    type: "website",
+    url: `${SITE_URL}/projects`,
+    title: "Projects | Daham Dissanayake",
+    description: DESCRIPTION,
+    siteName: "Daham Dissanayake",
+    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "Daham Dissanayake — Projects" }],
+  },
 };
 
 export default function ProjectsIndexPage() {

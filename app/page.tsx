@@ -5,7 +5,7 @@ import Portfolio from "@/components/Portfolio";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Daham Dissanayake | Edge AI & Robotics Researcher, Founder",
+  title: { absolute: "Daham Dissanayake | Edge AI & Robotics Researcher, Founder" },
   description: "Portfolio of Daham Dissanayake — Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning. Explore projects in web development, edge AI, and embedded systems.",
 };
 

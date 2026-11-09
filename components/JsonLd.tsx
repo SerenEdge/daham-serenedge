@@ -58,6 +58,7 @@ export default function JsonLd() {
                 ],
                 "sameAs": [
                     "https://github.com/DahamDissanayake",
+                    "https://www.serenedge.com",
                     "https://www.linkedin.com/in/daham-dissanayake/",
                     "https://www.instagram.com/dhmdissanayake/"
                 ]
@@ -66,14 +67,10 @@ export default function JsonLd() {
                 "@type": "Organization",
                 "@id": `${SITE_URL}/#organization`,
                 "name": "SerenEdge",
-                "alternateName": "Daham Dissanayake | SerenEdge",
-                "url": SITE_URL,
+                "url": "https://www.serenedge.com",
                 "logo": `${SITE_URL}/images/logo.png`,
                 "founder": { "@id": `${SITE_URL}/#person` },
-                "description": "Personal brand and portfolio of Daham Dissanayake, covering work in Edge AI, robotics, IoT, and full-stack web development.",
-                "sameAs": [
-                    "https://github.com/DahamDissanayake"
-                ]
+                "description": "Full-stack IT studio from Sri Lanka founded by Daham Dissanayake, delivering web platforms, IoT firmware, automation and AI."
             },
             {
                 "@type": "ProfilePage",
@@ -90,7 +87,7 @@ export default function JsonLd() {
             {
                 "@type": "WebSite",
                 "@id": `${SITE_URL}/#website`,
-                "name": "Daham Dissanayake | SerenEdge",
+                "name": "Daham Dissanayake",
                 "url": SITE_URL,
                 "inLanguage": "en",
                 "description": "Portfolio of Daham Dissanayake — Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning, from Sri Lanka.",
@@ -98,7 +95,7 @@ export default function JsonLd() {
                     "@type": "Person",
                     "@id": `${SITE_URL}/#person`
                 },
-                "publisher": { "@id": `${SITE_URL}/#organization` }
+                "publisher": { "@id": `${SITE_URL}/#person` }
             },
             ...projectNodes
         ]
