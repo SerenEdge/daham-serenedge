@@ -76,7 +76,7 @@ export default function SplashScreen() {
         <div
             id="splash-screen-overlay"
             ref={containerRef}
-            className="fixed inset-0 z-[9999] items-center justify-center bg-[#1c1c2b]"
+            className="fixed inset-0 z-[9999] items-center justify-center bg-[#141414]"
         >
             <div ref={logoRef} className="w-32 min-[720px]:w-48 h-auto">
                 <Image

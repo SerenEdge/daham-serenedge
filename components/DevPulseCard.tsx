@@ -83,7 +83,7 @@ export default async function DevPulseCard({ username = "DahamDissanayake" }: { 
     return (
         <div className="group relative w-full lg:h-[480px]">
             {/* Main Card Container */}
-            <div className="relative w-full h-full bg-[#1c1c2b] border border-gray-800 rounded-3xl p-6 lg:p-8 overflow-hidden flex flex-col group/card">
+            <div className="relative w-full h-full bg-[#141414] border border-gray-800 rounded-3xl p-6 lg:p-8 overflow-hidden flex flex-col group/card">
 
 
                 {/* Internal Grid Background */}

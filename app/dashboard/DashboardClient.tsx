@@ -15,7 +15,7 @@ const inputCls =
   "w-full border-0 border-b border-gray-300 px-0 py-2.5 bg-transparent text-secondary placeholder:text-tertiary/60 focus:outline-none focus:border-secondary transition-colors text-base";
 const labelCls = "text-xs font-mono uppercase tracking-wider text-tertiary";
 const btnPrimary =
-  "inline-flex items-center gap-1.5 rounded-full bg-[#1c1c2b] px-4 py-2 text-white text-sm font-medium disabled:opacity-40 whitespace-nowrap transition-opacity hover:opacity-90";
+  "inline-flex items-center gap-1.5 rounded-full bg-[#141414] px-4 py-2 text-white text-sm font-medium disabled:opacity-40 whitespace-nowrap transition-opacity hover:opacity-90";
 const btnGhost =
   "text-tertiary hover:text-secondary transition-colors disabled:opacity-30 text-sm";
 

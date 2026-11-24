@@ -105,7 +105,7 @@ export default function Navbar() {
                     onClick={(e) => handleScroll(e, "#")}
                 >
                     <Image
-                        src="/images/daham-sign-dark.png"
+                        src="/images/daham-sign-darken.png"
                         alt="Daham Signature"
                         width={120}
                         height={40}
@@ -120,7 +120,7 @@ export default function Navbar() {
             <button
                 ref={buttonRef}
                 onClick={toggleMenu}
-                className={`fixed top-6 right-6 md:top-8 md:right-12 z-[100] flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl transition-colors duration-300 shadow-lg ${isMenuOpen ? 'bg-white text-[#1c1c2b]' : 'bg-[#1c1c2b] text-white'}`}
+                className={`fixed top-6 right-6 md:top-8 md:right-12 z-[100] flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl transition-colors duration-300 shadow-lg ${isMenuOpen ? 'bg-white text-[#141414]' : 'bg-[#141414] text-white'}`}
             >
                 {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -133,7 +133,7 @@ export default function Navbar() {
                 {/* Background Curtain - Brand Primary Color */}
                 <div
                     ref={bgRef}
-                    className="absolute inset-0 bg-[#1c1c2b] scale-y-0 origin-top"
+                    className="absolute inset-0 bg-[#141414] scale-y-0 origin-top"
                 />
 
                 {/* Menu Content */}

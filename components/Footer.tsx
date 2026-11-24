@@ -86,7 +86,7 @@ export default function Footer() {
     };
 
     return (
-        <footer id="contact" ref={footerRef} className="bg-[#1c1c2b] text-gray-400 min-h-[auto] lg:min-h-dvh py-20 md:py-24 relative z-30 overflow-hidden font-sans flex flex-col justify-center">
+        <footer id="contact" ref={footerRef} className="bg-[#141414] text-gray-400 min-h-[auto] lg:min-h-dvh py-20 md:py-24 relative z-30 overflow-hidden font-sans flex flex-col justify-center">
             {/* Decorative Separator */}
             <div className="absolute top-0 left-0 w-full flex justify-center pt-8 md:pt-16">
                 <div ref={lineRef} className="w-[90%] h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent origin-center" />
@@ -124,7 +124,7 @@ export default function Footer() {
                                             href={social.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="p-3 bg-[#242436] rounded-full border border-gray-800/50 text-gray-400 transition-all hover:bg-[#2f2f45] hover:text-white"
+                                            className="p-3 bg-[#2a2a2a] rounded-full border border-gray-800/50 text-gray-400 transition-all hover:bg-[#363636] hover:text-white"
                                             aria-label={social.label}
                                         >
                                             {social.icon}
@@ -159,10 +159,10 @@ export default function Footer() {
 
 
                     {/* Right Column: Contact Form */}
-                    <div className="bg-[#161622] p-4 sm:p-6 md:p-10 rounded-3xl border border-gray-800/50 shadow-2xl relative overflow-hidden order-1 lg:order-2">
+                    <div className="bg-[#222222] p-4 sm:p-6 md:p-10 rounded-3xl border border-gray-800/50 shadow-2xl relative overflow-hidden order-1 lg:order-2">
                         {/* Status Overlay */}
                         {formStatus === "success" && (
-                            <div className="absolute inset-0 bg-[#161622]/95 z-20 flex flex-col items-center justify-center text-center p-8 animate-in fade-in">
+                            <div className="absolute inset-0 bg-[#222222]/95 z-20 flex flex-col items-center justify-center text-center p-8 animate-in fade-in">
                                 <span className="p-4 bg-green-500/20 text-green-400 rounded-full mb-4 text-3xl">✓</span>
                                 <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
                                 <p className="text-gray-400">Thank you for reaching out. I'll get back to you shortly.</p>
@@ -186,7 +186,7 @@ export default function Footer() {
                                     name="name"
                                     required
                                     placeholder="Your Name"
-                                    className="bg-[#1c1c2b] border border-gray-700 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:border-gray-500 transition-colors placeholder:text-gray-600"
+                                    className="bg-[#141414] border border-gray-700 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:border-gray-500 transition-colors placeholder:text-gray-600"
                                 />
                             </div>
 
@@ -198,7 +198,7 @@ export default function Footer() {
                                     name="email"
                                     required
                                     placeholder="your@email.com"
-                                    className="bg-[#1c1c2b] border border-gray-700 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:border-gray-500 transition-colors placeholder:text-gray-600"
+                                    className="bg-[#141414] border border-gray-700 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:border-gray-500 transition-colors placeholder:text-gray-600"
                                 />
                             </div>
 
@@ -210,7 +210,7 @@ export default function Footer() {
                                     required
                                     rows={3}
                                     placeholder="Tell me about your project..."
-                                    className="bg-[#1c1c2b] border border-gray-700 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:border-gray-500 transition-colors placeholder:text-gray-600 resize-none"
+                                    className="bg-[#141414] border border-gray-700 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:border-gray-500 transition-colors placeholder:text-gray-600 resize-none"
                                 ></textarea>
                             </div>
 

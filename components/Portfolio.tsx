@@ -313,7 +313,7 @@ export default function Portfolio() {
                                         {otherProjects.map((project, index) => (
                                             <div
                                                 key={project.id ?? index}
-                                                className="flex-shrink-0 w-[85vw] max-w-md h-[520px] bg-[#1c1c2b] text-white rounded-3xl p-8 snap-center"
+                                                className="flex-shrink-0 w-[85vw] max-w-md h-[520px] bg-[#141414] text-white rounded-3xl p-8 snap-center"
                                             >
                                                 <div className="flex flex-col h-full justify-between overflow-hidden">
                                                     <div className="overflow-y-auto scrollbar-hide mb-4">
@@ -338,7 +338,7 @@ export default function Portfolio() {
                                     {otherProjects.map((_, index) => (
                                         <div
                                             key={index}
-                                            className={`h-1.5 rounded-full transition-all duration-300 ${index === activeCardIndex ? 'w-8 bg-[#1c1c2b]' : 'w-1.5 bg-[#1c1c2b]/40'}`}
+                                            className={`h-1.5 rounded-full transition-all duration-300 ${index === activeCardIndex ? 'w-8 bg-[#141414]' : 'w-1.5 bg-[#141414]/40'}`}
                                         />
                                     ))}
                                 </div>
@@ -375,7 +375,7 @@ export default function Portfolio() {
                                         >
                                             {/* Animated card */}
                                             <div
-                                                className={`relative w-full h-full bg-[#1c1c2b] text-white rounded-b-3xl rounded-tr-3xl rounded-tl-none ${isTablet ? 'p-6' : 'p-8'} transition-all duration-300 ease-out`}
+                                                className={`relative w-full h-full bg-[#141414] text-white rounded-b-3xl rounded-tr-3xl rounded-tl-none ${isTablet ? 'p-6' : 'p-8'} transition-all duration-300 ease-out`}
                                                 style={{
                                                     transform: isHovered
                                                         ? `translateY(-80px) rotate(${-rotation}deg) scale(1.1)`
@@ -386,7 +386,7 @@ export default function Portfolio() {
                                                 }}
                                             >
                                                 {/* File tab */}
-                                                <div className="absolute -top-8 left-0 w-32 h-8 bg-[#1c1c2b] rounded-t-2xl" />
+                                                <div className="absolute -top-8 left-0 w-32 h-8 bg-[#141414] rounded-t-2xl" />
 
                                                 {isHovered ? (
                                                     <div className="flex flex-col h-full justify-between animate-in fade-in duration-300 relative z-10 overflow-hidden">

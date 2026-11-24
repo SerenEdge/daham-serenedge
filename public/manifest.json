@@ -4,8 +4,8 @@
   "description": "Full Stack Developer, Edge AI & Robotics Researcher, specializing in IoT and Reinforcement Learning from Sri Lanka.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1c1c2b",
-  "theme_color": "#1c1c2b",
+  "background_color": "#141414",
+  "theme_color": "#141414",
   "icons": [
     {
       "src": "/images/logo.png",

@@ -17,8 +17,8 @@
 :root {
   --background: #f8f8f8;
   --foreground: #ffffff;
-  --primary: #1c1c2b;
-  --secondary: #1c1c2b;
+  --primary: #141414;
+  --secondary: #141414;
   --tertiary: #7b7b7b;
   --light-text: #e6e6f0;
 }
@@ -31,7 +31,7 @@
    made the entire page render as visibility:hidden for the crawler. */
 .splash-active,
 .splash-active body {
-  background-color: #1c1c2b !important;
+  background-color: #141414 !important;
   overflow: hidden !important;
 }
 

@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export const viewport = {
-  themeColor: "#1c1c2b",
+  themeColor: "#141414",
 };
 
 export const metadata: Metadata = {
@@ -105,7 +105,7 @@ export default function RootLayout({
                 if (!isBot && !sessionStorage.getItem('splash-loaded')) {
                   var d = document.documentElement;
                   d.classList.add('splash-active');
-                  d.style.backgroundColor = '#1c1c2b';
+                  d.style.backgroundColor = '#141414';
                   // Failsafe: if SplashScreen never mounts (JS error, slow chunk),
                   // don't leave the document permanently scroll-locked.
                   setTimeout(function () {

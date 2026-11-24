@@ -142,7 +142,7 @@ export default function MiniProjectsScrollDemo() {
                         return (
                             <div
                                 key={index}
-                                className="desktop-card absolute bg-[#1c1c2b] text-white rounded-3xl p-8 shadow-2xl origin-bottom"
+                                className="desktop-card absolute bg-[#141414] text-white rounded-3xl p-8 shadow-2xl origin-bottom"
                                 style={{
                                     width: '384px',
                                     height: '450px',
