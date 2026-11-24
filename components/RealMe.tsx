@@ -1,51 +1,29 @@
 "use client";
 
-import { useRef, useState, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FiUser, FiBriefcase, FiCode } from "react-icons/fi";
 import {
     SiPython, SiJavascript, SiTypescript, SiCplusplus, SiNextdotjs, SiReact,
-    SiTailwindcss, SiFigma, SiHtml5, SiCss3, SiEspressif, SiRaspberrypi,
+    SiTailwindcss, SiFigma, SiHtml5, SiEspressif, SiRaspberrypi,
     SiPytorch, SiOpencv, SiTensorflow, SiEdgeimpulse, SiGit, SiDocker,
-    SiMysql, SiGnubash
+    SiMysql, SiGnubash,
 } from "react-icons/si";
 import { FaJava, FaBrain } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type AudienceType = 'anyone' | 'recruiters' | 'developers';
+const lead = "I like taking things apart to see how they work, then building something new from the pieces.";
+const LEAD_MUTED_FROM = 9; // "then…" onward is muted
 
-const content = {
-    anyone: {
-        label: "Everyone",
-        icon: FiUser,
-        text: (
-            <>
-                <span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>I’m a Computer Science undergrad who got tired of just studying tech and started building with it. Right now I’m working on a startup while doing research in computer vision and robotics. I like the kind of problems that sit at the edge of hardware and software, where things get genuinely interesting.<span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>
-            </>
-        )
-    },
-    recruiters: {
-        label: "Recruiters",
-        icon: FiBriefcase,
-        text: (
-            <>
-                <span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>I’m a developer who loves the 'learn by doing' approach. I interested in ML and IoT, and I’m great at picking up new tech on the fly. I deliver clean, reliable, and disciplined work that stays to the point.<span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>
-            </>
-        )
-    },
-    developers: {
-        label: "Developers",
-        icon: FiCode,
-        text: (
-            <>
-                <span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>I’m a dev who values clean, readable code and proper formatting. I’m always down for a collab or a competition, so hit me up!<span className="text-4xl min-[720px]:text-6xl text-secondary font-medium">"</span>
-            </>
-        )
-    }
-};
+const SOCIALS_URL = "https://www.instagram.com/dhmdissanayake/";
+const PHOTOGRAPHY_URL = "https://500px.com/p/dahamdissanayake";
 
+const linkCls =
+    "text-secondary underline decoration-transparent underline-offset-[0.2em] transition-[text-decoration-color] duration-300 hover:decoration-secondary";
+
+/* Unchanged: tech stack marquee list */
 const technologies = [
     { name: "Python", icon: SiPython },
     { name: "JavaScript", icon: SiJavascript },
@@ -71,43 +49,22 @@ const technologies = [
 ];
 
 export default function RealMe() {
-    const [audience, setAudience] = useState<AudienceType>('anyone');
-    const containerRef = useRef(null);
-    const headerRef = useRef(null);
-    const tabsRef = useRef(null);
-    const textRef = useRef<HTMLDivElement>(null);
-    const quoteRef = useRef<HTMLDivElement>(null);
-    const bgQuoteRef = useRef<HTMLSpanElement>(null);
+    const containerRef = useRef<HTMLElement>(null);
     const marqueeRef = useRef<HTMLDivElement>(null);
 
-    // Initial Scroll Animation - "Anti-Gravity" Reveal
     useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top 75%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                }
+        const ctx = gsap.context(() => {
+            const mm = gsap.matchMedia();
+            mm.add("(prefers-reduced-motion: no-preference)", () => {
+                const tl = gsap.timeline({
+                    scrollTrigger: { trigger: containerRef.current, start: "top 70%", once: true },
+                });
+                tl.from(".rm-head > *", { y: 24, opacity: 0, duration: 0.7, ease: "power2.out", stagger: 0.08 })
+                    .from(".rm-word", { yPercent: 100, duration: 0.6, ease: "power3.out", stagger: 0.025 }, 0.1)
+                    .from(".rm-bio", { y: 20, opacity: 0, duration: 0.7, ease: "power2.out", stagger: 0.12 }, 0.5);
             });
 
-            // 1. Header Reveal (Float Up)
-            tl.from(headerRef.current, {
-                y: 60,
-                opacity: 0,
-                duration: 1.5,
-                ease: "power4.out"
-            })
-                // 3. Content Reveal
-                .from(quoteRef.current, {
-                    x: 30,
-                    opacity: 0,
-                    duration: 1.5,
-                    ease: "power4.out"
-                }, "-=1");
-
-            // Marquee Animation (Continuous Loop)
+            // Marquee Animation (Continuous Loop) — unchanged
             const marquee = marqueeRef.current;
             if (marquee) {
                 const totalWidth = marquee.scrollWidth / 2; // Since we duplicated the list
@@ -115,102 +72,70 @@ export default function RealMe() {
                     x: -totalWidth,
                     duration: 40, // Adjust speed here
                     ease: "none",
-                    repeat: -1
+                    repeat: -1,
                 });
             }
-
-            // Parallax for Background Quote
-            gsap.to(bgQuoteRef.current, {
-                y: 50,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-
         }, containerRef);
 
         return () => ctx.revert();
     }, []);
 
-    // Text Change Animation - Smooth Cross-fade
-    useLayoutEffect(() => {
-        if (!textRef.current) return;
-        gsap.fromTo(textRef.current,
-            { opacity: 0, y: 10, filter: "blur(4px)" },
-            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power4.out" }
-        );
-    }, [audience]);
-
     return (
         <section
             id="realme"
             ref={containerRef}
-            className="w-full min-h-screen bg-background text-secondary px-6 md:px-12 lg:px-16 py-20 md:py-32 flex flex-col justify-center relative z-20"
+            className="w-full bg-background text-secondary px-6 md:px-12 lg:px-16 pt-10 md:pt-14 pb-40 relative z-20"
         >
-            <div className="max-w-[1920px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 mb-24 lg:mb-0">
-                {/* Header & Controls */}
-                <div className="lg:col-span-5 flex flex-col justify-between h-full">
-                    <div>
-                        <div ref={headerRef} className="flex flex-col items-start w-full mb-12 border-b border-gray-200 md:border-none pb-8 md:pb-0">
-                            <h2 className="text-6xl md:text-8xl font-medium tracking-tight text-secondary leading-[0.8] mb-8">
-                                Real Me
-                            </h2>
-                            <div className="flex items-center gap-4 text-tertiary">
-                                <span className="h-[1px] w-12 bg-tertiary/50 hidden lg:block"></span>
-                                <span className="text-sm lg:text-base font-mono uppercase tracking-wider">
-                                    Choose your POV
-                                </span>
-                            </div>
-                        </div>
+            {/* Soft hand-off from the hero */}
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 -top-40 h-40 bg-gradient-to-b from-transparent to-background"
+            />
 
-                        <div ref={tabsRef} className="flex flex-col gap-4 items-start">
-                            <div className="flex gap-3">
-                                {(Object.keys(content) as AudienceType[]).map((key) => {
-                                    const isActive = audience === key;
-                                    const ItemIcon = content[key].icon;
-                                    return (
-                                        <button
-                                            key={key}
-                                            onClick={() => setAudience(key)}
-                                            className={`
-                                                audience-tab relative text-base cursor-pointer transition-all duration-300 flex items-center gap-2 pb-1
-                                                ${isActive
-                                                    ? 'text-secondary border-b border-secondary'
-                                                    : 'text-tertiary hover:text-secondary border-b border-transparent'
-                                                }
-                                            `}
-                                        >
-                                            <ItemIcon className="text-xl" />
-                                            {content[key].label}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </div>
+            <div className="max-w-[1920px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20">
+                {/* Heading */}
+                <div className="rm-head lg:col-span-4 flex flex-col items-start">
+                    <h2 className="text-6xl md:text-8xl font-medium tracking-tight text-secondary leading-[0.8] mb-6 lg:mb-8">
+                        Real Me
+                    </h2>
+                    <div className="flex items-center gap-4 text-tertiary">
+                        <span className="h-[1px] w-12 bg-tertiary/50 hidden lg:block" />
+                        <span className="text-sm lg:text-base font-mono uppercase tracking-wider">About me</span>
                     </div>
                 </div>
 
-                {/* Dynamic Content */}
-                <div className="lg:col-span-7 flex items-center">
-                    <div ref={quoteRef} className="relative pt-12 lg:pt-0">
-                        <span ref={bgQuoteRef} className="absolute -top-12 -left-8 text-9xl text-gray-100 -z-10 font-serif select-none">
-                            "
-                        </span>
-                        <div
-                            ref={textRef}
-                            className="text-3xl md:text-4xl lg:text-5xl leading-tight font-light text-secondary"
-                        >
-                            {content[audience].text}
-                        </div>
+                {/* Lead + bio */}
+                <div className="lg:col-span-8">
+                    <p className="text-3xl md:text-5xl xl:text-[3.4rem] font-medium tracking-tight leading-[1.12] text-secondary">
+                        {lead.split(" ").map((word, i) => (
+                            <span key={i} className="inline-block overflow-hidden align-bottom pb-[0.12em] -mb-[0.12em]">
+                                <span className={`rm-word inline-block ${i >= LEAD_MUTED_FROM ? "text-tertiary" : ""}`}>
+                                    {word}&nbsp;
+                                </span>
+                            </span>
+                        ))}
+                    </p>
+
+                    <div className="mt-10 md:mt-14 flex flex-col gap-6 md:gap-8 max-w-3xl text-lg md:text-2xl leading-[1.6] md:leading-[1.55] text-tertiary">
+                        <p className="rm-bio">
+                            I&apos;m a Computer Science undergraduate at the University of Westminster through IIT Sri Lanka,
+                            building{" "}
+                            <Link href="/projects/sotercare" className={linkCls}>SoterCare</Link> and{" "}
+                            <Link href="/projects/serenedge" className={linkCls}>SerenEdge (Pvt) Ltd</Link>, and working full
+                            time as a research intern in edge AI and robotics.
+                        </p>
+                        <p className="rm-bio">
+                            Most of what I build sits where hardware meets software: robotics, Raspberry Pi projects, a
+                            self-hosted stack at home and models trained on GPUs. Away from code, I make{" "}
+                            <Link href={SOCIALS_URL} target="_blank" rel="noopener noreferrer" className={linkCls}>vlogs</Link>{" "}
+                            for my socials and share my{" "}
+                            <Link href={PHOTOGRAPHY_URL} target="_blank" rel="noopener noreferrer" className={linkCls}>photography</Link>.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            {/* Tech Stack Marquee */}
+            {/* Tech Stack Marquee — unchanged */}
             <div className="absolute bottom-0 left-0 w-full py-8 border-t border-gray-200/10 bg-background/50 backdrop-blur-sm overflow-hidden flex">
                 <div ref={marqueeRef} className="flex gap-16 items-center whitespace-nowrap pl-16">
                     {[...technologies, ...technologies].map((tech, index) => (

@@ -104,7 +104,7 @@ export default function Portfolio() {
             <section
                 id="portfolio"
                 ref={sectionRef}
-                className="relative w-full bg-background text-secondary px-6 md:px-12 lg:px-16 pt-24 pb-16 md:pt-32 md:pb-24"
+                className="relative w-full bg-background text-secondary px-6 md:px-12 lg:px-16 pt-24 pb-16 md:pt-36 md:pb-32"
             >
                 <div className="max-w-[1920px] mx-auto">
                     {/* Header */}

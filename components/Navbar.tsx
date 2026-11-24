@@ -3,7 +3,7 @@
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FiMenu, FiX, FiArrowRight } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import gsap from "gsap";
 import { useLenis } from "./SmoothScroll";
 
@@ -30,7 +30,8 @@ export default function Navbar() {
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
         if (lenis) {
-            lenis.scrollTo(href);
+            // "#" means the top of the page; anything else is a section id
+            lenis.scrollTo(href === "#" ? 0 : href, { duration: 1.4 });
         }
         setIsMenuOpen(false);
     };
@@ -62,12 +63,8 @@ export default function Navbar() {
 
             if (isMenuOpen) {
                 tl.play();
-                // Animate button to X
-                gsap.to(buttonRef.current, { rotate: 90, duration: 0.3 });
             } else {
                 tl.reverse();
-                // Animate button back to Menu
-                gsap.to(buttonRef.current, { rotate: 0, duration: 0.3 });
             }
 
         }, containerRef);
@@ -120,9 +117,37 @@ export default function Navbar() {
             <button
                 ref={buttonRef}
                 onClick={toggleMenu}
-                className={`fixed top-6 right-6 md:top-8 md:right-12 z-[100] flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl transition-colors duration-300 shadow-lg ${isMenuOpen ? 'bg-white text-[#141414]' : 'bg-[#141414] text-white'}`}
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMenuOpen}
+                className={`group fixed top-6 right-6 md:top-8 md:right-12 z-[100] flex h-12 md:h-14 items-center gap-3 rounded-full pl-[14px] pr-[14px] md:pl-5 md:pr-6 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#141414]/40 ${
+                    isMenuOpen ? "bg-white text-[#141414]" : "bg-[#141414] text-white"
+                }`}
             >
-                {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                {/* Two lines that morph into an X */}
+                <span className="relative block h-5 w-5" aria-hidden>
+                    <span
+                        className={`absolute left-0 top-1/2 h-[1.5px] w-5 rounded-full bg-current transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                            isMenuOpen ? "rotate-45" : "-translate-y-[4px] group-hover:-translate-y-[5px]"
+                        }`}
+                    />
+                    <span
+                        className={`absolute left-0 top-1/2 h-[1.5px] rounded-full bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                            isMenuOpen ? "w-5 -rotate-45" : "w-3.5 translate-y-[4px] group-hover:w-5 group-hover:translate-y-[5px]"
+                        }`}
+                    />
+                </span>
+
+                {/* Label slides between Menu / Close */}
+                <span className="relative hidden md:block h-5 overflow-hidden font-mono text-xs uppercase tracking-[0.18em]" aria-hidden>
+                    <span
+                        className={`flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                            isMenuOpen ? "-translate-y-5" : "translate-y-0"
+                        }`}
+                    >
+                        <span className="h-5 leading-5">Menu</span>
+                        <span className="h-5 leading-5">Close</span>
+                    </span>
+                </span>
             </button>
 
             {/* Full Screen Menu Overlay */}

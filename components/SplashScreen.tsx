@@ -31,7 +31,9 @@ export default function SplashScreen() {
                         // Cleanup
                         document.documentElement.classList.remove("splash-active");
                         document.documentElement.style.backgroundColor = "";
-                        document.body.style.overflow = "auto";
+                        // Clear rather than set "auto": an inline overflow on body turns it into
+                        // its own scroll container and breaks position: sticky site-wide.
+                        document.body.style.overflow = "";
                     }
                 });
 

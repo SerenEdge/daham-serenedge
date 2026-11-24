@@ -100,7 +100,7 @@ export default function OtherProjectsRail({ projects }: { projects: OtherProject
         <section
             ref={sectionRef}
             id="other-projects"
-            className="relative z-40 bg-[#141414] text-white px-6 md:px-12 lg:px-16 py-16 md:py-20"
+            className="relative z-40 bg-[#141414] text-white px-6 md:px-12 lg:px-16 pt-16 pb-10 md:pt-28 md:pb-20"
         >
             <div className="max-w-[1920px] mx-auto">
                 <div className="opr-head mb-6 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
