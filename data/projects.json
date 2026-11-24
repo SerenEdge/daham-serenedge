@@ -104,15 +104,39 @@
         "/images/projects/livedahsboard.webp",
         "/images/projects/email-gpu.webp"
       ]
-    }
-  ],
-  "otherProjects": [
+    },
     {
       "id": "731aac0d-98ab-45ae-b1ed-3e504de76c06",
       "title": "AutoHub",
-      "description": "I built AutoHub as a self-hosted personal automation OS for my Raspberry Pi 5. It bundles a web terminal, plugin runner, Docker manager, n8n workflow integration, file browser, and Telegram notifications into a single...",
-      "link": "https://github.com/DahamDissanayake/auto-hub"
-    },
+      "subtitle": "Self-hosted on Raspberry Pi 5",
+      "description": "Personal automation OS for my Raspberry Pi 5",
+      "longDescription": "I built AutoHub as a self-hosted personal automation OS for my Raspberry Pi 5. It bundles a web terminal, plugin runner, Docker manager, n8n workflow integration, file browser, and Telegram notifications into a single Docker Compose stack, reachable from anywhere through a Cloudflare Tunnel. Logins use a password plus a Telegram OTP, with trusted devices and rolling JWT sessions.",
+      "tech": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "BullMQ",
+        "n8n",
+        "xterm.js",
+        "Docker Compose",
+        "Nginx",
+        "Cloudflare Tunnel",
+        "Raspberry Pi"
+      ],
+      "link": "https://github.com/DahamDissanayake/auto-hub",
+      "images": [
+        "/images/projects/autohub-1.webp",
+        "/images/projects/autohub-2.webp",
+        "/images/projects/autohub-3.webp",
+        "/images/projects/autohub-4.webp",
+        "/images/projects/autohub-5.webp"
+      ]
+    }
+  ],
+  "otherProjects": [
     {
       "id": "73962de6-82b2-4982-84c6-551d21a15196",
       "title": "VibeCheck [Chrome Extension]",

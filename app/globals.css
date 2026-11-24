@@ -78,6 +78,28 @@
   }
 }
 
+/* Soft fade used by the portfolio panel and lightbox */
+@keyframes pfFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pf-fade {
+  animation: pfFade 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-fade {
+    animation: none;
+  }
+}
+
 /* Hide scrollbar for mobile carousel */
 .scrollbar-hide {
   -ms-overflow-style: none;

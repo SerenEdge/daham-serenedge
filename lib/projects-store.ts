@@ -46,7 +46,8 @@ export function validateProjectsData(data: unknown): ProjectsData {
   if (typeof data !== "object" || data === null) throw new Error("data must be an object");
   const o = data as Record<string, unknown>;
   if (!Array.isArray(o.portfolio)) throw new Error("portfolio must be an array");
-  if (o.portfolio.length !== 4) throw new Error("portfolio must contain exactly 4 projects");
+  if (o.portfolio.length < 1 || o.portfolio.length > 6)
+    throw new Error("portfolio must contain between 1 and 6 projects");
   if (!Array.isArray(o.otherProjects)) throw new Error("otherProjects must be an array");
   return {
     portfolio: o.portfolio.map(validatePortfolio),

@@ -24,9 +24,9 @@ describe("validateProjectsData", () => {
   it("accepts a valid payload", () => {
     expect(validateProjectsData(valid)).toEqual(valid);
   });
-  it("rejects portfolio length != 4", () => {
-    const bad = { ...valid, portfolio: valid.portfolio.slice(0, 3) };
-    expect(() => validateProjectsData(bad)).toThrow(/exactly 4/);
+  it("rejects an empty portfolio", () => {
+    const bad = { ...valid, portfolio: [] };
+    expect(() => validateProjectsData(bad)).toThrow(/between 1 and 6/);
   });
   it("rejects a portfolio item with no images", () => {
     const bad = {

@@ -5,8 +5,9 @@ import type { ProjectsData } from "@/types/projects";
 describe("seed projects.json", () => {
   const d = data as ProjectsData;
 
-  it("has exactly 4 portfolio projects", () => {
-    expect(d.portfolio).toHaveLength(4);
+  it("has between 1 and 6 portfolio projects", () => {
+    expect(d.portfolio.length).toBeGreaterThanOrEqual(1);
+    expect(d.portfolio.length).toBeLessThanOrEqual(6);
   });
 
   it("every portfolio project has required fields and a non-empty images array", () => {
