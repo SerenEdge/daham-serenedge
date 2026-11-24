@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      // IIT-GPU-Manager was renamed to Slurm Deck; keep the old indexed URL working
+      { source: "/projects/iit-gpu-manager", destination: "/projects/slurm-deck", permanent: true },
+    ];
+  },
   experimental: {
     // reactCompiler: true,
     serverActions: {

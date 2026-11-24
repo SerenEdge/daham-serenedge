@@ -79,26 +79,28 @@
     },
     {
       "id": "reimage",
-      "title": "IIT-GPU-Manager",
-      "subtitle": "Implemented & Running 24/7",
-      "description": "Secure terminal gateway for SLURM GPU job submission at IIT",
-      "longDescription": "I built a secure terminal gateway for SLURM GPU job submission at IIT. Users connect via SSH and interact with a forced-command TUI. Every action is logged to SQLite and JSONL before it is executed. The gateway provides a menu-driven interface for users to upload files, set up environments, run jobs, and monitor their queue.",
+      "slug": "slurm-deck",
+      "title": "Slurm Deck",
+      "subtitle": "v2 web platform · in development",
+      "description": "Browser-based platform for IIT's shared Slurm GPU cluster",
+      "longDescription": "Slurm Deck is the new version of the GPU manager I built for IIT's shared Slurm cluster. Version 1.4 was a secure SSH terminal (TUI) gateway; v2 replaces it with a browser-based platform on the campus LAN. Users sign in with an email and password, then submit and schedule jobs, open JupyterLab and TensorBoard in a new tab with no tokens or tunnels, upload datasets of hundreds of gigabytes, and manage their files from one dashboard, without ever needing SSH. Slurm still does all the scheduling, and each person's files and fair-share stay separate.",
       "tech": [
         "Python",
-        "SLURM",
-        "SQLite",
-        "JSONL",
-        "Rich",
-        "Questionary",
-        "Conda",
-        "PyTorch",
-        "TensorFlow",
-        "JAX",
-        "HuggingFace",
-        "SSH",
-        "systemd"
+        "FastAPI",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Slurm",
+        "JupyterLab",
+        "Apptainer",
+        "Docker Compose",
+        "Caddy",
+        "tus"
       ],
-      "link": "https://github.com/DahamDissanayake/IIT-Secure-SLURM-Job-Gateway",
+      "link": "https://github.com/DahamDissanayake/slurm-deck",
       "images": [
         "/images/projects/startingpage.webp",
         "/images/projects/livedahsboard.webp",
@@ -137,6 +139,30 @@
     }
   ],
   "otherProjects": [
+    {
+      "id": "c1b3acdb-cf8e-4356-8f61-d3945d446cb9",
+      "title": "IIT Visitor Kiosk",
+      "description": "I built a visitor kiosk for IIT: an animated assistant on a 1080x1920 portrait screen that greets visitors and answers their questions from an on-device knowledge base. It uses retrieval-augmented generation over ingested documents, Piper text-to-speech for its voice, and a Python backend with a web front end, with a dev mode that falls back to canned answers when offline.",
+      "link": "https://github.com/DahamDissanayake/iit-kiosk"
+    },
+    {
+      "id": "45d4e97c-83d7-4b91-8d9e-582758536cd8",
+      "title": "Voice Clone TTS [KittenML]",
+      "description": "I built a small local voice-cloning tool on KittenTTS 2. Upload or record a 5-30 second sample of a voice, type any text, and it speaks that text in the cloned voice. It comes with a Gradio web GUI and a command-line script, with options to trim the reference clip, pick lighter model weights, and use expressive presets.",
+      "link": "https://github.com/DahamDissanayake/voice-clone-tts-kittenML"
+    },
+    {
+      "id": "d96261b1-4c5e-4cc0-b97f-e75cc330092a",
+      "title": "Sinhala Paper Extraction",
+      "description": "I built a browser-only tool that extracts multiple-choice questions from Sinhala past papers to build a question-bank dataset. It converts legacy-encoded Sinhala font text into proper Unicode, detects each question, its four options and the answer key, lets you review everything page by page, and exports the result as a spreadsheet. No server, no database, no account.",
+      "link": "https://github.com/DahamDissanayake/paper-data-extraction"
+    },
+    {
+      "id": "f4fdf291-ef0d-4b88-ac95-775e6141e9c4",
+      "title": "Senon Lanka Website",
+      "description": "I built the company website for Senon Lanka with Next.js: a product catalogue organised by category with individual product pages, an enquiry form, an admin product editor with image uploads, and SEO built in with per-page Open Graph images, a sitemap and robots rules.",
+      "link": "https://senonlanka-web.vercel.app"
+    },
     {
       "id": "73962de6-82b2-4982-84c6-551d21a15196",
       "title": "VibeCheck [Chrome Extension]",

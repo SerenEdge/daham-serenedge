@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FiArrowUpRight, FiGrid, FiMinimize2 } from "react-icons/fi";
 import gsap from "gsap";
@@ -21,7 +21,7 @@ function FolderCard({ project, index, compact }: { project: OtherProject; index:
             rel="noopener noreferrer"
             className={`group/card pointer-events-auto relative mt-5 flex flex-col rounded-b-2xl rounded-tr-2xl bg-[#222222] p-6 text-white [interpolate-size:allow-keywords] transition-[transform,background-color,height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:bg-[#2a2a2a] ${
                 compact
-                    ? "h-full min-h-[200px]"
+                    ? "min-h-[220px]"
                     : "h-[240px] hover:h-auto focus-visible:h-auto hover:z-10 w-[78vw] sm:w-[320px] shrink-0 snap-start"
             }`}
             title={`Open ${project.title} on ${project.link.includes("github.com") ? "GitHub" : "the web"}`}
@@ -77,73 +77,9 @@ export default function OtherProjectsRail({ projects }: { projects: OtherProject
         return () => mm.revert();
     }, []);
 
-    // While the cursor is over this section, the mouse wheel scrolls the rail
-    // sideways. At either end the wheel is released back to the page.
-    const targetRef = useRef<number | null>(null);
-    const rafRef = useRef<number | null>(null);
-
-    useEffect(() => {
-        const section = sectionRef.current;
-        if (!section || expanded) return;
-
-        const animate = () => {
-            const rail = railRef.current;
-            const target = targetRef.current;
-            if (!rail || target === null) {
-                rafRef.current = null;
-                return;
-            }
-            const diff = target - rail.scrollLeft;
-            if (Math.abs(diff) < 0.5) {
-                rail.scrollLeft = target;
-                rafRef.current = null;
-                return;
-            }
-            rail.scrollLeft += diff * 0.18;
-            rafRef.current = requestAnimationFrame(animate);
-        };
-
-        const onWheel = (e: WheelEvent) => {
-            const rail = railRef.current;
-            if (!rail) return;
-            const unit = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? rail.clientWidth : 1;
-            const raw = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-            const delta = raw * unit;
-            const max = rail.scrollWidth - rail.clientWidth;
-            const from = targetRef.current ?? rail.scrollLeft;
-
-            const atEnd = delta > 0 && from >= max - 1;
-            const atStart = delta < 0 && from <= 1;
-            if (max <= 0 || atEnd || atStart) {
-                targetRef.current = null;
-                return; // let the page (Lenis) scroll
-            }
-
-            e.preventDefault();
-            e.stopPropagation(); // keep Lenis from also scrolling the page
-            targetRef.current = Math.min(max, Math.max(0, from + delta));
-            if (rafRef.current === null) rafRef.current = requestAnimationFrame(animate);
-        };
-
-        const reset = () => {
-            targetRef.current = null;
-        };
-
-        section.addEventListener("wheel", onWheel, { passive: false });
-        section.addEventListener("mouseleave", reset);
-        return () => {
-            section.removeEventListener("wheel", onWheel);
-            section.removeEventListener("mouseleave", reset);
-            if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-            rafRef.current = null;
-            targetRef.current = null;
-        };
-    }, [expanded]);
-
     const scrollRail = (dir: 1 | -1) => {
         const rail = railRef.current;
         if (!rail) return;
-        targetRef.current = null;
         const card = rail.children[0] as HTMLElement | undefined;
         const step = card ? card.offsetWidth + 16 : 320;
         rail.scrollBy({ left: dir * step, behavior: "smooth" });
@@ -197,7 +133,7 @@ export default function OtherProjectsRail({ projects }: { projects: OtherProject
 
                 <div className="opr-body">
                     {expanded ? (
-                        <div key="grid" className="pf-fade grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        <div key="grid" className="pf-fade grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {projects.map((project, i) => (
                                 <FolderCard key={project.id ?? i} project={project} index={i} compact />
                             ))}

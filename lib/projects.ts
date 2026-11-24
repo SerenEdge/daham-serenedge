@@ -19,7 +19,7 @@ export function slugify(value: string): string {
  *
  * Deliberately derived from `title`, not `id`. Several ids drifted away from
  * their project after renames — `vibecheck` now holds "MILO Robot",
- * `reimage` holds "IIT-GPU-Manager" — so id-based routes would read as the
+ * `reimage` holds "Slurm Deck" (formerly IIT-GPU-Manager) — so id-based routes would read as the
  * wrong project. An explicit `slug` in projects.json overrides this, which is
  * how you rename a project without breaking an already-indexed URL.
  */
