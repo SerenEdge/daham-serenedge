@@ -100,6 +100,7 @@ export default function OtherProjectsRail({ projects }: { projects: OtherProject
         <section
             ref={sectionRef}
             id="other-projects"
+            data-nav-dark
             className="relative z-40 bg-[#141414] text-white px-6 md:px-12 lg:px-16 pt-16 pb-10 md:pt-28 md:pb-20"
         >
             <div className="max-w-[1920px] mx-auto">

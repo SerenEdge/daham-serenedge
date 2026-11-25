@@ -22,6 +22,39 @@ export default function Navbar() {
     const linksRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const lenis = useLenis();
+    const logoRef = useRef<HTMLAnchorElement>(null);
+    const [overDark, setOverDark] = useState(false);
+
+    // Swap the signature to white while it sits over a dark section
+    // (any element marked data-nav-dark, e.g. Other projects and the contact footer)
+    useEffect(() => {
+        let frame = 0;
+        const check = () => {
+            frame = 0;
+            const logo = logoRef.current;
+            if (!logo) return;
+            const r = logo.getBoundingClientRect();
+            const y = r.top + r.height / 2;
+            const dark = Array.from(document.querySelectorAll<HTMLElement>("[data-nav-dark]")).some((el) => {
+                const b = el.getBoundingClientRect();
+                return b.top <= y && b.bottom >= y;
+            });
+            setOverDark(dark);
+        };
+        const onScroll = () => {
+            if (!frame) frame = requestAnimationFrame(check);
+        };
+        check();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            if (frame) cancelAnimationFrame(frame);
+        };
+    }, []);
+
+    const logoWhite = overDark || isMenuOpen;
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -96,17 +129,28 @@ export default function Navbar() {
             <div className="absolute lg:fixed top-0 left-0 w-full z-[100] px-6 py-6 md:px-12 md:py-8 flex justify-between items-center pointer-events-none">
                 {/* Logo - Natural Color (No Invert) */}
                 <Link
+                    ref={logoRef}
                     href="#"
                     aria-label="Back to top"
-                    className="pointer-events-auto z-[100]"
+                    className="pointer-events-auto z-[100] relative block w-20 md:w-24"
                     onClick={(e) => handleScroll(e, "#")}
                 >
+                    {/* Dark and white signatures stacked; cross-fade between them */}
                     <Image
                         src="/images/daham-sign-darken.png"
                         alt="Daham Signature"
                         width={120}
                         height={40}
-                        className="w-20 md:w-24 h-auto object-contain"
+                        className={`w-full h-auto object-contain transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${logoWhite ? "opacity-0" : "opacity-100"}`}
+                        priority
+                    />
+                    <Image
+                        src="/images/daham-sign-white.png"
+                        alt=""
+                        aria-hidden
+                        width={120}
+                        height={40}
+                        className={`absolute inset-0 w-full h-auto object-contain transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${logoWhite ? "opacity-100" : "opacity-0"}`}
                         priority
                     />
                 </Link>
