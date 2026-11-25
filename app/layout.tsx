@@ -112,7 +112,7 @@ export default function RootLayout({
                     d.classList.remove('splash-active');
                     d.style.backgroundColor = '';
                     if (document.body) document.body.style.overflow = '';
-                  }, 4000);
+                  }, 7000);
                 }
               } catch (e) {
                 // sessionStorage throws in some privacy modes — skip the splash.

@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
+
+// Length of the draw animation baked into signature-animated-white.svg
+// (last stroke ends at ~3.15s), plus a short hold on the finished signature.
+const SIGN_DRAW_MS = 3600;
 
 export default function SplashScreen() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -18,11 +21,9 @@ export default function SplashScreen() {
         document.body.style.overflow = "hidden";
 
         const ctx = gsap.context(() => {
-            // Initial Zoom-out Animation
-            gsap.fromTo(logoRef.current,
-                { scale: 3, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 2, ease: "power4.out" }
-            );
+            // The signature draws itself (CSS animation inside the SVG, ~3.2s).
+            // Just a soft fade-in here so it doesn't pop in.
+            gsap.fromTo(logoRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" });
 
             const handleExit = () => {
                 const tl = gsap.timeline({
@@ -48,7 +49,7 @@ export default function SplashScreen() {
                 });
             };
 
-            // Wait for window load or at least 2.5 seconds (minimal zoom time + buffer)
+            // Wait for the signature to finish drawing, then for window load
             const siteLoaded = () => {
                 if (document.readyState === "complete") {
                     handleExit();
@@ -58,7 +59,7 @@ export default function SplashScreen() {
             };
 
             // Ensure it clears even if load event is missed
-            const timeoutId = setTimeout(siteLoaded, 2500);
+            const timeoutId = setTimeout(siteLoaded, SIGN_DRAW_MS);
 
             return () => {
                 window.removeEventListener("load", handleExit);
@@ -80,14 +81,17 @@ export default function SplashScreen() {
             ref={containerRef}
             className="fixed inset-0 z-[9999] items-center justify-center bg-[#141414]"
         >
-            <div ref={logoRef} className="w-32 min-[720px]:w-48 h-auto">
-                <Image
-                    src="/images/daham-sign-white.png"
+            <div ref={logoRef} className="w-36 min-[720px]:w-56 h-auto">
+                {/* Plain <img>: the SVG carries its own CSS draw animation, which
+                    starts as soon as the file loads */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/svg/signature-animated-white.svg"
                     alt="Daham Signature"
-                    width={300}
-                    height={100}
-                    className="w-full h-auto object-contain"
-                    priority
+                    width={498}
+                    height={260}
+                    className="w-full h-auto"
+                    fetchPriority="high"
                 />
             </div>
         </div>
